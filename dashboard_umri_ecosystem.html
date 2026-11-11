@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UMRI Social Media Ecosystem — Command & Content Studio Dashboard (T.A. 2027/2028)</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umri: {
+              emerald: '#064E3B',      // Deep Emerald-Forest Green (Jas Almamater UMRI)
+              emeraldLight: '#047857',
+              navy: '#0F172A',
+              gold: '#D97706',
+              goldLight: '#F59E0B'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.05);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(15, 23, 42, 0.2);
+      border-radius: 9999px;
+    }
+    .phone-frame {
+      box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.35), inset 0 0 0 2px rgba(255,255,255,0.15);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
+
+  <!-- TOP INSTITUTIONAL GUARDRAIL & CONTEXT BANNER -->
+  <div class="bg-[#064E3B] text-emerald-50 border-b border-emerald-800 px-4 py-2 text-xs">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-semibold border border-amber-400/30">
+          <i class="ph-fill ph-shield-check"></i> Rambu Persyarikatan Aktif
+        </span>
+        <span>Jas Almamater: <strong>Hijau Zamrud Tua</strong></span>
+        <span class="opacity-40">|</span>
+        <span>Duta Putri: <strong>Wajib Hijab Rapi & Rok Panjang</strong></span>
+        <span class="opacity-40">|</span>
+        <span>Rasio Kuda Troya: <strong>70% Kultural : 20% Fasilitas : 10% Soft CTA</strong></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://daftar.umri.ac.id" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-amber-300 hover:underline font-medium">
+          <i class="ph-bold ph-globe"></i> daftar.umri.ac.id
+        </a>
+        <button onclick="toggleContextDrawer()" class="inline-flex items-center gap-1 bg-emerald-800/80 hover:bg-emerald-700 text-white px-2.5 py-1 rounded-md font-medium transition">
+          <i class="ph-bold ph-database"></i> Basis Data Faktual PMB 2027/2028
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPONENT 1: EXECUTIVE HEADER & STATS BAR -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <!-- Brand Identity -->
+        <div class="flex items-start sm:items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#064E3B] to-emerald-700 flex items-center justify-center text-white shadow-md shrink-0">
+            <i class="ph-fill ph-sun-horizon text-2xl text-amber-300"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-300">T.A. 2027/2028</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 inline-flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                Gelombang 1 Berjalan (28 Okt 2026 – 06 Feb 2027)
+              </span>
+              <span class="text-xs font-medium text-slate-500 hidden md:inline">Diktisaintek Berdampak • BAN-PT Baik Sekali</span>
+            </div>
+            <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 mt-1">
+              UMRI Social Media Ecosystem — Content Studio
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-500">
+              Orkestrasi Dual-Kanal: <strong class="text-slate-800">@kampus_umri</strong> (Marwah Akademik & Institusi) &amp; <strong class="text-emerald-700">@pmb.umri</strong> (Konversi PMB & Student Life)
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Buttons: Add Draft & Export -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="openNewDraftModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#064E3B] hover:bg-emerald-800 text-white font-semibold text-sm shadow-sm transition">
+            <i class="ph-bold ph-plus-circle text-lg"></i>
+            Input Draf Cepat
+          </button>
+          <div class="flex items-center rounded-xl border border-slate-200 bg-slate-50 p-1">
+            <button onclick="exportDrafts('json')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:bg-white hover:shadow-sm transition" title="Unduh Data JSON">
+              <i class="ph-bold ph-file-js text-amber-600 text-base"></i> Export JSON
+            </button>
+            <button onclick="exportDrafts('csv')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:bg-white hover:shadow-sm transition" title="Unduh Data CSV (Excel)">
+              <i class="ph-bold ph-file-csv text-emerald-600 text-base"></i> Export CSV
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Executive Stats Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100">
+        <!-- Stat 1: Total Active Drafts -->
+        <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3 flex items-center justify-between">
+          <div>
+            <p class="text-xs font-medium text-slate-500">Total Draf Aktif</p>
+            <p id="stat-total" class="text-2xl font-extrabold text-slate-900 mt-0.5">8</p>
+            <p id="stat-ready" class="text-xs text-emerald-700 font-medium mt-0.5">3 Ready to Post</p>
+          </div>
+          <div class="w-10 h-10 rounded-lg bg-slate-200/70 text-slate-700 flex items-center justify-center">
+            <i class="ph-duotone ph-Stack text-xl"></i>
+          </div>
+        </div>
+
+        <!-- Stat 2: Channel Split -->
+        <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3">
+          <div class="flex items-center justify-between text-xs font-medium mb-1">
+            <span class="text-indigo-900 font-semibold">@kampus_umri: <strong id="stat-kampus">3</strong></span>
+            <span class="text-emerald-800 font-semibold">@pmb.umri: <strong id="stat-pmb">5</strong></span>
+          </div>
+          <div class="w-full h-2.5 bg-emerald-200 rounded-full overflow-hidden flex">
+            <div id="bar-kampus" class="bg-indigo-900 h-full transition-all duration-300" style="width: 37.5%"></div>
+            <div id="bar-pmb" class="bg-emerald-600 h-full transition-all duration-300" style="width: 62.5%"></div>
+          </div>
+          <p class="text-xs text-slate-500 mt-1.5 flex items-center justify-between">
+            <span>Induk vs Satelit</span>
+            <span id="stat-urgent" class="text-amber-700 font-semibold">3 Urgent PMB</span>
+          </p>
+        </div>
+
+        <!-- Stat 3: Jadwal Gelombang PMB Selector -->
+        <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-3 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-amber-900 uppercase tracking-wide">Radar Gelombang PMB</span>
+            <select id="wave-selector" onchange="updateWaveInfo(this.value)" class="text-xs font-semibold bg-white border border-amber-300 rounded px-1.5 py-0.5 text-amber-900 focus:outline-none">
+              <option value="1" selected>Gelombang 1 (Aktif)</option>
+              <option value="2">Gelombang 2</option>
+              <option value="3">Gelombang 3</option>
+            </select>
+          </div>
+          <p id="wave-date-display" class="text-xs font-bold text-slate-800 mt-1">28 Okt 2026 – 06 Feb 2027</p>
+          <p id="wave-focus-display" class="text-xs text-amber-800">Fokus: Early Bird, Beasiswa & Prestasi</p>
+        </div>
+
+        <!-- Stat 4: Brand Safety & Trojan Horse Audit -->
+        <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-3 flex items-center justify-between">
+          <div>
+            <p class="text-xs font-bold text-emerald-950">Brand Safety Persyarikatan</p>
+            <p class="text-xs text-emerald-800 mt-0.5 font-medium">100% Lolos Filter Red Lines</p>
+            <p class="text-xs text-emerald-700 mt-0.5">Formula 70/20/10 Terkunci</p>
+          </div>
+          <div class="w-10 h-10 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
+            <i class="ph-fill ph-check-fat text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- COMPONENT 2: CHANNEL & CATEGORY FILTER BAR -->
+  <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-5 pb-3">
+    <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+      <!-- Category Tabs -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 custom-scrollbar" id="category-tabs">
+        <button onclick="setFilterCategory('ALL')" data-cat="ALL" class="filter-tab active-tab px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 bg-slate-900 text-white shadow-sm">
+          <i class="ph-bold ph-squares-four"></i> Semua Draf
+        </button>
+        <button onclick="setFilterCategory('KAMPUS')" data-cat="KAMPUS" class="filter-tab px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200">
+          <i class="ph-bold ph-buildings text-indigo-700"></i> @kampus_umri
+        </button>
+        <button onclick="setFilterCategory('PMB')" data-cat="PMB" class="filter-tab px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200">
+          <i class="ph-bold ph-rocket-launch text-emerald-700"></i> @pmb.umri
+        </button>
+        <button onclick="setFilterCategory('VIDEO')" data-cat="VIDEO" class="filter-tab px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200">
+          <i class="ph-bold ph-device-mobile-camera text-rose-600"></i> Video Vertikal (9:16)
+        </button>
+        <button onclick="setFilterCategory('GRAFIS')" data-cat="GRAFIS" class="filter-tab px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200">
+          <i class="ph-bold ph-cards text-sky-600"></i> Grafis / Karosel
+        </button>
+        <button onclick="setFilterCategory('URGENT')" data-cat="URGENT" class="filter-tab px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 bg-amber-50 text-amber-900 border border-amber-300 hover:bg-amber-100">
+          <i class="ph-fill ph-fire text-amber-600"></i> Urgent PMB
+        </button>
+      </div>
+
+      <!-- Right Controls: Status Filter, Search & View Mode -->
+      <div class="flex flex-wrap items-center gap-2">
+        <div class="relative flex-1 sm:flex-initial">
+          <i class="ph-bold ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input id="search-input" oninput="renderBoard()" type="text" placeholder="Cari judul, prodi, beasiswa..." class="w-full sm:w-52 pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white transition" />
+        </div>
+
+        <select id="status-filter" onchange="renderBoard()" class="text-xs font-semibold bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-slate-700 focus:outline-none focus:border-emerald-600">
+          <option value="ALL">Semua Status Produksi</option>
+          <option value="Idea">💡 Idea</option>
+          <option value="Scripting">✍️ Scripting</option>
+          <option value="Review">🔍 Review</option>
+          <option value="Ready to Post">✅ Ready to Post</option>
+        </select>
+
+        <div class="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-0.5">
+          <button id="btn-view-grid" onclick="setViewMode('GRID')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-white text-slate-900 shadow-sm transition flex items-center gap-1">
+            <i class="ph-bold ph-grid-four"></i> Grid
+          </button>
+          <button id="btn-view-kanban" onclick="setViewMode('KANBAN')" class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition flex items-center gap-1">
+            <i class="ph-bold ph-columns"></i> Kanban
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENT 3: DRAFT CONTENT BOARD (GRID / KANBAN) -->
+  <main class="max-w-7xl mx-auto w-full px-4 sm:px-6 py-3 flex-1">
+    <div id="board-container"></div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-5 px-4 sm:px-6 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-800">Ekosistem Media Sosial UMRI</span>
+        <span>•</span>
+        <span>Ruang PMB Gedung Rektorat Lt. 1, Jl. Tuanku Tambusai, Pekanbaru (Senin–Sabtu, 08.00–16.00 WIB)</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="italic text-emerald-800 font-medium">"Ruang Tepat untuk Tumbuh Hebat"</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- COMPONENT 4: INSTAGRAM FEED & REELS PREVIEW MODAL + FULL OUTPUT STANDARD -->
+  <div id="preview-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-6xl w-full max-h-[94vh] flex flex-col overflow-hidden shadow-2xl border border-slate-200 animate-fadeIn">
+      <!-- Modal Top Bar -->
+      <div class="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span id="modal-channel-badge" class="px-2.5 py-1 rounded-lg text-xs font-bold"></span>
+          <span id="modal-format-badge" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-200"></span>
+          <h3 id="modal-title" class="font-bold text-sm sm:text-base truncate"></h3>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button onclick="copyCurrentDraft()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition">
+            <i class="ph-bold ph-copy"></i> <span id="copy-btn-label">Salin Modul Draf</span>
+          </button>
+          <button onclick="closePreviewModal()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition">
+            <i class="ph-bold ph-x text-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Content: Left Smartphone Simulator + Right Output Standard -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 overflow-y-auto flex-1 divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
+        
+        <!-- LEFT COLUMN: SMARTPHONE SIMULATOR (5 COLS) -->
+        <div class="lg:col-span-5 bg-slate-100 p-4 sm:p-6 flex flex-col items-center justify-start">
+          <!-- Mode Switcher inside Phone Simulator -->
+          <div class="flex items-center gap-2 mb-4 bg-white p-1 rounded-xl border border-slate-200 shadow-sm">
+            <button id="sim-tab-reels" onclick="switchSimulatorMode('REELS')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+              <i class="ph-fill ph-film-strip"></i> Simulasi Reels 9:16
+            </button>
+            <button id="sim-tab-feed" onclick="switchSimulatorMode('FEED')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+              <i class="ph-fill ph-instagram-logo"></i> Simulasi Feed / Karosel
+            </button>
+          </div>
+
+          <!-- Smartphone Mockup -->
+          <div class="w-[310px] sm:w-[330px] bg-slate-950 rounded-[40px] p-3 phone-frame text-white relative">
+            <!-- Phone Notch -->
+            <div class="w-28 h-4 bg-black rounded-b-xl mx-auto mb-2 flex items-center justify-center">
+              <div class="w-10 h-1 bg-slate-800 rounded-full"></div>
+            </div>
+
+            <!-- Phone Screen Container -->
+            <div id="phone-screen-content" class="bg-slate-900 rounded-[28px] overflow-hidden min-h-[540px] flex flex-col justify-between relative border border-slate-800">
+              <!-- Populated dynamically by JS -->
+            </div>
+          </div>
+
+          <!-- Brand Safety Compliance Box under Phone -->
+          <div class="w-full max-w-[330px] mt-4 bg-emerald-950 text-emerald-100 rounded-2xl p-3.5 text-xs border border-emerald-800">
+            <p class="font-bold text-amber-300 flex items-center gap-1.5 mb-1.5">
+              <i class="ph-fill ph-shield-check text-base"></i> Checklist Kepatuhan Persyarikatan
+            </p>
+            <ul id="modal-safety-list" class="space-y-1 text-emerald-100/90 text-xs"></ul>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: STANDARDIZED MODULE BREAKDOWN (7 COLS) -->
+        <div class="lg:col-span-7 p-5 sm:p-6 overflow-y-auto space-y-5 bg-white custom-scrollbar">
+          <!-- Metadata Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+            <div>
+              <span class="text-xs text-slate-500 block">Tujuan Pesan (KPI / Funnel)</span>
+              <span id="modal-funnel" class="text-xs font-bold text-slate-900 mt-0.5 inline-block"></span>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 block">Pilar & Formula Kuda Troya</span>
+              <span id="modal-pilar" class="text-xs font-bold text-emerald-800 mt-0.5 inline-block"></span>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 block">Status Produksi</span>
+              <select id="modal-status-select" onchange="changeDraftStatus(this.value)" class="mt-0.5 text-xs font-bold bg-white border border-slate-300 rounded-lg px-2 py-1 text-slate-900">
+                <option value="Idea">💡 Idea</option>
+                <option value="Scripting">✍️ Scripting</option>
+                <option value="Review">🔍 Review</option>
+                <option value="Ready to Post">✅ Ready to Post</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Angle Pesan -->
+          <div>
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1.5">Angle Pesan Strategis</h4>
+            <p id="modal-angle" class="text-sm text-slate-800 bg-amber-50/70 border border-amber-200/80 rounded-xl p-3 font-medium"></p>
+          </div>
+
+          <!-- Visual & Audio Directive -->
+          <div>
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
+              <i class="ph-bold ph-video-camera text-emerald-700"></i> Visual & Audio Directive
+            </h4>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-2 text-xs text-slate-700">
+              <div><strong class="text-slate-900">Visual & Atribut:</strong> <span id="modal-visual-dir"></span></div>
+              <div><strong class="text-slate-900">Audio & Mood:</strong> <span id="modal-audio-dir"></span></div>
+            </div>
+          </div>
+
+          <!-- Two-Column Script / Slide Breakdown -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <i class="ph-bold ph-table text-indigo-700"></i> Two-Column Script / Slide Breakdown
+              </h4>
+              <span class="text-xs text-slate-400">Klik baris untuk preview di layar HP</span>
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-slate-900 text-white">
+                    <th class="py-2.5 px-3 font-bold w-28">Segmen / Waktu</th>
+                    <th class="py-2.5 px-3 font-bold">Visual Cue & Adegan</th>
+                    <th class="py-2.5 px-3 font-bold">Audio / VO / Teks On-Screen</th>
+                  </tr>
+                </thead>
+                <tbody id="modal-script-tbody" class="divide-y divide-slate-200"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Draft Caption & CTA -->
+          <div>
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
+              <i class="ph-bold ph-chat-Centered-text text-emerald-700"></i> Draft Caption & Call-to-Action (Siap Unggah)
+            </h4>
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+              <pre id="modal-caption" class="text-xs text-slate-800 whitespace-pre-wrap font-sans leading-relaxed"></pre>
+              <div id="modal-hashtags" class="mt-3 pt-3 border-t border-slate-200 text-xs font-semibold text-indigo-700"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPONENT 5: FORMULIR INPUT DRAF CEPAT (MODAL DRAWER) -->
+  <div id="new-draft-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-end">
+    <div class="bg-white w-full max-w-2xl h-full flex flex-col shadow-2xl border-l border-slate-200 overflow-hidden">
+      <div class="px-6 py-4 bg-[#064E3B] text-white flex items-center justify-between shrink-0">
+        <div>
+          <span class="text-xs uppercase tracking-wider text-amber-300 font-bold">Kontribusi Prodi / Dekanat / Pimpinan</span>
+          <h3 class="text-lg font-extrabold">Formulir Input Draf Konten Cepat</h3>
+        </div>
+        <button onclick="closeNewDraftModal()" class="w-8 h-8 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white flex items-center justify-center">
+          <i class="ph-bold ph-x text-lg"></i>
+        </button>
+      </div>
+
+      <form id="new-draft-form" onsubmit="submitNewDraft(event)" class="p-6 overflow-y-auto flex-1 space-y-4 text-xs custom-scrollbar">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Kanal Tujuan *</label>
+            <select id="in-channel" required class="w-full border border-slate-300 rounded-xl px-3 py-2 font-semibold text-slate-900 focus:outline-none focus:border-emerald-600">
+              <option value="@pmb.umri">@pmb.umri (Satelit Promosi & PMB)</option>
+              <option value="@kampus_umri">@kampus_umri (Induk Institusi & Akademik)</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Format Aset *</label>
+            <select id="in-format" required class="w-full border border-slate-300 rounded-xl px-3 py-2 font-semibold text-slate-900 focus:outline-none focus:border-emerald-600">
+              <option value="Video 9:16">Video 9:16 (Reels / TikTok)</option>
+              <option value="Karosel 3:4">Karosel 3:4 (Feed Edukasi)</option>
+              <option value="Single Image">Single Image (Poster / Rilis Resmi)</option>
+              <option value="Banner Web">Banner Web (16:9)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Tujuan Pesan (Funnel) *</label>
+            <select id="in-funnel" required class="w-full border border-slate-300 rounded-xl px-3 py-2 font-semibold text-slate-900">
+              <option value="Awareness (TOFU)">Awareness (TOFU)</option>
+              <option value="Consideration (MOFU)">Consideration (MOFU)</option>
+              <option value="Konversi PMB (BOFU)">Konversi PMB (BOFU)</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Pilar Konten *</label>
+            <input id="in-pilar" type="text" required placeholder="Misal: #SpillJurusanUMRI / Rilis Riset" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Status Produksi *</label>
+            <select id="in-status" required class="w-full border border-slate-300 rounded-xl px-3 py-2 font-semibold text-slate-900">
+              <option value="Idea">💡 Idea</option>
+              <option value="Scripting">✍️ Scripting</option>
+              <option value="Review">🔍 Review</option>
+              <option value="Ready to Post">✅ Ready to Post</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+          <div class="sm:col-span-2">
+            <label class="font-bold text-slate-700 block mb-1">Judul Konten *</label>
+            <input id="in-title" type="text" required placeholder="Contoh: Bedah Lab Fakultas Kedokteran UMRI..." class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-semibold" />
+          </div>
+          <div class="pt-4">
+            <label class="inline-flex items-center gap-2 cursor-pointer bg-amber-50 border border-amber-300 px-3 py-2 rounded-xl w-full">
+              <input id="in-urgent" type="checkbox" class="rounded text-amber-600 focus:ring-amber-500" />
+              <span class="font-bold text-amber-900">Tandai Urgent PMB</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Unit Pengusul (Prodi / Fakultas / Lembaga)</label>
+          <input id="in-proposer" type="text" placeholder="Contoh: Dekanat FIKOM / Tim Admisi PMB / LPPM UMRI" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900" />
+        </div>
+
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Angle Pesan & Value Proposition *</label>
+          <textarea id="in-angle" rows="2" required placeholder="Jelaskan sudut pandang utama pesan (Ingat: jika informasi biaya/syarat belum terverifikasi brosur, otomatis ditandai [VERIFIKASI_TIM_PMB])..." class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Visual Directive (Framing & Busana) *</label>
+            <textarea id="in-visual" rows="2" required placeholder="Jas hijau zamrud tua, Duta Putri wajib berhijab rapi & rok panjang..." class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900"></textarea>
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Audio Directive (Musik & VO) *</label>
+            <textarea id="in-audio" rows="2" required placeholder="Musik akustik/upbeat sopan bebas lirik vulgar, VO hangat..." class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900"></textarea>
+          </div>
+        </div>
+
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Two-Column Script / Slide Breakdown (Format: Waktu/Slide | Visual | Audio/Teks per baris) *</label>
+          <textarea id="in-script" rows="4" required placeholder="00:00 - 00:03 (Hook) | Talent di depan Gedung Rektorat UMRI | Pernah bingung cari kampus yang bisa kuliah sambil kerja?&#10;00:04 - 00:15 (Problem) | B-roll suasana kelas Reguler B sore hari | Di UMRI ada Reguler B jam 16.00-22.00 WIB & jalur RPL!&#10;00:16 - 00:45 (Solusi) | Grafis daftar.umri.ac.id | Daftar langsung Gelombang 1 sebelum 6 Feb 2027!" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-mono"></textarea>
+        </div>
+
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Draft Caption & CTA *</label>
+          <textarea id="in-caption" rows="3" required placeholder="Tulis caption lengkap beserta CTA ke https://daftar.umri.ac.id ..." class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900"></textarea>
+        </div>
+
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Hashtags</label>
+          <input id="in-hashtags" type="text" value="#UMRI #PMBUMRI2027 #RuangTepatUntukTumbuhHebat #SangPencerahMuda" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900" />
+        </div>
+
+        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-emerald-950 space-y-1">
+          <p class="font-bold flex items-center gap-1"><i class="ph-fill ph-check-circle text-emerald-700"></i> Otomatis Terverifikasi Rambu Persyarikatan:</p>
+          <p class="text-xs text-emerald-800">Bebas audio vulgar, klaim fasilitas terukur, jas almamater hijau zamrud tua, dan busana Duta Putri berhijab + rok panjang.</p>
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-2 border-t border-slate-200">
+          <button type="button" onclick="closeNewDraftModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-bold">Batal</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-[#064E3B] hover:bg-emerald-800 text-white font-bold shadow-sm">Simpan ke Dashboard</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- OFFICIAL CONTEXT DATABASE DRAWER -->
+  <div id="context-drawer" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[88vh] flex flex-col overflow-hidden shadow-2xl border border-slate-200">
+      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="ph-fill ph-database text-amber-400 text-xl"></i>
+          <h3 class="font-extrabold text-base">Basis Data Faktual Operasional PMB UMRI T.A. 2027/2028 (Acuan Absolut)</h3>
+        </div>
+        <button onclick="toggleContextDrawer()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center">
+          <i class="ph-bold ph-x"></i>
+        </button>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-4 text-xs text-slate-700 custom-scrollbar">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+            <h4 class="font-extrabold text-slate-900 uppercase">Jadwal & Layanan Pendaftaran</h4>
+            <p><strong>Tahun Akademik:</strong> 2027/2028</p>
+            <p><strong>Portal Registrasi:</strong> <a href="https://daftar.umri.ac.id" target="_blank" class="text-emerald-700 font-bold underline">https://daftar.umri.ac.id</a></p>
+            <p><strong>Layanan Fisik:</strong> Ruang PMB Gedung Rektorat Lantai 1, Jl. Tuanku Tambusai, Pekanbaru (Senin–Sabtu, 08.00–16.00 WIB)</p>
+            <div class="pt-1 border-t border-slate-200 space-y-1">
+              <p class="font-bold text-emerald-800">• Gelombang 1: 28 Oktober 2026 s.d. 06 Februari 2027</p>
+              <p>• Gelombang 2: 08 Februari 2027 s.d. 17 Juli 2027</p>
+              <p>• Gelombang 3: 19 Juli 2027 s.d. 11 September 2027</p>
+            </div>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+            <h4 class="font-extrabold text-slate-900 uppercase">Skema Perkuliahan & Alur Seleksi</h4>
+            <p><strong>Reguler A:</strong> Kelas Pagi/Siang (07.00 – 17.00 WIB)</p>
+            <p><strong>Reguler B:</strong> Kelas Sore/Pekerja (16.00 – 22.00 WIB, minimal 15 orang)</p>
+            <p><strong>Program RPL:</strong> Rekognisi Pembelajaran Lampau (Konversi pengalaman kerja/pelatihan menjadi SKS)</p>
+            <div class="pt-1 border-t border-slate-200 space-y-1">
+              <p><strong>Reguler S1 & S2:</strong> Tes Potensi Akademik (TPA)</p>
+              <p><strong>Klaster Kesehatan (Kedokteran, Farmasi, Keperawatan, Kebidanan):</strong> CBT, Wawancara, & Tes Kesehatan di Klinik Pratama UMRI</p>
+              <p><strong>Jalur Beasiswa & Internasional:</strong> Seleksi portofolio via BIMAWA atau KUIK</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-emerald-50/70 p-4 rounded-2xl border border-emerald-200 space-y-1.5">
+            <h4 class="font-extrabold text-emerald-950 uppercase">Katalog 13 Jalur Masuk & 9 Beasiswa</h4>
+            <p><strong>Jalur Masuk:</strong> Reguler (D3, S1, S2), RPL, Muhammadiyah, Alumni Sekolah Muhammadiyah, Sivitas UMRI, Prestasi, Gen Smart, Pegawai/AUM/Kader Alumni PTMA, Alumni UMRI, Beasiswa Tahfidz, Beasiswa Kader, Beasiswa Internasional.</p>
+            <p><strong>Katalog Beasiswa:</strong> KIP Kuliah, Beasiswa Tahfidz Quran, Beasiswa Kader Muhammadiyah, Beasiswa Sang Surya, Beasiswa Bank Indonesia (BI), Beasiswa Bank Syariah Indonesia (BSI), Beasiswa Bank Muamalat, Mega Syariah, KL Lazismu.</p>
+          </div>
+          <div class="bg-amber-50/70 p-4 rounded-2xl border border-amber-200 space-y-1.5">
+            <h4 class="font-extrabold text-amber-950 uppercase">Tagline Resmi & Rambu Brand Safety</h4>
+            <p><strong>Tagline Kampanye:</strong><br/>1. <em>"Ruang Tepat untuk Tumbuh Hebat"</em><br/>2. <em>"Jadilah Sang Pencerah Muda, Bertumbuh Bersama UMRI"</em> / <em>"Ukir Prestasimu di UMRI"</em><br/>3. <em>"Dari Sini, Arah Masa Depanmu Dimulai"</em></p>
+            <p><strong>Atribut Wajib:</strong> Jas Almamater Hijau Zamrud Tua, Duta Putri berhijab rapi & <strong>rok panjang</strong>, Logo Diktisaintek Berdampak & BAN-PT Baik Sekali. Klaim air minum: <em>"Pelopor Fasilitas Air Siap Minum Teruji & Bersertifikat Halal di Riau"</em>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script>
+    const INITIAL_DRAFTS = [
+      {
+        id: "PMB-VID-202611-01",
+        channel: "@pmb.umri",
+        format: "Video 9:16",
+        isVideo: true,
+        urgent: true,
+        status: "Ready to Post",
+        pilar: "Trojan Horse 70/20/10 • #BiarGakKaget",
+        funnel: "Awareness & Consideration (TOFU-MOFU)",
+        proposer: "Tim Kreatif @pmb.umri",
+        title: "POV: Haus Habis Praktikum, Refill Air Minum Gratis di Kampus?",
+        angle: "70% relatabilitas anak kuliah irit uang jajan di akhir bulan, 20% bukti nyata fasilitas UMRI sebagai Pelopor Fasilitas Air Siap Minum Teruji & Bersertifikat Halal di Riau, 10% soft CTA Gelombang 1.",
+        visualDirective: "Rasio 9:16 vertikal, natural daylight koridor kampus UMRI Jl. Tuanku Tambusai. Talent mahasiswa memakai Jas Almamater hijau zamrud tua (deep emerald-forest green) dengan lambang matahari bersinar di dada kiri, Duta Putri memakai hijab rapi dan rok panjang. Sematkan logo Diktisaintek Berdampak & badge BAN-PT Baik Sekali di outro.",
+        audioDirective: "Audio lo-fi upbeat santai (bebas lirik vulgar/sensual) + efek suara 'ting!' saat air mengalir ke tumbler.",
+        script: [
+          {
+            segment: "00:00 - 00:04 (Hook)",
+            visual: "Close-up talent mahasiswa menatap dompet tipis sambil memegang tumbler kosong di depan ruang lab. Teks layar: 'Dompet tanggal tua vs cuaca Pekanbaru yang menyala 🔥'",
+            audio: "VO: 'Anak kos Pekanbaru pasti paham rasanya haus habis praktikum, tapi uang jajan tinggal pas-pasan...'"
+          },
+          {
+            segment: "00:05 - 00:18 (Relatable 70%)",
+            visual: "Talent berjalan santai bersama temannya (Duta Putri berhijab rapi & rok panjang) menuju titik stasiun keran air siap minum kampus UMRI.",
+            audio: "VO: 'Untung kuliah di UMRI tak payah risau! Tinggal bawa tumbler sendiri dari kos, langsung refill sepuasnya.'"
+          },
+          {
+            segment: "00:19 - 00:42 (Bukti Fasilitas 20%)",
+            visual: "Detail shot air jernih mengalir ke tumbler + grafik pop-up teks klaim resmi: 'Pelopor Fasilitas Air Siap Minum Teruji & Bersertifikat Halal di Riau'.",
+            audio: "VO: 'Bukan air biasa ya, ini fasilitas air siap minum yang sudah teruji klinis dan bersertifikat Halal di Riau. Hemat uang jajan, ramah lingkungan pulak!'"
+          },
+          {
+            segment: "00:43 - 00:55 (Soft CTA 10%)",
+            visual: "Talent tersenyum segar mengangkat tumbler, grafis penutup menampilkan Gelombang 1 PMB (28 Okt 2026 – 06 Feb 2027) & portal daftar.umri.ac.id.",
+            audio: "VO: 'Mau ngerasain kuliah nyaman di Ruang Tepat untuk Tumbuh Hebat? Gelombang 1 sudah buka, cek link di bio @pmb.umri ya!'"
+          }
+        ],
+        caption: "Tanggal tua di Pekanbaru tapi tetap segar seharian di kampus? Cemane tu caranya? 🚰✨\n\nDi UMRI, awak cukup bawa tumbler kesayangan dari rumah atau kos! Kampus kita hadir sebagai Pelopor Fasilitas Air Siap Minum Teruji & Bersertifikat Halal di Riau.\n\nKuliah makin fokus, uang jajan aman, sampah botol plastik pun berkurang. Ruang Tepat untuk Tumbuh Hebat memang beda vibes-nya!\n\n📌 Pendaftaran Mahasiswa Baru T.A. 2027/2028 Gelombang 1 sudah dibuka (28 Oktober 2026 s.d. 06 Februari 2027).\n👉 Langsung amankan kursimu di: https://daftar.umri.ac.id atau kunjungi Ruang PMB Gedung Rektorat Lt. 1, Jl. Tuanku Tambusai (Senin–Sabtu, 08.00–16.00 WIB).",
+        hashtags: "#PMBUMRI #UMRI #RuangTepatUntukTumbuhHebat #SangPencerahMuda #KuliahDiPekanbaru #KampusRiau #MabaUMRI2027",
+        safetyChecklist: [
+          "Klaim aman terverifikasi: Pelopor Fasilitas Air Siap Minum Teruji & Bersertifikat Halal di Riau",
+          "Talent memakai Jas Almamater hijau zamrud tua & Duta Putri berhijab + rok panjang",
+          "Rasio Kuda Troya 70% Kultural : 20% Fasilitas : 10% Soft CTA terpenuhi"
+        ]
+      },
+      {
+        id: "PMB-CAR-202611-02",
+        channel: "@pmb.umri",
+        format: "Karosel 3:4",
+        isVideo: false,
+        urgent: true,
+        status: "Ready to Post",
+        pilar: "#InfoBeasiswa & Jalur Seleksi",
+        funnel: "Consideration & Konversi PMB (MOFU-BOFU)",
+        proposer: "BIMAWA & KUIK UMRI",
+        title: "Peta Komplit 9 Beasiswa & 13 Jalur Masuk UMRI T.A. 2027/2028",
+        angle: "Menjawab keraguan finansial calon maba & orang tua dengan merangkum seluruh jalur masuk resmi dan 9 skema beasiswa tanpa clickbait.",
+        visualDirective: "Karosel 6 slide rasio 3:4 (1080x1440 px). Dominan warna Deep Emerald-Forest Green (#064E3B), Clean White, dan aksen Gold. Cover menampilkan mahasiswa-mahasiswi berprestasi mengenakan Jas Almamater hijau zamrud tua serta logo Diktisaintek Berdampak & BAN-PT Baik Sekali.",
+        audioDirective: "Reels/Feed Audio rekomendasi: Instrumental inspiratif piano/orchestra ringan untuk fitur musik feed Instagram.",
+        script: [
+          {
+            segment: "Slide 1 (Cover)",
+            visual: "Foto Duta Putra & Duta Putri UMRI (berhijab rapi & rok panjang) memegang map beasiswa. Headline besar: '9 PINTU BEASISWA & 13 JALUR MASUK UMRI 2027/2028'",
+            audio: "Sub-teks: 'Save dulu biar bisa langsung diskusi sama Ayah & Bunda di rumah!'"
+          },
+          {
+            segment: "Slide 2 (Jalur Masuk)",
+            visual: "Infografis matriks 13 Jalur Masuk Resmi UMRI dengan ikon rapi.",
+            audio: "Teks: Reguler (D3, S1, S2), RPL, Muhammadiyah, Alumni Sekolah Muhammadiyah, Sivitas UMRI, Prestasi, Gen Smart, Pegawai/AUM/Kader Alumni PTMA, Alumni UMRI, Beasiswa Tahfidz, Beasiswa Kader, & Beasiswa Internasional."
+          },
+          {
+            segment: "Slide 3 (Beasiswa Utama)",
+            visual: "Highlight Beasiswa Pemerintah & Persyarikatan.",
+            audio: "Teks: 1) KIP Kuliah, 2) Beasiswa Tahfidz Quran, 3) Beasiswa Kader Muhammadiyah, 4) Beasiswa Sang Surya, 5) KL Lazismu."
+          },
+          {
+            segment: "Slide 4 (Beasiswa Mitra Perbankan)",
+            visual: "Highlight Beasiswa Mitra Perbankan Nasional & Syariah.",
+            audio: "Teks: 6) Beasiswa Bank Indonesia (BI), 7) Beasiswa Bank Syariah Indonesia (BSI), 8) Beasiswa Bank Muamalat, 9) Beasiswa Mega Syariah."
+          },
+          {
+            segment: "Slide 5 (Alur Seleksi)",
+            visual: "Diagram alur seleksi portofolio & akademik.",
+            audio: "Teks: Jalur Beasiswa & Internasional melalui seleksi portofolio via BIMAWA atau Kantor Urusan Internasional & Kerjasama (KUIK). Jalur Reguler S1/S2 cukup Tes Potensi Akademik (TPA)!"
+          },
+          {
+            segment: "Slide 6 (CTA & Jadwal)",
+            visual: "Kalender Gelombang 1, 2, 3 dan alamat lengkap layanan PMB.",
+            audio: "Teks: 'Dari Sini, Arah Masa Depanmu Dimulai. Daftar Gelombang 1 (28 Okt 2026 – 06 Feb 2027) di daftar.umri.ac.id'"
+          }
+        ],
+        caption: "Masih ragu lanjut kuliah karena mikirin biaya? Tenang, di UMRI jalan menuju masa depanmu terbuka lebar! 🌟\n\nTahun Akademik 2027/2028 ini, UMRI membuka 13 Jalur Masuk dan 9 Katalog Beasiswa unggulan—mulai dari KIP Kuliah, Beasiswa Tahfidz Quran, Kader Muhammadiyah, Sang Surya, KL Lazismu, hingga beasiswa mitra perbankan (BI, BSI, Bank Muamalat, & Mega Syariah).\n\nKhusus jalur Beasiswa & Internasional, seleksi portofolio dikawal langsung melalui BIMAWA atau Kantor Urusan Internasional & Kerjasama (KUIK).\n\n📌 Jadwal Gelombang PMB 2027/2028:\n• Gelombang 1: 28 Okt 2026 – 06 Feb 2027\n• Gelombang 2: 08 Feb 2027 – 17 Jul 2027\n• Gelombang 3: 19 Jul 2027 – 11 Sep 2027\n\nSave postingan ini & kirim ke grup WhatsApp keluarga ya! Daftar online sekarang di https://daftar.umri.ac.id",
+        hashtags: "#BeasiswaUMRI #PMBUMRI #UMRI #DariSiniArahMasaDepanmuDimulai #KIPKuliah #BeasiswaRiau #KuliahDiPekanbaru",
+        safetyChecklist: [
+          "Data 13 jalur masuk & 9 beasiswa sesuai basis data faktual 100%",
+          "Tidak ada janji atau nominal palsu (transparan & terukur)",
+          "Visual Duta Putri wajib berhijab rapi & rok panjang"
+        ]
+      },
+      {
+        id: "KMP-CAR-202611-01",
+        channel: "@kampus_umri",
+        format: "Karosel 3:4",
+        isVideo: false,
+        urgent: false,
+        status: "Review",
+        pilar: "Publikasi Riset & Marwah Akademik",
+        funnel: "Awareness Institusi & Stakeholders",
+        proposer: "LPPM & Humas Rektorat UMRI",
+        title: "Sinergi Riset & Hilirisasi Inovasi Dosen UMRI untuk Pembangunan Berkelanjutan Riau",
+        angle: "Menegaskan posisi UMRI sebagai institusi pendidikan tinggi Muhammadiyah yang berdampak nyata bagi masyarakat dan kebijakan daerah Provinsi Riau.",
+        visualDirective: "Desain korporat-akademik yang elegan dan berwibawa. Dokumentasi dosen peneliti di laboratorium terpadu, lengkap dengan logo resmi Diktisaintek Berdampak dan badge akreditasi BAN-PT Baik Sekali di pojok atas.",
+        audioDirective: "Format Feed Statis/Karosel (opsional instrumental klasik formal).",
+        script: [
+          {
+            segment: "Slide 1 (Headline)",
+            visual: "Potret Gedung Rektorat UMRI & aktivitas riset laboratorium dengan tipografi serif/sans modern berwibawa.",
+            audio: "Headline: 'DARI LABORATORIUM KAMPUS UNTUK KEMAJUAN BUMI LANCANG KUNING'"
+          },
+          {
+            segment: "Slide 2 (Konteks)",
+            visual: "Data fokus riset unggulan dosen UMRI (Energi Terbarukan, Pengelolaan Gambut, Ekonomi Syariah & Technopreneurship).",
+            audio: "Narasi formal capaian publikasi ilmiah bereputasi dan pengabdian masyarakat."
+          },
+          {
+            segment: "Slide 3 (Kolaborasi)",
+            visual: "Dokumentasi diseminasi hasil riset bersama pemerintah daerah dan mitra industri.",
+            audio: "Wujud komitmen Kampus Berkemajuan dalam mendukung program Diktisaintek Berdampak."
+          },
+          {
+            segment: "Slide 4 (Penutup)",
+            visual: "Logo resmi UMRI, Persyarikatan Muhammadiyah, Diktisaintek Berdampak, & BAN-PT Baik Sekali.",
+            audio: "Tagline: 'Universitas Muhammadiyah Riau — Bermarwah, Berkemajuan, Menginspirasi.'"
+          }
+        ],
+        caption: "Perguruan tinggi tidak hanya menjadi menara gading ilmu pengetahuan, melainkan lentera solusi bagi masyarakat luas.\n\nMelalui penguatan ekosistem riset terapan dan hilirisasi inovasi dosen, Universitas Muhammadiyah Riau (UMRI) terus berkontribusi aktif dalam mendukung pembangunan berkelanjutan di Provinsi Riau dan Sumatera.\n\nLangkah strategis ini merupakan wujud nyata komitmen sivitas akademika UMRI dalam mengemban amanah Catur Dharma Perguruan Tinggi Muhammadiyah serta semangat Diktisaintek Berdampak.\n\n#UniversitasMuhammadiyahRiau #KampusUMRI #RisetUMRI #DiktisaintekBerdampak #Muhammadiyah #KampusBerkemajuan",
+        hashtags: "#UniversitasMuhammadiyahRiau #KampusUMRI #DiktisaintekBerdampak #PTMA #RiauBerkemajuan",
+        safetyChecklist: [
+          "Gaya bahasa formal-inspiratif sesuai karakter @kampus_umri",
+          "Menampilkan logo resmi Diktisaintek Berdampak & BAN-PT Baik Sekali",
+          "Bebas dari klaim berlebihan tanpa rujukan akademik"
+        ]
+      },
+      {
+        id: "PMB-VID-202611-03",
+        channel: "@pmb.umri",
+        format: "Video 9:16",
+        isVideo: true,
+        urgent: true,
+        status: "Scripting",
+        pilar: "#PejuangKarir • Reguler B & RPL",
+        funnel: "Konversi PMB (BOFU)",
+        proposer: "Tim Admisi & Program RPL",
+        title: "Kerja Jalan, Kuliah Aman: Spill Skema Reguler B & Jalur RPL UMRI!",
+        angle: "Menyasar pekerja muda, karyawan swasta/instansi, dan gap year di Pekanbaru yang ingin meraih gelar sarjana tanpa mengorbankan jam kantor.",
+        visualDirective: "Transisi sinematik dari suasana kerja sore hari (pukul 16.00 WIB) ke suasana ruang kelas modern UMRI yang nyaman di malam hari. Talent berpakaian kemeja rapi beradab & jas almamater hijau zamrud tua.",
+        audioDirective: "Musik pop-akustik produktif dan voiceover komunikatif bergaya Kakak Tingkat suportif.",
+        script: [
+          {
+            segment: "00:00 - 00:04 (Hook)",
+            visual: "Talent menutup laptop kantor pukul 15.55 WIB sambil tersenyum ke kamera. Teks: 'Siapa bilang kalau udah kerja nggak bisa lanjut S1?'",
+            audio: "VO: 'Sudah kerja tapi pengen naik karir lewat gelar Sarjana? Jangan tunggu tahun depan, Wak!'"
+          },
+          {
+            segment: "00:05 - 00:22 (Reguler B)",
+            visual: "B-roll suasana perkuliahan Reguler B UMRI yang kondusif dan interaktif.",
+            audio: "VO: 'Di UMRI ada Kelas Reguler B khusus pekerja, jadwalnya sore ke malam mulai jam 16.00 sampai 22.00 WIB (minimal 15 orang per kelas). Kerja tetap jalan, kuliah pun aman!'"
+          },
+          {
+            segment: "00:23 - 00:42 (Program RPL)",
+            visual: "Grafis penjelasan RPL (Rekognisi Pembelajaran Lampau) di layar.",
+            audio: "VO: 'Bukan cuma itu! Kalau awak sudah punya pengalaman kerja atau sertifikat pelatihan, bisa ikut Program RPL untuk dikonversi langsung menjadi SKS!'"
+          },
+          {
+            segment: "00:43 - 00:55 (CTA)",
+            visual: "Layar menampilkan portal daftar.umri.ac.id dan lokasi Ruang PMB Gedung Rektorat Lt. 1.",
+            audio: "VO: 'Yuk konsultasi langsung di Ruang PMB Gedung Rektorat Lt. 1 Jl. Tuanku Tambusai atau daftar di daftar.umri.ac.id sekarang!'"
+          }
+        ],
+        caption: "Kerja tetap jalan, gelar Sarjana di tangan! 💼🎓\n\nBuat abang, kakak, dan rekan-rekan pekerja di Pekanbaru & Riau yang ingin upgrade karir tanpa takut bentrok jam kerja, UMRI punya dua solusi cerdas:\n\n1️⃣ Kelas Reguler B (Sore/Pekerja): Perkuliahan dilaksanakan pukul 16.00 – 22.00 WIB (kuota minimal 15 orang).\n2️⃣ Program RPL (Rekognisi Pembelajaran Lampau): Pengalaman kerja dan pelatihan profesionalmu bisa dikonversi menjadi SKS!\n\nJadilah Sang Pencerah Muda, Bertumbuh Bersama UMRI.\n📍 Konsultasi langsung: Ruang PMB Gedung Rektorat Lt. 1, Jl. Tuanku Tambusai (Senin–Sabtu, 08.00–16.00 WIB)\n🌐 Portal Pendaftaran: https://daftar.umri.ac.id",
+        hashtags: "#KelasKaryawanPekanbaru #RPLUMRI #RegulerBUMRI #PMBUMRI #KuliahSambilKerja #UMRI",
+        safetyChecklist: [
+          "Jam kuliah Reguler B (16.00–22.00 WIB, min. 15 orang) & definisi RPL akurat 100%",
+          "Busana talent rapi, sopan, sesuai etika Persyarikatan",
+          "CTA mengarah ke portal resmi daftar.umri.ac.id"
+        ]
+      },
+      {
+        id: "PMB-CAR-202611-04",
+        channel: "@pmb.umri",
+        format: "Karosel 3:4",
+        isVideo: false,
+        urgent: true,
+        status: "Review",
+        pilar: "#SpillJurusanUMRI • Klaster Kesehatan",
+        funnel: "Konversi PMB (BOFU)",
+        proposer: "Fakultas Kedokteran & Ilmu Kesehatan",
+        title: "Siap Masuk Klaster Kesehatan UMRI? Ini 3 Tahap Seleksi Wajibnya!",
+        angle: "Memberikan kepastian informasi tahapan seleksi khusus prodi Kedokteran, Farmasi, Keperawatan, dan Kebidanan agar pendaftar Gelombang 1 siap lebih awal.",
+        visualDirective: "Nuansa klinis bersih (Putih, Emerald UMRI, Teal). Foto mahasiswa klaster kesehatan dengan jas lab/almamater hijau zamrud tua, mahasiswi berhijab rapi dan memakai rok panjang.",
+        audioDirective: "Karosel edukatif 5 slide.",
+        script: [
+          {
+            segment: "Slide 1 (Cover)",
+            visual: "Visual mahasiswa Kedokteran, Farmasi, Keperawatan, & Kebidanan UMRI. Judul: 'INCAR KLASTER KESEHATAN UMRI? PAHAMI 3 TAHAP SELEKSINYA!'",
+            audio: "Badge: Gelombang 1 Dibuka (28 Okt 2026 – 06 Feb 2027)."
+          },
+          {
+            segment: "Slide 2 (Daftar Prodi)",
+            visual: "4 ikon program studi klaster kesehatan UMRI.",
+            audio: "Teks: Kedokteran, Farmasi, Keperawatan, dan Kebidanan."
+          },
+          {
+            segment: "Slide 3 (3 Tahap Seleksi)",
+            visual: "Step-by-step checklist seleksi Klaster Kesehatan.",
+            audio: "Teks: Berbeda dengan Reguler S1/S2 yang menggunakan TPA, Klaster Kesehatan wajib mengikuti: 1) Computer Based Test (CBT), 2) Wawancara, dan 3) Tes Kesehatan langsung di Klinik Pratama UMRI."
+          },
+          {
+            segment: "Slide 4 (Tips Persiapan)",
+            visual: "Ilustrasi persiapan berkas & fisik sebelum tes.",
+            audio: "Teks: Daftar di Gelombang 1 memberi waktu persiapan CBT & wawancara yang jauh lebih tenang dibanding menunggu gelombang akhir."
+          },
+          {
+            segment: "Slide 5 (CTA)",
+            visual: "Informasi lokasi Klinik Pratama & Ruang PMB Gedung Rektorat Lt. 1.",
+            audio: "Teks: 'Ukir Prestasimu di UMRI. Registrasi akunmu di https://daftar.umri.ac.id'"
+          }
+        ],
+        caption: "Cita-cita jadi Dokter, Apoteker, Perawat, atau Bidan profesional yang berakhlak mulia? 🩺🌿\n\nBuat kome yang mengincar Klaster Kesehatan di UMRI (Kedokteran, Farmasi, Keperawatan, dan Kebidanan), pastikan sudah tahu alur seleksi resminya ya:\n\n✅ Tahap 1: Computer Based Test (CBT)\n✅ Tahap 2: Wawancara\n✅ Tahap 3: Tes Kesehatan di Klinik Pratama UMRI\n\nTips dari Kating: Daftar di Gelombang 1 (28 Oktober 2026 s.d. 06 Februari 2027) supaya persiapan tes CBT dan wawancaramu jauh lebih matang!\n\n🔗 Daftar sekarang di: https://daftar.umri.ac.id",
+        hashtags: "#KedokteranUMRI #FarmasiUMRI #KeperawatanUMRI #KebidananUMRI #PMBUMRI #KlasterKesehatanUMRI",
+        safetyChecklist: [
+          "Alur seleksi CBT, Wawancara, & Tes Kesehatan di Klinik Pratama UMRI akurat",
+          "Duta Putri/mahasiswi kesehatan tampil berhijab rapi & rok panjang",
+          "Logo Diktisaintek Berdampak & BAN-PT Baik Sekali tercantum"
+        ]
+      },
+      {
+        id: "KMP-IMG-202611-02",
+        channel: "@kampus_umri",
+        format: "Single Image",
+        isVideo: false,
+        urgent: false,
+        status: "Ready to Post",
+        pilar: "Relasi Media & MoU Kelembagaan",
+        funnel: "Awareness & Reputasi Institusi",
+        proposer: "KUIK & Humas UMRI",
+        title: "Penandatanganan MoU Strategis UMRI & Mitra Industri Nasional",
+        angle: "Memperkuat kredibilitas kelembagaan UMRI di mata publik, industri, dan orang tua mahasiswa melalui kolaborasi nyata.",
+        visualDirective: "Single Image 4:5 (1080x1350 px). Foto seremonial Rektorat UMRI bersama pimpinan mitra industri dengan framing simetris, tone warna hangat berwibawa, header logo UMRI, Diktisaintek Berdampak, dan BAN-PT Baik Sekali.",
+        audioDirective: "Postingan foto resmi institusi.",
+        script: [
+          {
+            segment: "Visual Utama",
+            visual: "Momen jabat tangan dan pertukaran dokumen MoU di Gedung Rektorat UMRI Jl. Tuanku Tambusai.",
+            audio: "Headline Grafis: 'PERLUAS JEJARING STRATEGIS: UMRI JALIN KERJASAMA INDUSTRI & AKADEMIK'"
+          },
+          {
+            segment: "Footer Grafis",
+            visual: "Strip informasi resmi universitas & website umri.ac.id.",
+            audio: "Sub-teks: 'Implementasi Kampus Technopreneurship Berkemajuan'"
+          }
+        ],
+        caption: "Universitas Muhammadiyah Riau (UMRI) terus memperluas jejaring kolaborasi strategis bersama mitra industri dan institusi nasional melalui penandatanganan Nota Kesepahaman (MoU) di Gedung Rektorat UMRI, Pekanbaru.\n\nSinergi ini mencakup penguatan kurikulum berbasis kebutuhan industri, program magang terstruktur, riset kolaboratif, serta penyerapan lulusan yang kompeten dan berintegritas.\n\nMelalui langkah ini, UMRI konsisten menghadirkan ekosistem pendidikan tinggi yang relevan, adaptif, dan berdampak luas bagi kemajuan daerah maupun bangsa.\n\n#UniversitasMuhammadiyahRiau #KampusUMRI #MoUUMRI #KemitraanStrategis #DiktisaintekBerdampak",
+        hashtags: "#UniversitasMuhammadiyahRiau #KampusUMRI #KerjasamaUMRI #DiktisaintekBerdampak #Pekanbaru",
+        safetyChecklist: [
+          "Tone of voice formal, elegan, dan representatif (@kampus_umri)",
+          "Menjaga marwah Persyarikatan Muhammadiyah",
+          "Atribut pimpinan dan dokumentasi resmi terstandar"
+        ]
+      },
+      {
+        id: "PMB-VID-202611-05",
+        channel: "@pmb.umri",
+        format: "Video 9:16",
+        isVideo: true,
+        urgent: false,
+        status: "Idea",
+        pilar: "Trojan Horse 70/20/10 • #KatingRelate",
+        funnel: "Awareness (TOFU)",
+        proposer: "Duta Kampus UMRI",
+        title: "A Day in My Life: Kuliah Reguler A di Kampus Jantung Kota Pekanbaru",
+        angle: "Menunjukkan betapa nyamannya ritme kuliah Reguler A (07.00–17.00 WIB) di Jl. Tuanku Tambusai dengan lingkungan Islami yang sejuk dan egaliter.",
+        visualDirective: "POV vlog estetik 9:16. Menampilkan Duta Putri UMRI (wajib berhijab rapi dan memakai rok panjang serta jas almamater hijau zamrud tua) mengikuti kelas pagi, diskusi di perpustakaan, hingga shalat berjamaah di masjid kampus.",
+        audioDirective: "Voiceover ramah dengan sapaan khas Melayu Riau yang luwes + BGM akustik ceria.",
+        script: [
+          {
+            segment: "00:00 - 00:04 (Hook)",
+            visual: "Golden hour pagi pukul 07.00 WIB di gerbang kampus UMRI Jl. Tuanku Tambusai.",
+            audio: "VO: 'Ikut kating seharian kuliah Reguler A di tengah jantung kota Pekanbaru, yuk!'"
+          },
+          {
+            segment: "00:05 - 00:25 (Student Life 70%)",
+            visual: "Montase cepat: masuk kelas ber-AC, diskusi kelompok seru, shalat Zuhur di masjid kampus, dan ngobrol santai di taman kampus.",
+            audio: "VO: 'Mulai kelas pagi jam 7, lanjut diskusi tugas bareng teman-teman dari berbagai kabupaten se-Riau dan Kepri. Suasananya adem dan suportif betol!'"
+          },
+          {
+            segment: "00:26 - 00:40 (Fasilitas 20%)",
+            visual: "Cuplikan perpustakaan digital dan ruang layanan mahasiswa yang modern.",
+            audio: "VO: 'Semua fasilitas belajar lengkap, akses transportasi dari mana-mana pun dekat.'"
+          },
+          {
+            segment: "00:41 - 00:50 (Soft CTA 10%)",
+            visual: "Duta Putri melambaikan tangan di depan Ruang PMB Gedung Rektorat Lt. 1.",
+            audio: "VO: 'Tahun depan giliran awak yang kuliah di sini ya! Cek info Gelombang 1 di bio @pmb.umri.'"
+          }
+        ],
+        caption: "Gimana sih rasanya kuliah Reguler A (07.00 – 17.00 WIB) di kampus yang lokasinya strategis betol di Jl. Tuanku Tambusai, Pekanbaru? 🌤️📚\n\nLingkungannya sejuk, teman-temannya suportif dari berbagai penjuru Riau, Kepri, hingga Sumatera, dan pastinya bikin betah bertumbuh setiap hari.\n\nJadilah Sang Pencerah Muda, Bertumbuh Bersama UMRI! ✨\n🌐 Info PMB T.A. 2027/2028: https://daftar.umri.ac.id",
+        hashtags: "#ADayInMyLifeUMRI #AnakKampusUMRI #PMBUMRI #RuangTepatUntukTumbuhHebat #Pekanbaru",
+        safetyChecklist: [
+          "Duta Putri wajib berhijab rapi dan memakai rok panjang (bukan celana panjang)",
+          "Jas almamater hijau zamrud tua dengan bordir matahari bersinar di dada kiri",
+          "Formula 70% Student Life : 20% Fasilitas : 10% Soft CTA"
+        ]
+      },
+      {
+        id: "KMP-VID-202611-03",
+        channel: "@kampus_umri",
+        format: "Video 9:16",
+        isVideo: true,
+        urgent: false,
+        status: "Scripting",
+        pilar: "Seremonial & Nilai Persyarikatan",
+        funnel: "Awareness & Marwah Akademik",
+        proposer: "Lembaga AIK & Humas UMRI",
+        title: "Refleksi Kemajuan: Mengintegrasikan Keunggulan Sains & Akhlak Mulia di UMRI",
+        angle: "Video monolog inspiratif tentang visi UMRI mencetak lulusan yang unggul secara intelektual sekaligus kokoh dalam nilai-nilai Kemuhammadiyahan.",
+        visualDirective: "Framing sinematik rasio 9:16, pencahayaan hangat elegan, b-roll suasana gedung kampus, laboratorium, dan aktivitas ibadah sivitas akademika. Menampilkan logo Diktisaintek Berdampak & BAN-PT Baik Sekali.",
+        audioDirective: "Musik latar orkestra lembut yang menggugah semangat dan narasi bariton yang berwibawa.",
+        script: [
+          {
+            segment: "00:00 - 00:05 (Opening)",
+            visual: "Drone shot megah kawasan kampus UMRI Pekanbaru di pagi hari.",
+            audio: "VO: 'Di tengah percepatan zaman, ilmu pengetahuan tanpa adab akan kehilangan arahnya.'"
+          },
+          {
+            segment: "00:06 - 00:35 (Core Message)",
+            visual: "Potret aktivitas riset dosen, diskusi mahasiswa berjas almamater hijau zamrud tua, dan kegiatan keislaman berkemajuan.",
+            audio: "VO: 'Universitas Muhammadiyah Riau hadir mengintegrasikan keunggulan sains, teknologi, dan nilai-nilai Islam berkemajuan untuk melahirkan generasi pencerah bangsa.'"
+          },
+          {
+            segment: "00:36 - 00:50 (Closing)",
+            visual: "Logo resmi UMRI, Diktisaintek Berdampak, dan BAN-PT Baik Sekali.",
+            audio: "VO: 'Dari Sini, Arah Masa Depanmu Dimulai. Universitas Muhammadiyah Riau.'"
+          }
+        ],
+        caption: "Ilmu pengetahuan yang mencerahkan adalah ilmu yang berpijak pada adab dan memberi kemaslahatan bagi umat serta bangsa.\n\nUniversitas Muhammadiyah Riau (UMRI) berkomitmen merawat marwah akademik dan nilai-nilai Persyarikatan Muhammadiyah dalam setiap derap langkah pendidikan, penelitian, dan pengabdian kepada masyarakat.\n\n#UniversitasMuhammadiyahRiau #KampusUMRI #Muhammadiyah #SangPencerah #DiktisaintekBerdampak",
+        hashtags: "#UniversitasMuhammadiyahRiau #KampusUMRI #Muhammadiyah #PendidikanTinggi #Riau",
+        safetyChecklist: [
+          "Sesuai mandat kanal induk @kampus_umri (berwibawa & inspiratif)",
+          "Menampilkan atribut jas hijau zamrud tua & kesopanan busana sivitas",
+          "Logo pendamping resmi terpasang"
+        ]
+      }
+    ];
+
+    let drafts = [...INITIAL_DRAFTS];
+    let currentFilterCategory = "ALL";
+    let currentViewMode = "GRID";
+    let activeDraftId = null;
+    let activeSimMode = "REELS";
+    let activeSlideIndex = 0;
+
+    function updateWaveInfo(wave) {
+      const dateEl = document.getElementById("wave-date-display");
+      const focusEl = document.getElementById("wave-focus-display");
+      if (wave === "1") {
+        dateEl.textContent = "28 Okt 2026 – 06 Feb 2027";
+        focusEl.textContent = "Fokus: Early Bird, Beasiswa & Prestasi";
+      } else if (wave === "2") {
+        dateEl.textContent = "08 Feb 2027 – 17 Jul 2027";
+        focusEl.textContent = "Fokus: Lulusan SMA/SMK/MA & Klaster Kesehatan";
+      } else {
+        dateEl.textContent = "19 Jul 2027 – 11 Sep 2027";
+        focusEl.textContent = "Fokus: Final Call, Reguler B & Program RPL";
+      }
+    }
+
+    function setFilterCategory(cat) {
+      currentFilterCategory = cat;
+      document.querySelectorAll("#category-tabs .filter-tab").forEach(btn => {
+        if (btn.getAttribute("data-cat") === cat) {
+          btn.className = "filter-tab px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 bg-slate-900 text-white shadow-sm";
+        } else if (btn.getAttribute("data-cat") === "URGENT") {
+          btn.className = "filter-tab px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 bg-amber-50 text-amber-900 border border-amber-300 hover:bg-amber-100";
+        } else {
+          btn.className = "filter-tab px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200";
+        }
+      });
+      renderBoard();
+    }
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      const btnGrid = document.getElementById("btn-view-grid");
+      const btnKanban = document.getElementById("btn-view-kanban");
+      if (mode === "GRID") {
+        btnGrid.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-white text-slate-900 shadow-sm transition flex items-center gap-1";
+        btnKanban.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition flex items-center gap-1";
+      } else {
+        btnKanban.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-white text-slate-900 shadow-sm transition flex items-center gap-1";
+        btnGrid.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition flex items-center gap-1";
+      }
+      renderBoard();
+    }
+
+    function getFilteredDrafts() {
+      const q = (document.getElementById("search-input")?.value || "").toLowerCase().trim();
+      const statusFilter = document.getElementById("status-filter")?.value || "ALL";
+
+      return drafts.filter(d => {
+        if (currentFilterCategory === "KAMPUS" && d.channel !== "@kampus_umri") return false;
+        if (currentFilterCategory === "PMB" && d.channel !== "@pmb.umri") return false;
+        if (currentFilterCategory === "VIDEO" && !d.isVideo) return false;
+        if (currentFilterCategory === "GRAFIS" && d.isVideo) return false;
+        if (currentFilterCategory === "URGENT" && !d.urgent) return false;
+
+        if (statusFilter !== "ALL" && d.status !== statusFilter) return false;
+
+        if (q) {
+          const hay = `${d.id} ${d.title} ${d.pilar} ${d.angle} ${d.caption} ${d.proposer}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+    }
+
+    function updateStats() {
+      const total = drafts.length;
+      const kampusCount = drafts.filter(d => d.channel === "@kampus_umri").length;
+      const pmbCount = drafts.filter(d => d.channel === "@pmb.umri").length;
+      const readyCount = drafts.filter(d => d.status === "Ready to Post").length;
+      const urgentCount = drafts.filter(d => d.urgent).length;
+
+      document.getElementById("stat-total").textContent = total;
+      document.getElementById("stat-ready").textContent = `${readyCount} Ready to Post`;
+      document.getElementById("stat-kampus").textContent = kampusCount;
+      document.getElementById("stat-pmb").textContent = pmbCount;
+      document.getElementById("stat-urgent").textContent = `${urgentCount} Urgent PMB`;
+
+      const kPct = total ? Math.round((kampusCount / total) * 100) : 50;
+      const pPct = 100 - kPct;
+      document.getElementById("bar-kampus").style.width = `${kPct}%`;
+      document.getElementById("bar-pmb").style.width = `${pPct}%`;
+    }
+
+    function statusBadgeHtml(status) {
+      const map = {
+        "Idea": "bg-slate-100 text-slate-700 border-slate-300",
+        "Scripting": "bg-sky-50 text-sky-800 border-sky-200",
+        "Review": "bg-amber-50 text-amber-800 border-amber-300",
+        "Ready to Post": "bg-emerald-50 text-emerald-800 border-emerald-300"
+      };
+      const icon = {
+        "Idea": "💡",
+        "Scripting": "✍️",
+        "Review": "🔍",
+        "Ready to Post": "✅"
+      };
+      return `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold border ${map[status] || map['Idea']}">${icon[status] || ''} ${status}</span>`;
+    }
+
+    function renderCardHtml(d) {
+      const isPMB = d.channel === "@pmb.umri";
+      const channelClass = isPMB
+        ? "bg-emerald-900 text-emerald-50 border border-emerald-700"
+        : "bg-indigo-950 text-indigo-50 border border-indigo-800";
+
+      const formatIcon = d.isVideo ? "ph-device-mobile-camera text-rose-600" : "ph-cards text-sky-600";
+
+      return `
+        <article class="bg-white rounded-2xl border border-slate-200 hover:border-emerald-600/60 shadow-sm hover:shadow-md transition-all flex flex-col justify-between p-4 group">
+          <div>
+            <!-- Top Badges -->
+            <div class="flex items-center justify-between gap-2 flex-wrap mb-2.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="px-2.5 py-0.5 rounded-lg text-xs font-bold ${channelClass}">
+                  ${d.channel}
+                </span>
+                <span class="px-2 py-0.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 inline-flex items-center gap-1">
+                  <i class="ph-bold ${formatIcon}"></i> ${d.format}
+                </span>
+                ${d.urgent ? `<span class="px-2 py-0.5 rounded-lg text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 inline-flex items-center gap-1"><i class="ph-fill ph-fire text-amber-600"></i> Urgent PMB</span>` : ''}
+              </div>
+              ${statusBadgeHtml(d.status)}
+            </div>
+
+            <!-- ID & Pilar -->
+            <div class="flex items-center justify-between text-xs text-slate-400 font-semibold mb-1">
+              <span>${d.id}</span>
+              <span class="text-emerald-700 font-bold truncate max-w-[200px]">${d.pilar}</span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="font-extrabold text-slate-900 text-base leading-snug group-hover:text-emerald-800 transition mb-2">
+              ${d.title}
+            </h3>
+
+            <!-- Angle Pesan -->
+            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <strong class="text-slate-800">Angle:</strong> ${d.angle}
+            </p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+            <div class="text-xs text-slate-500 truncate">
+              <span class="font-semibold text-slate-700">${d.funnel}</span>
+            </div>
+            <button onclick="openPreviewModal('${d.id}')" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 group-hover:bg-[#064E3B] text-white text-xs font-bold transition shrink-0 shadow-sm">
+              <i class="ph-bold ph-device-mobile"></i> Detail & Preview IG
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderBoard() {
+      updateStats();
+      const filtered = getFilteredDrafts();
+      const container = document.getElementById("board-container");
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white border border-slate-200 rounded-2xl p-12 text-center">
+            <i class="ph-duotone ph-folder-open text-4xl text-slate-400 mb-2"></i>
+            <p class="text-base font-bold text-slate-800">Tidak ada draf konten yang cocok dengan filter ini.</p>
+            <p class="text-xs text-slate-500 mt-1">Silakan ubah filter kanal/status atau tambahkan draf baru lewat tombol Input Draf Cepat.</p>
+          </div>
+        `;
+        return;
+      }
+
+      if (currentViewMode === "GRID") {
+        container.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${filtered.map(renderCardHtml).join("")}
+          </div>
+        `;
+      } else {
+        const statuses = ["Idea", "Scripting", "Review", "Ready to Post"];
+        container.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-start">
+            ${statuses.map(st => {
+              const items = filtered.filter(d => d.status === st);
+              return `
+                <div class="bg-slate-100/90 border border-slate-200 rounded-2xl p-3 space-y-3">
+                  <div class="flex items-center justify-between px-1">
+                    ${statusBadgeHtml(st)}
+                    <span class="text-xs font-extrabold text-slate-500">${items.length} Draf</span>
+                  </div>
+                  <div class="space-y-3">
+                    ${items.length ? items.map(renderCardHtml).join("") : `<div class="text-xs text-slate-400 text-center py-6 border border-dashed border-slate-300 rounded-xl">Kosong</div>`}
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        `;
+      }
+    }
+
+    function openPreviewModal(id) {
+      const d = drafts.find(item => item.id === id);
+      if (!d) return;
+      activeDraftId = id;
+      activeSlideIndex = 0;
+      activeSimMode = d.isVideo ? "REELS" : "FEED";
+
+      const chBadge = document.getElementById("modal-channel-badge");
+      chBadge.textContent = d.channel;
+      chBadge.className = d.channel === "@pmb.umri"
+        ? "px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white"
+        : "px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-700 text-white";
+
+      document.getElementById("modal-format-badge").textContent = `${d.id} • ${d.format}`;
+      document.getElementById("modal-title").textContent = d.title;
+      document.getElementById("modal-funnel").textContent = d.funnel;
+      document.getElementById("modal-pilar").textContent = d.pilar;
+      document.getElementById("modal-status-select").value = d.status;
+      document.getElementById("modal-angle").textContent = d.angle;
+      document.getElementById("modal-visual-dir").textContent = d.visualDirective;
+      document.getElementById("modal-audio-dir").textContent = d.audioDirective;
+      document.getElementById("modal-caption").textContent = d.caption;
+      document.getElementById("modal-hashtags").textContent = d.hashtags;
+
+      // Safety checklist
+      const safetyEl = document.getElementById("modal-safety-list");
+      safetyEl.innerHTML = (d.safetyChecklist || []).map(item => `
+        <li class="flex items-start gap-1.5">
+          <i class="ph-fill ph-check-circle text-emerald-400 shrink-0 mt-0.5"></i>
+          <span>${item}</span>
+        </li>
+      `).join("");
+
+      // Script table
+      renderScriptTable(d);
+
+      // Render Phone Simulator
+      renderPhoneSimulator();
+
+      document.getElementById("preview-modal").classList.remove("hidden");
+    }
+
+    function renderScriptTable(d) {
+      const tbody = document.getElementById("modal-script-tbody");
+      tbody.innerHTML = d.script.map((row, idx) => `
+        <tr onclick="selectScriptRow(${idx})" class="cursor-pointer transition ${idx === activeSlideIndex ? 'bg-emerald-50/90 font-medium' : 'hover:bg-slate-50'}">
+          <td class="py-2.5 px-3 font-bold text-emerald-900 align-top whitespace-nowrap">${row.segment}</td>
+          <td class="py-2.5 px-3 text-slate-700 align-top">${row.visual}</td>
+          <td class="py-2.5 px-3 text-slate-800 align-top">${row.audio}</td>
+        </tr>
+      `).join("");
+    }
+
+    function selectScriptRow(idx) {
+      activeSlideIndex = idx;
+      const d = drafts.find(item => item.id === activeDraftId);
+      if (!d) return;
+      renderScriptTable(d);
+      renderPhoneSimulator();
+    }
+
+    function switchSimulatorMode(mode) {
+      activeSimMode = mode;
+      renderPhoneSimulator();
+    }
+
+    function renderPhoneSimulator() {
+      const d = drafts.find(item => item.id === activeDraftId);
+      if (!d) return;
+
+      const tabReels = document.getElementById("sim-tab-reels");
+      const tabFeed = document.getElementById("sim-tab-feed");
+      if (activeSimMode === "REELS") {
+        tabReels.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-900 text-white";
+        tabFeed.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-600 hover:text-slate-900";
+      } else {
+        tabFeed.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-900 text-white";
+        tabReels.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-600 hover:text-slate-900";
+      }
+
+      const currentScene = d.script[activeSlideIndex] || d.script[0];
+      const totalScenes = d.script.length;
+      const isPMB = d.channel === "@pmb.umri";
+      const screen = document.getElementById("phone-screen-content");
+
+      if (activeSimMode === "REELS") {
+        screen.innerHTML = `
+          <!-- Top Reels Overlay -->
+          <div class="p-3.5 bg-gradient-to-b from-black/80 via-black/30 to-transparent flex items-center justify-between z-10">
+            <div class="flex items-center gap-1.5">
+              <span class="text-xs font-extrabold tracking-tight">Reels</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-600/90 font-bold">${d.format}</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="text-xs bg-white/15 px-2 py-0.5 rounded-full font-semibold">Diktisaintek • BAN-PT</span>
+            </div>
+          </div>
+
+          <!-- Center Visual Stage -->
+          <div class="px-4 py-3 flex-1 flex flex-col justify-center relative bg-gradient-to-br ${isPMB ? 'from-[#064E3B] via-emerald-950 to-slate-950' : 'from-indigo-950 via-slate-900 to-slate-950'}">
+            <!-- Scene Counter Pill -->
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-300 bg-amber-400/15 border border-amber-400/30 px-2.5 py-0.5 rounded-full">
+                ${currentScene.segment} (${activeSlideIndex + 1}/${totalScenes})
+              </span>
+              <div class="flex items-center gap-1">
+                <button onclick="prevScene()" class="w-6 h-6 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-xs"><i class="ph-bold ph-caret-left"></i></button>
+                <button onclick="nextScene()" class="w-6 h-6 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-xs"><i class="ph-bold ph-caret-right"></i></button>
+              </div>
+            </div>
+
+            <!-- Visual Cue Box -->
+            <div class="bg-black/45 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 mb-3">
+              <span class="text-xs uppercase tracking-wider text-emerald-300 font-bold block mb-1">🎬 Visual Adegan:</span>
+              <p class="text-xs text-white/95 leading-relaxed">${currentScene.visual}</p>
+            </div>
+
+            <!-- On-Screen Subtitle / VO -->
+            <div class="bg-amber-400/95 text-slate-950 rounded-xl p-3 shadow-lg">
+              <span class="text-xs uppercase font-extrabold tracking-wider block opacity-75">🎙️ Audio / Teks Layar:</span>
+              <p class="text-xs font-bold leading-snug mt-0.5">${currentScene.audio}</p>
+            </div>
+
+            <!-- Guardrail Badge -->
+            <div class="mt-3 flex items-center gap-1.5 text-xs text-emerald-200/90 bg-white/5 px-2.5 py-1.5 rounded-lg border border-white/10">
+              <i class="ph-fill ph-Coat-hanger text-amber-300"></i>
+              <span>Jas Hijau Zamrud Tua • Hijab & Rok Panjang</span>
+            </div>
+          </div>
+
+          <!-- Bottom Reels Profile & Caption -->
+          <div class="p-3.5 bg-gradient-to-t from-black/95 via-black/70 to-transparent space-y-2">
+            <div class="flex items-end justify-between gap-2">
+              <div class="space-y-1.5 min-w-0">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center font-extrabold text-xs border border-amber-300">U</div>
+                  <span class="text-xs font-bold truncate">${d.channel.replace('@', '')}</span>
+                  <span class="text-xs px-1.5 py-0.2 bg-white/20 rounded text-white font-semibold">Ikuti</span>
+                </div>
+                <p class="text-xs text-white/90 line-clamp-2 leading-snug">${d.caption}</p>
+                <div class="flex items-center gap-1.5 text-xs text-emerald-300 truncate">
+                  <i class="ph-fill ph-music-notes"></i>
+                  <span class="truncate">${d.audioDirective}</span>
+                </div>
+              </div>
+              <!-- Right Action Icons -->
+              <div class="flex flex-col items-center gap-3 text-white shrink-0">
+                <div class="flex flex-col items-center"><i class="ph-fill ph-heart text-xl text-rose-500"></i><span class="text-xs">1.4K</span></div>
+                <div class="flex flex-col items-center"><i class="ph-fill ph-chat-circle text-xl"></i><span class="text-xs">128</span></div>
+                <div class="flex flex-col items-center"><i class="ph-fill ph-bookmark-simple text-xl text-amber-300"></i><span class="text-xs">492</span></div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        // FEED / CAROUSEL 3:4 VIEW
+        screen.innerHTML = `
+          <div class="bg-white text-slate-900 flex-1 flex flex-col justify-between">
+            <!-- IG Feed Header -->
+            <div class="px-3 py-2.5 border-b border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-[#064E3B] text-white flex items-center justify-center font-bold text-xs">U</div>
+                <div>
+                  <p class="text-xs font-bold leading-none">${d.channel.replace('@', '')}</p>
+                  <p class="text-xs text-slate-500">Universitas Muhammadiyah Riau</p>
+                </div>
+              </div>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">${activeSlideIndex + 1}/${totalScenes}</span>
+            </div>
+
+            <!-- 3:4 Visual Canvas -->
+            <div class="p-4 bg-gradient-to-br ${isPMB ? 'from-[#064E3B] to-emerald-900' : 'from-slate-900 to-indigo-950'} text-white flex-1 flex flex-col justify-between relative min-h-[290px]">
+              <div class="flex items-center justify-between text-xs text-emerald-200">
+                <span class="font-bold">UMRI • T.A. 2027/2028</span>
+                <span class="bg-white/15 px-2 py-0.5 rounded font-semibold">BAN-PT Baik Sekali</span>
+              </div>
+
+              <div class="my-auto space-y-2 py-2">
+                <span class="inline-block text-xs font-extrabold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950">
+                  ${currentScene.segment}
+                </span>
+                <p class="text-xs font-bold text-white leading-snug bg-black/30 p-2.5 rounded-xl border border-white/15">
+                  ${currentScene.audio}
+                </p>
+                <p class="text-xs text-emerald-100/90 leading-relaxed">
+                  <strong>Visual:</strong> ${currentScene.visual}
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between pt-2 border-t border-white/15 text-xs">
+                <span class="text-amber-300 font-semibold">daftar.umri.ac.id</span>
+                <div class="flex items-center gap-1">
+                  <button onclick="prevScene()" class="px-2 py-0.5 rounded bg-white/20 hover:bg-white/30 font-bold">‹ Prev</button>
+                  <button onclick="nextScene()" class="px-2 py-0.5 rounded bg-white/20 hover:bg-white/30 font-bold">Next ›</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- IG Feed Actions & Caption -->
+            <div class="p-3 space-y-1.5 bg-white">
+              <div class="flex items-center justify-between text-slate-800">
+                <div class="flex items-center gap-3 text-lg">
+                  <i class="ph-fill ph-heart text-rose-500"></i>
+                  <i class="ph-bold ph-chat-circle"></i>
+                  <i class="ph-bold ph-paper-plane-tilt"></i>
+                </div>
+                <i class="ph-bold ph-bookmark-simple text-lg"></i>
+              </div>
+              <p class="text-xs text-slate-800 line-clamp-3 leading-relaxed">
+                <strong>${d.channel.replace('@', '')}</strong> ${d.caption}
+              </p>
+              <p class="text-xs text-indigo-700 font-semibold truncate">${d.hashtags}</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function prevScene() {
+      const d = drafts.find(item => item.id === activeDraftId);
+      if (!d) return;
+      activeSlideIndex = (activeSlideIndex - 1 + d.script.length) % d.script.length;
+      renderScriptTable(d);
+      renderPhoneSimulator();
+    }
+
+    function nextScene() {
+      const d = drafts.find(item => item.id === activeDraftId);
+      if (!d) return;
+      activeSlideIndex = (activeSlideIndex + 1) % d.script.length;
+      renderScriptTable(d);
+      renderPhoneSimulator();
+    }
+
+    function changeDraftStatus(newStatus) {
+      const d = drafts.find(item => item.id === activeDraftId);
+      if (!d) return;
+      d.status = newStatus;
+      renderBoard();
+    }
+
+    function closePreviewModal() {
+      document.getElementById("preview-modal").classList.add("hidden");
+    }
+
+    function copyCurrentDraft() {
+      const d = drafts.find(item => item.id === activeDraftId);
+      if (!d) return;
+      const scriptLines = d.script.map(s => `- [${s.segment}]\n  Visual: ${s.visual}\n  Audio/Teks: ${s.audio}`).join("\n");
+      const text = `MODUL DRAF KONTEN UMRI (${d.id})\nJudul: ${d.title}\nKanal & Format: ${d.channel} | ${d.format}\nTujuan Pesan (KPI/Funnel): ${d.funnel}\nVisual Directive: ${d.visualDirective}\nAudio Directive: ${d.audioDirective}\n\nTWO-COLUMN SCRIPT / SLIDE BREAKDOWN:\n${scriptLines}\n\nDRAFT CAPTION & CTA:\n${d.caption}\n\n${d.hashtags}`;
+      navigator.clipboard.writeText(text);
+      const label = document.getElementById("copy-btn-label");
+      label.textContent = "Tersalin!";
+      setTimeout(() => { label.textContent = "Salin Modul Draf"; }, 1800);
+    }
+
+    function openNewDraftModal() {
+      document.getElementById("new-draft-modal").classList.remove("hidden");
+    }
+
+    function closeNewDraftModal() {
+      document.getElementById("new-draft-modal").classList.add("hidden");
+    }
+
+    function toggleContextDrawer() {
+      document.getElementById("context-drawer").classList.toggle("hidden");
+    }
+
+    function submitNewDraft(e) {
+      e.preventDefault();
+      const channel = document.getElementById("in-channel").value;
+      const format = document.getElementById("in-format").value;
+      const funnel = document.getElementById("in-funnel").value;
+      const pilar = document.getElementById("in-pilar").value.trim();
+      const status = document.getElementById("in-status").value;
+      const title = document.getElementById("in-title").value.trim();
+      const urgent = document.getElementById("in-urgent").checked;
+      const proposer = document.getElementById("in-proposer").value.trim() || "Usulan Internal UMRI";
+      const angle = document.getElementById("in-angle").value.trim();
+      const visualDirective = document.getElementById("in-visual").value.trim();
+      const audioDirective = document.getElementById("in-audio").value.trim();
+      const rawScript = document.getElementById("in-script").value.trim();
+      const caption = document.getElementById("in-caption").value.trim();
+      const hashtags = document.getElementById("in-hashtags").value.trim();
+
+      const script = rawScript.split("\n").filter(Boolean).map((line, idx) => {
+        const parts = line.split("|").map(s => s.trim());
+        return {
+          segment: parts[0] || `Bagian ${idx + 1}`,
+          visual: parts[1] || "Visual sesuai arahan produksi UMRI",
+          audio: parts[2] || parts[0] || "Narasi / Teks utama"
+        };
+      });
+
+      const prefix = channel === "@pmb.umri" ? "PMB" : "KMP";
+      const num = String(drafts.length + 1).padStart(2, "0");
+      const newDraft = {
+        id: `${prefix}-NEW-202611-${num}`,
+        channel,
+        format,
+        isVideo: format.toLowerCase().includes("video"),
+        urgent,
+        status,
+        pilar,
+        funnel,
+        proposer,
+        title,
+        angle,
+        visualDirective,
+        audioDirective,
+        script: script.length ? script : [{ segment: "Slide/Scene 1", visual: visualDirective, audio: title }],
+        caption,
+        hashtags,
+        safetyChecklist: [
+          "Telah melewati filter Rambu Persyarikatan & Brand Safety UMRI",
+          "Jas Almamater hijau zamrud tua & Duta Putri wajib berhijab rapi + rok panjang",
+          "Informasi terhubung ke portal resmi https://daftar.umri.ac.id"
+        ]
+      };
+
+      drafts.unshift(newDraft);
+      closeNewDraftModal();
+      document.getElementById("new-draft-form").reset();
+      renderBoard();
+      openPreviewModal(newDraft.id);
+    }
+
+    function exportDrafts(type) {
+      if (type === "json") {
+        const dataStr = JSON.stringify(drafts, null, 2);
+        const blob = new Blob([dataStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `umri_content_ecosystem_2027_2028.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+      } else {
+        const headers = ["ID", "Kanal", "Format", "Urgent_PMB", "Status", "Pilar", "Funnel", "Pengusul", "Judul", "Angle_Pesan", "Visual_Directive", "Audio_Directive", "Caption", "Hashtags"];
+        const rows = drafts.map(d => [
+          d.id, d.channel, d.format, d.urgent ? "Ya" : "Tidak", d.status, d.pilar, d.funnel, d.proposer, d.title, d.angle, d.visualDirective, d.audioDirective, d.caption, d.hashtags
+        ]);
+        const csvContent = "\uFEFF" + [headers, ...rows]
+          .map(row => row.map(cell => `"${String(cell || "").replace(/"/g, '""')}"`).join(","))
+          .join("\n");
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `umri_content_ecosystem_2027_2028.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+    }
+
+    // Initialize board on load
+    window.addEventListener("DOMContentLoaded", () => {
+      renderBoard();
+    });
+  </script>
+</body>
+</html>

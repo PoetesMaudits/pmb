@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PMB UMRI — Production & Merchandise Print Dispatch Desk</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            notion: {
+              bg: '#FFFFFF',
+              sidebar: '#F7F6F3',
+              card: '#FFFFFF',
+              border: '#E9E9E7',
+              hover: '#EFEFED',
+              text: '#37352F',
+              muted: '#787774',
+              red: '#EB5757',
+              redBg: '#FBEBEB',
+              yellow: '#DFAB01',
+              yellowBg: '#FDF5E2',
+              green: '#27AE60',
+              greenBg: '#EDF8F1',
+              blue: '#0F4C81', // UMRI Navy
+              gold: '#D4AF37', // UMRI Gold
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #37352F;
+      background-color: #FBFBFA;
+    }
+    /* Notion style custom checkbox */
+    .notion-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 17px;
+      height: 17px;
+      border: 1.5px solid #C4C4C2;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      background-color: #FFFFFF;
+      flex-shrink: 0;
+    }
+    .notion-checkbox:hover {
+      background-color: #EFEFED;
+      border-color: #787774;
+    }
+    .notion-checkbox:checked {
+      background-color: #0F4C81;
+      border-color: #0F4C81;
+    }
+    .notion-checkbox:checked::after {
+      content: '';
+      width: 5px;
+      height: 9px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      margin-bottom: 2px;
+    }
+    /* Notion Accordion Arrow */
+    details > summary {
+      list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] .arrow-icon {
+      transform: rotate(90deg);
+    }
+    /* Smooth transitions */
+    .transition-smooth {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#FBFBFA] flex flex-col items-center py-6 sm:py-10 px-3 sm:px-6 antialiased selection:bg-[#E3E2E0] selection:text-[#37352F]">
+
+  <!-- Main Shell Container -->
+  <main class="w-full max-w-4xl bg-white border border-[#E9E9E7] rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_rgba(0,0,0,0.04)] overflow-hidden">
+    
+    <!-- Top Action Bar (Breadcrumbs & Global Controls) -->
+    <header class="px-6 sm:px-8 py-3.5 border-b border-[#EBEBE9] flex items-center justify-between text-xs text-[#787774] bg-[#FAFAF9]/90 backdrop-blur sticky top-0 z-20">
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-[#0F4C81] text-[10px] text-white font-bold tracking-tight">UM</span>
+        <span class="font-medium text-[#37352F]">PMB UMRI</span>
+        <span class="text-[#D3D3D1]">/</span>
+        <span class="hover:text-[#37352F] cursor-default font-medium">Revisi Materi Promosi</span>
+        <span class="text-[#D3D3D1]">/</span>
+        <span class="text-[#0F4C81] bg-[#EBF3FB] px-1.5 py-0.5 rounded font-mono font-semibold">PRINT & MERCH DESK</span>
+      </div>
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <button id="btnResetSession" title="Bersihkan dan mulai sesi baru" class="flex items-center gap-1 px-2.5 py-1.5 rounded hover:bg-[#EFEFED] text-[#787774] hover:text-[#EB5757] transition-colors font-medium text-xs">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span class="hidden sm:inline">Reset Sesi</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="p-6 sm:p-10 space-y-7">
+
+      <!-- Cover Line Accent -->
+      <div class="h-2 w-full bg-gradient-to-r from-[#0F4C81] via-[#2A6596] to-[#D4AF37] rounded-full opacity-95"></div>
+
+      <!-- Header Title & Meta -->
+      <div class="space-y-3">
+        <div class="flex items-start gap-3">
+          <div class="w-12 h-12 rounded-lg bg-[#F7F6F3] border border-[#E9E9E7] flex items-center justify-center text-2xl shadow-sm select-none flex-shrink-0 mt-0.5">
+            📦
+          </div>
+          <div class="flex-1">
+            <input 
+              id="batchTitle" 
+              type="text" 
+              placeholder="Batch Cetak Urgent PMB UMRI" 
+              class="w-full text-2xl sm:text-3xl font-bold text-[#37352F] placeholder-[#C4C4C2] bg-transparent border-0 outline-none focus:ring-0 tracking-tight"
+            />
+            <p class="text-xs text-[#787774] flex flex-wrap items-center gap-2 mt-1">
+              <span>Meja Komando Cetak & Merchandise • Folder: <code class="text-[#0F4C81] bg-[#F4F4F2] px-1 py-0.5 rounded font-mono">REVISI MATERI PROMOSI</code></span>
+              <span>•</span>
+              <span id="batchDate" class="font-mono text-[11px] text-[#9B9A97]"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notion Database Properties (Metadata Cards) -->
+      <section class="border border-[#E9E9E7] rounded-lg p-4 bg-[#FBFBFA] space-y-3 text-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          
+          <!-- Property: Link Drive Master File -->
+          <div class="flex items-center gap-3">
+            <span class="w-32 text-xs text-[#787774] font-medium flex items-center gap-1.5 flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-[#9B9A97]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+              Drive Master File
+            </span>
+            <div class="flex-1">
+              <input id="metaDriveLink" type="url" placeholder="https://drive.google.com/drive/folders/..." class="w-full bg-white border border-[#E3E2E0] rounded px-2.5 py-1.5 text-xs text-[#37352F] placeholder-[#C4C4C2] outline-none focus:border-[#0F4C81] transition-colors" />
+            </div>
+          </div>
+
+          <!-- Property: Vendor / PIC Percetakan -->
+          <div class="flex items-center gap-3">
+            <span class="w-32 text-xs text-[#787774] font-medium flex items-center gap-1.5 flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-[#9B9A97]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              PIC / Vendor Cetak
+            </span>
+            <div class="flex-1">
+              <input id="metaPIC" type="text" placeholder="Nama vendor percetakan / desainer..." class="w-full bg-white border border-[#E3E2E0] rounded px-2.5 py-1.5 text-xs text-[#37352F] placeholder-[#C4C4C2] outline-none focus:border-[#0F4C81] transition-colors" />
+            </div>
+          </div>
+
+          <!-- Property: Catatan Canva Link -->
+          <div class="flex items-center gap-3">
+            <span class="w-32 text-xs text-[#787774] font-medium flex items-center gap-1.5 flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-[#9B9A97]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              Notepad Link Canva
+            </span>
+            <div class="flex-1">
+              <input id="metaCanvaNote" type="text" placeholder="Ada di file Notepad (link editor + view)" class="w-full bg-white border border-[#E3E2E0] rounded px-2.5 py-1.5 text-xs text-[#37352F] placeholder-[#C4C4C2] outline-none focus:border-[#0F4C81] transition-colors" />
+            </div>
+          </div>
+
+          <!-- Property: Target Deadline Cetak -->
+          <div class="flex items-center gap-3">
+            <span class="w-32 text-xs text-[#787774] font-medium flex items-center gap-1.5 flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-[#9B9A97]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Deadline Naik Cetak
+            </span>
+            <div class="flex-1">
+              <input id="metaDeadline" type="text" placeholder="ASAP / Hari ini..." class="w-full bg-white border border-[#E3E2E0] rounded px-2.5 py-1.5 text-xs text-[#37352F] placeholder-[#C4C4C2] outline-none focus:border-[#0F4C81] transition-colors" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- LIVE PROGRESS & PRODUCTION STATUS (NOTION CALLOUT STYLE) -->
+      <section class="border border-[#E9E9E7] rounded-lg p-5 bg-white shadow-sm space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span id="verdictBadgeIcon" class="text-3xl select-none">⏳</span>
+            <div>
+              <div class="text-[11px] uppercase tracking-wider font-semibold text-[#787774]">Status Kesiapan Cetak</div>
+              <div id="verdictBadgeText" class="text-base font-bold text-[#37352F]">Menunggu Pengerjaan Revisi</div>
+            </div>
+          </div>
+          <div class="text-right flex sm:flex-col items-center sm:items-end justify-between">
+            <div class="text-xs font-medium text-[#787774]">Item Lolos ACC</div>
+            <div class="text-lg font-bold font-mono text-[#0F4C81]"><span id="accItemCount">0</span> / 9 <span class="text-xs font-normal text-[#9B9A97]">Materi (<span id="progressPercent">0</span>%)</span></div>
+          </div>
+        </div>
+
+        <!-- Notion Style Clean Progress Bar -->
+        <div class="w-full bg-[#EFEFED] h-2.5 rounded-full overflow-hidden">
+          <div id="progressBar" class="bg-[#C4C4C2] h-full transition-all duration-300 ease-out" style="width: 0%"></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#787774] gap-1">
+          <span id="verdictDescription">Selesaikan checklist revisi untuk 9 materi promosi sebelum file dilepas ke percetakan.</span>
+          <span class="font-mono text-[11px]"><span id="subcheckCount">0</span>/18 poin checklist lolos</span>
+        </div>
+      </section>
+
+      <!-- GLOBAL SOP PENGIRIMAN FILE (CALLOUT ACCORDION) -->
+      <div class="border border-[#DFE7EE] bg-[#F6F9FC] rounded-lg p-4 space-y-2.5">
+        <div class="flex items-center gap-2 text-xs font-semibold text-[#0F4C81]">
+          <svg class="w-4 h-4 text-[#0F4C81]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>SOP WAJIB PENGIRIMAN MASTER FILE & MOCKUP</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-[#37352F]">
+          <label class="flex items-start gap-2 bg-white/70 border border-[#E1E8EE] rounded p-2 cursor-pointer hover:bg-white">
+            <input type="checkbox" id="sop_master" class="notion-checkbox mt-0.5" />
+            <span>Master file (AI/PSD/PDF Hi-Res) sudah ada di Drive</span>
+          </label>
+          <label class="flex items-start gap-2 bg-white/70 border border-[#E1E8EE] rounded p-2 cursor-pointer hover:bg-white">
+            <input type="checkbox" id="sop_canva" class="notion-checkbox mt-0.5" />
+            <span>Link Canva (Edit & View) dicatat di Notepad Drive</span>
+          </label>
+          <label class="flex items-start gap-2 bg-white/70 border border-[#E1E8EE] rounded p-2 cursor-pointer hover:bg-white">
+            <input type="checkbox" id="sop_mockup" class="notion-checkbox mt-0.5" />
+            <span>Mockup barang fisik sudah dilampirkan per merchandise</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- FILTER TABS -->
+      <div class="flex items-center justify-between border-b border-[#E9E9E7] pb-2 text-xs">
+        <div class="flex items-center gap-1">
+          <button type="button" class="filter-tab active font-semibold text-[#0F4C81] border-b-2 border-[#0F4C81] pb-2 px-2" data-filter="all">Semua Materi (9)</button>
+          <button type="button" class="filter-tab text-[#787774] hover:text-[#37352F] pb-2 px-2" data-filter="paper">Materi Cetak (3)</button>
+          <button type="button" class="filter-tab text-[#787774] hover:text-[#37352F] pb-2 px-2" data-filter="warek">Special Merch (2)</button>
+          <button type="button" class="filter-tab text-[#787774] hover:text-[#37352F] pb-2 px-2" data-filter="stock">Stock PMB (4)</button>
+        </div>
+        <span class="text-[11px] text-[#9B9A97] hidden sm:inline">Patuhi guardrail: materi yang tidak disebut dilarang diubah</span>
+      </div>
+
+      <!-- 9 MODULAR REVISION ITEM CARDS -->
+      <div id="itemsContainer" class="space-y-4">
+
+        <!-- ==================== KELOMPOK A: MATERI CETAK KERTAS ==================== -->
+
+        <!-- ITEM 1: BROSUR A4 -->
+        <div class="item-card border border-[#E9E9E7] rounded-lg bg-white overflow-hidden shadow-sm" data-category="paper" id="card_brosur">
+          <details open class="group">
+            <summary class="p-4 bg-[#FAFAF9] border-b border-[#EBEBE9] cursor-pointer flex items-center justify-between hover:bg-[#F5F5F3] transition-colors select-none">
+              <div class="flex items-center gap-2.5">
+                <svg class="arrow-icon w-3.5 h-3.5 text-[#9B9A97] transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-base">📄</span>
+                <span class="text-sm font-semibold text-[#37352F]">1. Brosur A4</span>
+                <span class="text-[10px] bg-[#EBF3FB] text-[#0F4C81] px-1.5 py-0.5 rounded font-medium">Brosur Lipat</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]" id="status_brosur">Belum ACC</span>
+              </div>
+            </summary>
+            
+            <div class="p-4 space-y-3.5">
+              <div class="space-y-2">
+                <div class="text-xs font-semibold text-[#787774] uppercase tracking-wide">Poin Revisi Wajib:</div>
+                
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="brosur" id="chk_brosur_1" />
+                  <div>
+                    <span class="font-medium">Revisi Akreditasi Kedokteran</span>
+                    <span class="text-[#787774] block">Pastikan status akreditasi prodi Kedokteran sesuai SK terbaru.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="brosur" id="chk_brosur_2" />
+                  <div>
+                    <span class="font-medium">Revisi Definisi RPL (Rekognisi Pembelajaran Lampau)</span>
+                    <span class="text-[#787774] block">Perjelas deskripsi jalur konversi SKS / pengalaman kerja bagi calon mahasiswa.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="brosur" id="chk_brosur_3" />
+                  <div>
+                    <span class="font-medium">Revisi Akronim FKIP</span>
+                    <span class="text-[#787774] block">Perbaiki penulisan singkatan Fakultas Keguruan dan Ilmu Pendidikan.</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Guardrail Note -->
+              <div class="text-[11px] text-[#9A7300] bg-[#FDF5E2] px-2.5 py-1.5 rounded flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                <span><b>Guardrail Dokumen:</b> Selain 3 poin di atas, layout dan teks brosur <b>TIDAK PERLU DIUBAH</b>.</span>
+              </div>
+
+              <!-- Item Notes Input -->
+              <div>
+                <input type="text" id="note_brosur" placeholder="Catatan komando spesifik Brosur A4 (opsional)..." class="w-full text-xs p-2 bg-[#FBFBFA] border border-[#E9E9E7] rounded outline-none focus:border-[#0F4C81] text-[#37352F]" />
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- ITEM 2: KALENDER DINDING -->
+        <div class="item-card border border-[#E9E9E7] rounded-lg bg-white overflow-hidden shadow-sm" data-category="paper" id="card_kalender_dinding">
+          <details open class="group">
+            <summary class="p-4 bg-[#FAFAF9] border-b border-[#EBEBE9] cursor-pointer flex items-center justify-between hover:bg-[#F5F5F3] transition-colors select-none">
+              <div class="flex items-center gap-2.5">
+                <svg class="arrow-icon w-3.5 h-3.5 text-[#9B9A97] transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-base">📅</span>
+                <span class="text-sm font-semibold text-[#37352F]">2. Kalender Dinding (Ukuran 40x60 cm Portrait)</span>
+                <span class="text-[10px] bg-[#EBF3FB] text-[#0F4C81] px-1.5 py-0.5 rounded font-medium">40x60 cm</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]" id="status_kalender_dinding">Belum ACC</span>
+              </div>
+            </summary>
+            
+            <div class="p-4 space-y-3.5">
+              <div class="space-y-2">
+                <div class="text-xs font-semibold text-[#787774] uppercase tracking-wide">Poin Revisi Wajib:</div>
+                
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="kalender_dinding" id="chk_kalender_dinding_1" />
+                  <div>
+                    <span class="font-medium">Revisi Ukuran Kanvas Menjadi 40x60 cm (Portrait)</span>
+                    <span class="text-[#787774] block">Pastikan artboard, bleed cetak, dan resolusi pas untuk ukuran 40x60 cm vertikal.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="kalender_dinding" id="chk_kalender_dinding_2" />
+                  <div>
+                    <span class="font-medium">Keterangan Nama Fakultas & Prodi Sesuai SK di Bawah Setiap Halaman</span>
+                    <span class="text-[#787774] block">Tambahkan daftar resmi seluruh fakultas dan prodi UMRI di kaki halaman kalender.</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Guardrail Note -->
+              <div class="text-[11px] text-[#9A7300] bg-[#FDF5E2] px-2.5 py-1.5 rounded flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                <span><b>Guardrail Dokumen:</b> Selain 2 hal di atas, desain kalender dinding <b>TIDAK PERLU DIUBAH</b>.</span>
+              </div>
+
+              <div>
+                <input type="text" id="note_kalender_dinding" placeholder="Catatan komando spesifik Kalender Dinding..." class="w-full text-xs p-2 bg-[#FBFBFA] border border-[#E9E9E7] rounded outline-none focus:border-[#0F4C81] text-[#37352F]" />
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- ITEM 3: KALENDER MEJA -->
+        <div class="item-card border border-[#E9E9E7] rounded-lg bg-white overflow-hidden shadow-sm" data-category="paper" id="card_kalender_meja">
+          <details open class="group">
+            <summary class="p-4 bg-[#FAFAF9] border-b border-[#EBEBE9] cursor-pointer flex items-center justify-between hover:bg-[#F5F5F3] transition-colors select-none">
+              <div class="flex items-center gap-2.5">
+                <svg class="arrow-icon w-3.5 h-3.5 text-[#9B9A97] transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-base">🗓️</span>
+                <span class="text-sm font-semibold text-[#37352F]">3. Kalender Meja (Desk Calendar)</span>
+                <span class="text-[10px] bg-[#EBF3FB] text-[#0F4C81] px-1.5 py-0.5 rounded font-medium">Spiral Tent</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]" id="status_kalender_meja">Belum ACC</span>
+              </div>
+            </summary>
+            
+            <div class="p-4 space-y-3.5">
+              <div class="space-y-2">
+                <div class="text-xs font-semibold text-[#787774] uppercase tracking-wide">Poin Revisi Wajib:</div>
+                
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="kalender_meja" id="chk_kalender_meja_1" />
+                  <div>
+                    <span class="font-medium">Revisi Halaman yang Memuat Keterangan Prodi</span>
+                    <span class="text-[#787774] block">Update rincian program studi, akreditasi, dan gelar kelulusan pada lembar prodi.</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Guardrail Note -->
+              <div class="text-[11px] text-[#9A7300] bg-[#FDF5E2] px-2.5 py-1.5 rounded flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                <span><b>Guardrail Dokumen:</b> Selain lembar keterangan prodi, halaman lain <b>TIDAK PERLU DIUBAH</b>.</span>
+              </div>
+
+              <div>
+                <input type="text" id="note_kalender_meja" placeholder="Catatan komando spesifik Kalender Meja..." class="w-full text-xs p-2 bg-[#FBFBFA] border border-[#E9E9E7] rounded outline-none focus:border-[#0F4C81] text-[#37352F]" />
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- ==================== KELOMPOK B: MERCHANDISE PILIHAN KHUSUS ==================== -->
+
+        <!-- ITEM 4: TOTEBAG (REQUEST BU WAREK) -->
+        <div class="item-card border border-[#E9E9E7] rounded-lg bg-white overflow-hidden shadow-sm" data-category="warek" id="card_totebag">
+          <details open class="group">
+            <summary class="p-4 bg-[#FAFAF9] border-b border-[#EBEBE9] cursor-pointer flex items-center justify-between hover:bg-[#F5F5F3] transition-colors select-none">
+              <div class="flex items-center gap-2.5">
+                <svg class="arrow-icon w-3.5 h-3.5 text-[#9B9A97] transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-base">🛍️</span>
+                <span class="text-sm font-semibold text-[#37352F]">4. Tas Totebag (Model Baru Request Bu Warek)</span>
+                <span class="text-[10px] bg-[#FDF5E2] text-[#9A7300] px-1.5 py-0.5 rounded font-medium">VIP Request</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]" id="status_totebag">Belum ACC</span>
+              </div>
+            </summary>
+            
+            <div class="p-4 space-y-3.5">
+              <div class="space-y-2">
+                <div class="text-xs font-semibold text-[#787774] uppercase tracking-wide">Poin Revisi & Branding:</div>
+                
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="totebag" id="chk_totebag_1" />
+                  <div>
+                    <span class="font-medium">Sisi Dalam Totebag: Logo & Nama Universitas</span>
+                    <span class="text-[#787774] block">Branding sablon/label bagian dalam tas dengan logo dan nama UMRI resmi.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="totebag" id="chk_totebag_2" />
+                  <div>
+                    <span class="font-medium">Sisi Luar (Packaging Totebag): Tagline ‘AKU UMRI’</span>
+                    <span class="text-[#787774] block">Tercantum tagline 'AKU UMRI' pada pouch / packaging luar totebag.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="totebag" id="chk_totebag_3" />
+                  <div>
+                    <span class="font-medium">Mockup 3D Barang Sesuai Model Fisik Pilihan Bu Warek</span>
+                    <span class="text-[#787774] block">Desainer wajib membuat mockup realistis sesuai bentuk foto referensi terlampir.</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Reference Images Preview -->
+              <div class="pt-1">
+                <div class="text-xs font-semibold text-[#787774] mb-2 flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-[#0F4C81]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  <span>Foto Barang Referensi (Klik untuk Perbesar):</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <div class="border border-[#E9E9E7] rounded-lg p-1 bg-[#FBFBFA] group cursor-pointer hover:border-[#0F4C81] transition-colors" onclick="openLightbox('REVISI MATERI PROMOSI/Tote Bag request warek 1.jpeg', 'Totebag Request Bu Warek - Ref 1')">
+                    <img src="REVISI MATERI PROMOSI/Tote Bag request warek 1.jpeg" alt="Tote Bag Warek 1" class="w-full h-24 object-cover rounded" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-[10px] text-gray-400 p-2 text-center\'>Ref 1: Tote Bag request warek 1.jpeg</div>';" />
+                    <div class="text-[10px] text-[#787774] text-center mt-1 font-mono truncate">Ref 1 (Bahan & Model)</div>
+                  </div>
+                  <div class="border border-[#E9E9E7] rounded-lg p-1 bg-[#FBFBFA] group cursor-pointer hover:border-[#0F4C81] transition-colors" onclick="openLightbox('REVISI MATERI PROMOSI/Tote Bag request warek 2.jpeg', 'Totebag Request Bu Warek - Ref 2')">
+                    <img src="REVISI MATERI PROMOSI/Tote Bag request warek 2.jpeg" alt="Tote Bag Warek 2" class="w-full h-24 object-cover rounded" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-[10px] text-gray-400 p-2 text-center\'>Ref 2: Tote Bag request warek 2.jpeg</div>';" />
+                    <div class="text-[10px] text-[#787774] text-center mt-1 font-mono truncate">Ref 2 (Packaging & Pouch)</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <input type="text" id="note_totebag" placeholder="Catatan komando spesifik Totebag Bu Warek..." class="w-full text-xs p-2 bg-[#FBFBFA] border border-[#E9E9E7] rounded outline-none focus:border-[#0F4C81] text-[#37352F]" />
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- ITEM 5: TUMBLER KOPI -->
+        <div class="item-card border border-[#E9E9E7] rounded-lg bg-white overflow-hidden shadow-sm" data-category="warek" id="card_tumbler">
+          <details open class="group">
+            <summary class="p-4 bg-[#FAFAF9] border-b border-[#EBEBE9] cursor-pointer flex items-center justify-between hover:bg-[#F5F5F3] transition-colors select-none">
+              <div class="flex items-center gap-2.5">
+                <svg class="arrow-icon w-3.5 h-3.5 text-[#9B9A97] transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-base">☕</span>
+                <span class="text-sm font-semibold text-[#37352F]">5. Tumbler Kopi</span>
+                <span class="text-[10px] bg-[#EDF8F1] text-[#1B7943] px-1.5 py-0.5 rounded font-medium">Coffee Mug</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]" id="status_tumbler">Belum ACC</span>
+              </div>
+            </summary>
+            
+            <div class="p-4 space-y-3.5">
+              <div class="space-y-2">
+                <div class="text-xs font-semibold text-[#787774] uppercase tracking-wide">Poin Revisi & Branding:</div>
+                
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="tumbler" id="chk_tumbler_1" />
+                  <div>
+                    <span class="font-medium">Buat Mockup Tumbler Kopi dengan Logo Universitas</span>
+                    <span class="text-[#787774] block">Mockup 3D botol tumbler kopi dengan resolusi tajam dan grafir/sablon logo UMRI.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="tumbler" id="chk_tumbler_2" />
+                  <div>
+                    <span class="font-medium">Penyematan Tagline ‘AKU UMRI’ pada Sisi-sisinya</span>
+                    <span class="text-[#787774] block">Pastikan penempatan tipografi 'AKU UMRI' proporsional dan tidak terpotong lekukan botol.</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Reference Images Preview -->
+              <div class="pt-1">
+                <div class="text-xs font-semibold text-[#787774] mb-2 flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-[#0F4C81]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  <span>Foto Barang Referensi (Klik untuk Perbesar):</span>
+                </div>
+                <div class="w-40 border border-[#E9E9E7] rounded-lg p-1 bg-[#FBFBFA] group cursor-pointer hover:border-[#0F4C81] transition-colors" onclick="openLightbox('REVISI MATERI PROMOSI/Tumbler Kopi.jpeg', 'Tumbler Kopi UMRI')">
+                  <img src="REVISI MATERI PROMOSI/Tumbler Kopi.jpeg" alt="Tumbler Kopi" class="w-full h-24 object-cover rounded" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-[10px] text-gray-400 p-2 text-center\'>Ref: Tumbler Kopi.jpeg</div>';" />
+                  <div class="text-[10px] text-[#787774] text-center mt-1 font-mono truncate">Ref Fisik Tumbler Kopi</div>
+                </div>
+              </div>
+
+              <div>
+                <input type="text" id="note_tumbler" placeholder="Catatan komando spesifik Tumbler Kopi..." class="w-full text-xs p-2 bg-[#FBFBFA] border border-[#E9E9E7] rounded outline-none focus:border-[#0F4C81] text-[#37352F]" />
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- ==================== KELOMPOK C: MERCHANDISE STOCK PMB & VENDOR ==================== -->
+
+        <!-- ITEM 6: TWS AIRPOD -->
+        <div class="item-card border border-[#E9E9E7] rounded-lg bg-white overflow-hidden shadow-sm" data-category="stock" id="card_tws">
+          <details open class="group">
+            <summary class="p-4 bg-[#FAFAF9] border-b border-[#EBEBE9] cursor-pointer flex items-center justify-between hover:bg-[#F5F5F3] transition-colors select-none">
+              <div class="flex items-center gap-2.5">
+                <svg class="arrow-icon w-3.5 h-3.5 text-[#9B9A97] transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-base">🎧</span>
+                <span class="text-sm font-semibold text-[#37352F]">6. TWS (Airpod PMB)</span>
+                <span class="text-[10px] bg-[#F7F6F3] text-[#787774] px-1.5 py-0.5 rounded font-medium">Stock PMB</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]" id="status_tws">Belum ACC</span>
+              </div>
+            </summary>
+            
+            <div class="p-4 space-y-3.5">
+              <div class="space-y-2">
+                <div class="text-xs font-semibold text-[#787774] uppercase tracking-wide">Poin Penyesuaian:</div>
+                
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="tws" id="chk_tws_1" />
+                  <div>
+                    <span class="font-medium">Foto Barang Fisik Aktual di PMB</span>
+                    <span class="text-[#787774] block">Ambil foto produk fisik TWS yang ada di kantor PMB sebagai bukti referensi real.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="tws" id="chk_tws_2" />
+                  <div>
+                    <span class="font-medium">Sesuaikan Mockup Desain dengan Stock Vendor</span>
+                    <span class="text-[#787774] block">Penyamaan persepsi area sablon/grafir casing TWS dengan vendor percetakan.</span>
+                  </div>
+                </label>
+              </div>
+
+              <div class="text-[11px] text-[#787774] italic">
+                *Selain poin di atas, tidak perlu perubahan desain.
+              </div>
+
+              <div>
+                <input type="text" id="note_tws" placeholder="Catatan komando spesifik TWS..." class="w-full text-xs p-2 bg-[#FBFBFA] border border-[#E9E9E7] rounded outline-none focus:border-[#0F4C81] text-[#37352F]" />
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- ITEM 7: PENA PREMIUM -->
+        <div class="item-card border border-[#E9E9E7] rounded-lg bg-white overflow-hidden shadow-sm" data-category="stock" id="card_pena_premium">
+          <details open class="group">
+            <summary class="p-4 bg-[#FAFAF9] border-b border-[#EBEBE9] cursor-pointer flex items-center justify-between hover:bg-[#F5F5F3] transition-colors select-none">
+              <div class="flex items-center gap-2.5">
+                <svg class="arrow-icon w-3.5 h-3.5 text-[#9B9A97] transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-base">🖊️</span>
+                <span class="text-sm font-semibold text-[#37352F]">7. Pena Premium</span>
+                <span class="text-[10px] bg-[#F7F6F3] text-[#787774] px-1.5 py-0.5 rounded font-medium">Metal Pen</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]" id="status_pena_premium">Belum ACC</span>
+              </div>
+            </summary>
+            
+            <div class="p-4 space-y-3.5">
+              <div class="space-y-2">
+                <div class="text-xs font-semibold text-[#787774] uppercase tracking-wide">Poin Penyesuaian:</div>
+                
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="pena_premium" id="chk_pena_premium_1" />
+                  <div>
+                    <span class="font-medium">Foto Barang Fisik Aktual di PMB</span>
+                    <span class="text-[#787774] block">Dokumentasikan sampel fisik pena premium yang tersedia di ruang PMB.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="pena_premium" id="chk_pena_premium_2" />
+                  <div>
+                    <span class="font-medium">Sesuaikan Mockup Desain dengan Stock Vendor</span>
+                    <span class="text-[#787774] block">Pastikan area laser grafir / sablon logo presisi sesuai spesifikasi pena vendor.</span>
+                  </div>
+                </label>
+              </div>
+
+              <div class="text-[11px] text-[#787774] italic">
+                *Selain poin di atas, tidak perlu perubahan desain.
+              </div>
+
+              <div>
+                <input type="text" id="note_pena_premium" placeholder="Catatan komando spesifik Pena Premium..." class="w-full text-xs p-2 bg-[#FBFBFA] border border-[#E9E9E7] rounded outline-none focus:border-[#0F4C81] text-[#37352F]" />
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- ITEM 8: PENA REGULER -->
+        <div class="item-card border border-[#E9E9E7] rounded-lg bg-white overflow-hidden shadow-sm" data-category="stock" id="card_pena_reguler">
+          <details open class="group">
+            <summary class="p-4 bg-[#FAFAF9] border-b border-[#EBEBE9] cursor-pointer flex items-center justify-between hover:bg-[#F5F5F3] transition-colors select-none">
+              <div class="flex items-center gap-2.5">
+                <svg class="arrow-icon w-3.5 h-3.5 text-[#9B9A97] transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-base">🖊️</span>
+                <span class="text-sm font-semibold text-[#37352F]">8. Pena Reguler (Plastic Ballpoint)</span>
+                <span class="text-[10px] bg-[#F7F6F3] text-[#787774] px-1.5 py-0.5 rounded font-medium">Mass Merch</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]" id="status_pena_reguler">Belum ACC</span>
+              </div>
+            </summary>
+            
+            <div class="p-4 space-y-3.5">
+              <div class="space-y-2">
+                <div class="text-xs font-semibold text-[#787774] uppercase tracking-wide">Poin Penyesuaian:</div>
+                
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="pena_reguler" id="chk_pena_reguler_1" />
+                  <div>
+                    <span class="font-medium">Foto Barang Fisik Aktual di PMB</span>
+                    <span class="text-[#787774] block">Dokumentasikan sampel fisik pena reguler yang ada di kantor PMB.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="pena_reguler" id="chk_pena_reguler_2" />
+                  <div>
+                    <span class="font-medium">Sesuaikan Mockup Desain dengan Stock Vendor</span>
+                    <span class="text-[#787774] block">Pastikan area cetak logo dan tulisan www.umri.ac.id terbaca jelas pada badan pena.</span>
+                  </div>
+                </label>
+              </div>
+
+              <div class="text-[11px] text-[#787774] italic">
+                *Selain poin di atas, tidak perlu perubahan desain.
+              </div>
+
+              <div>
+                <input type="text" id="note_pena_reguler" placeholder="Catatan komando spesifik Pena Reguler..." class="w-full text-xs p-2 bg-[#FBFBFA] border border-[#E9E9E7] rounded outline-none focus:border-[#0F4C81] text-[#37352F]" />
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- ITEM 9: KIPAS DESKTOP -->
+        <div class="item-card border border-[#E9E9E7] rounded-lg bg-white overflow-hidden shadow-sm" data-category="stock" id="card_kipas">
+          <details open class="group">
+            <summary class="p-4 bg-[#FAFAF9] border-b border-[#EBEBE9] cursor-pointer flex items-center justify-between hover:bg-[#F5F5F3] transition-colors select-none">
+              <div class="flex items-center gap-2.5">
+                <svg class="arrow-icon w-3.5 h-3.5 text-[#9B9A97] transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-base">💨</span>
+                <span class="text-sm font-semibold text-[#37352F]">9. Kipas (Desktop Fan)</span>
+                <span class="text-[10px] bg-[#F7F6F3] text-[#787774] px-1.5 py-0.5 rounded font-medium">Gadget Merch</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]" id="status_kipas">Belum ACC</span>
+              </div>
+            </summary>
+            
+            <div class="p-4 space-y-3.5">
+              <div class="space-y-2">
+                <div class="text-xs font-semibold text-[#787774] uppercase tracking-wide">Poin Penyesuaian:</div>
+                
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="kipas" id="chk_kipas_1" />
+                  <div>
+                    <span class="font-medium">Foto Barang Fisik Aktual di PMB</span>
+                    <span class="text-[#787774] block">Dokumentasikan sampel kipas desktop fan yang ada di PMB.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-2.5 text-xs text-[#37352F] cursor-pointer">
+                  <input type="checkbox" class="notion-checkbox item-subcheck mt-0.5" data-item="kipas" id="chk_kipas_2" />
+                  <div>
+                    <span class="font-medium">Sesuaikan Mockup Desain dengan Stock Vendor</span>
+                    <span class="text-[#787774] block">Penyamaan persepsi area sablon logo dan tagline pada stand / bodi kipas.</span>
+                  </div>
+                </label>
+              </div>
+
+              <div class="text-[11px] text-[#787774] italic">
+                *Selain poin di atas, tidak perlu perubahan desain.
+              </div>
+
+              <div>
+                <input type="text" id="note_kipas" placeholder="Catatan komando spesifik Kipas Desktop Fan..." class="w-full text-xs p-2 bg-[#FBFBFA] border border-[#E9E9E7] rounded outline-none focus:border-[#0F4C81] text-[#37352F]" />
+              </div>
+            </div>
+          </details>
+        </div>
+
+      </div>
+
+      <!-- GENERAL DISPATCH NOTES -->
+      <section class="space-y-2 pt-2">
+        <label for="generalDispatchNote" class="text-xs font-semibold text-[#37352F] block">
+          Catatan Tambahan untuk Percetakan / Desainer (Global Dispatch Note):
+        </label>
+        <textarea id="generalDispatchNote" rows="2" placeholder="Tulis instruksi tambahan, deadline jam cetak, atau konfirmasi vendor..." class="w-full text-xs p-3 bg-[#FBFBFA] border border-[#E9E9E7] rounded-lg outline-none focus:border-[#0F4C81] text-[#37352F] placeholder-[#C4C4C2] resize-none"></textarea>
+      </section>
+
+      <!-- THE DISPATCHER (ORCHESTRATION & EXPORT ACTION) -->
+      <section class="pt-4 border-t border-[#E9E9E7] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div class="text-xs text-[#787774]">
+          Klik untuk menyalin laporan instruksi komando revisi siap kirim ke WhatsApp Tim/Vendor.
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btnCopyWhatsApp" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 bg-[#0F4C81] hover:bg-[#0A365C] active:bg-[#07243D] text-white rounded-lg text-xs font-semibold shadow-sm transition-all duration-150">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.679.116-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg>
+            <span>Salin Instruksi WhatsApp (Vendor / Desainer)</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Notion Footer -->
+    <footer class="px-6 sm:px-8 py-3 bg-[#FAFAF9] border-t border-[#EBEBE9] text-[11px] text-[#9B9A97] flex items-center justify-between">
+      <span>PMB UMRI — Production & Print Control Hub</span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        Sesi Realtime Tersimpan
+      </span>
+    </footer>
+
+  </main>
+
+  <!-- LIGHTBOX IMAGE MODAL -->
+  <div id="imageLightbox" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden" onclick="closeLightbox()">
+    <div class="relative max-w-2xl w-full bg-white rounded-xl overflow-hidden shadow-2xl p-2" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between px-3 py-2 border-b border-[#E9E9E7]">
+        <h4 id="lightboxTitle" class="text-xs font-semibold text-[#37352F]">Foto Referensi Barang</h4>
+        <button onclick="closeLightbox()" class="text-[#787774] hover:text-black p-1 rounded">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="p-2 flex items-center justify-center bg-[#F7F6F3] min-h-[300px]">
+        <img id="lightboxImg" src="" alt="Preview" class="max-h-[70vh] object-contain rounded" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Modal -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 bg-[#2F3437] text-white px-4 py-2.5 rounded-lg shadow-xl text-xs font-medium flex items-center gap-2 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-200 z-50">
+    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    <span id="toastMessage">Instruksi WhatsApp berhasil disalin!</span>
+  </div>
+
+  <!-- Reset Confirmation Modal -->
+  <div id="resetModal" class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
+    <div class="bg-white rounded-xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-[#E9E9E7]">
+      <div class="w-10 h-10 rounded-full bg-[#FBEBEB] text-[#EB5757] flex items-center justify-center text-lg font-bold">
+        ⚠️
+      </div>
+      <div>
+        <h4 class="text-sm font-semibold text-[#37352F]">Mulai Sesi Batch Baru?</h4>
+        <p class="text-xs text-[#787774] mt-1">Semua checklist ACC dan catatan komando akan dibersihkan untuk batch berikutnya.</p>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button id="btnCancelReset" class="px-3 py-1.5 rounded text-xs font-medium text-[#787774] hover:bg-[#EFEFED] transition-colors">Batal</button>
+        <button id="btnConfirmReset" class="px-3 py-1.5 rounded text-xs font-medium bg-[#EB5757] text-white hover:bg-[#D94545] transition-colors">Ya, Bersihkan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const STORAGE_KEY = 'PMB_UMRI_MERCHANDISE_PRINT_V2';
+
+    // Definition of 9 Items and their subchecks
+    const ITEMS_DEF = [
+      { id: 'brosur', name: 'Brosur A4', subchecks: ['chk_brosur_1', 'chk_brosur_2', 'chk_brosur_3'] },
+      { id: 'kalender_dinding', name: 'Kalender Dinding 40x60', subchecks: ['chk_kalender_dinding_1', 'chk_kalender_dinding_2'] },
+      { id: 'kalender_meja', name: 'Kalender Meja', subchecks: ['chk_kalender_meja_1'] },
+      { id: 'totebag', name: 'Tas Totebag (Model Bu Warek)', subchecks: ['chk_totebag_1', 'chk_totebag_2', 'chk_totebag_3'] },
+      { id: 'tumbler', name: 'Tumbler Kopi', subchecks: ['chk_tumbler_1', 'chk_tumbler_2'] },
+      { id: 'tws', name: 'TWS Airpod PMB', subchecks: ['chk_tws_1', 'chk_tws_2'] },
+      { id: 'pena_premium', name: 'Pena Premium', subchecks: ['chk_pena_premium_1', 'chk_pena_premium_2'] },
+      { id: 'pena_reguler', name: 'Pena Reguler', subchecks: ['chk_pena_reguler_1', 'chk_pena_reguler_2'] },
+      { id: 'kipas', name: 'Kipas (Desktop Fan)', subchecks: ['chk_kipas_1', 'chk_kipas_2'] }
+    ];
+
+    // State
+    let state = {
+      title: '',
+      driveLink: '',
+      pic: '',
+      canvaNote: '',
+      deadline: '',
+      generalDispatchNote: '',
+      sop: { master: false, canva: false, mockup: false },
+      checkboxes: {},
+      itemNotes: {},
+      date: new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    };
+
+    // DOM Elements
+    const batchTitle = document.getElementById('batchTitle');
+    const batchDate = document.getElementById('batchDate');
+    const metaDriveLink = document.getElementById('metaDriveLink');
+    const metaPIC = document.getElementById('metaPIC');
+    const metaCanvaNote = document.getElementById('metaCanvaNote');
+    const metaDeadline = document.getElementById('metaDeadline');
+    const generalDispatchNote = document.getElementById('generalDispatchNote');
+
+    const sopMaster = document.getElementById('sop_master');
+    const sopCanva = document.getElementById('sop_canva');
+    const sopMockup = document.getElementById('sop_mockup');
+
+    const accItemCountEl = document.getElementById('accItemCount');
+    const progressPercentEl = document.getElementById('progressPercent');
+    const progressBar = document.getElementById('progressBar');
+    const subcheckCountEl = document.getElementById('subcheckCount');
+    const verdictBadgeIcon = document.getElementById('verdictBadgeIcon');
+    const verdictBadgeText = document.getElementById('verdictBadgeText');
+    const verdictDescription = document.getElementById('verdictDescription');
+
+    const btnCopyWhatsApp = document.getElementById('btnCopyWhatsApp');
+    const btnResetSession = document.getElementById('btnResetSession');
+    const resetModal = document.getElementById('resetModal');
+    const btnCancelReset = document.getElementById('btnCancelReset');
+    const btnConfirmReset = document.getElementById('btnConfirmReset');
+    const toast = document.getElementById('toastNotification');
+    const toastMessage = document.getElementById('toastMessage');
+
+    const allSubchecks = document.querySelectorAll('.item-subcheck');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+
+    function init() {
+      batchDate.textContent = state.date;
+      loadState();
+      attachListeners();
+      updateCalculations();
+    }
+
+    function saveState() {
+      state.title = batchTitle.value;
+      state.driveLink = metaDriveLink.value;
+      state.pic = metaPIC.value;
+      state.canvaNote = metaCanvaNote.value;
+      state.deadline = metaDeadline.value;
+      state.generalDispatchNote = generalDispatchNote.value;
+
+      state.sop.master = sopMaster.checked;
+      state.sop.canva = sopCanva.checked;
+      state.sop.mockup = sopMockup.checked;
+
+      // Subchecks
+      state.checkboxes = {};
+      allSubchecks.forEach(chk => {
+        state.checkboxes[chk.id] = chk.checked;
+      });
+
+      // Notes
+      state.itemNotes = {};
+      ITEMS_DEF.forEach(item => {
+        const noteEl = document.getElementById(`note_${item.id}`);
+        if (noteEl) {
+          state.itemNotes[item.id] = noteEl.value;
+        }
+      });
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function loadState() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          state = { ...state, ...parsed };
+
+          batchTitle.value = state.title || '';
+          metaDriveLink.value = state.driveLink || '';
+          metaPIC.value = state.pic || '';
+          metaCanvaNote.value = state.canvaNote || '';
+          metaDeadline.value = state.deadline || '';
+          generalDispatchNote.value = state.generalDispatchNote || '';
+
+          if (state.sop) {
+            sopMaster.checked = !!state.sop.master;
+            sopCanva.checked = !!state.sop.canva;
+            sopMockup.checked = !!state.sop.mockup;
+          }
+
+          if (state.checkboxes) {
+            allSubchecks.forEach(chk => {
+              if (state.checkboxes[chk.id] !== undefined) {
+                chk.checked = state.checkboxes[chk.id];
+              }
+            });
+          }
+
+          if (state.itemNotes) {
+            ITEMS_DEF.forEach(item => {
+              const noteEl = document.getElementById(`note_${item.id}`);
+              if (noteEl && state.itemNotes[item.id] !== undefined) {
+                noteEl.value = state.itemNotes[item.id];
+              }
+            });
+          }
+        } catch (e) {
+          console.error("Failed to load saved state", e);
+        }
+      } else {
+        // Defaults
+        batchTitle.value = `Batch Cetak Urgent PMB — ${new Date().toLocaleDateString('id-ID', { month: 'short', day: 'numeric' })}`;
+        metaCanvaNote.value = 'Tersedia di Notepad (link editor + view)';
+      }
+    }
+
+    function updateCalculations() {
+      let totalSubchecks = allSubchecks.length;
+      let checkedSubchecks = 0;
+      let accItems = 0;
+
+      // Evaluate each item
+      ITEMS_DEF.forEach(item => {
+        const statusBadge = document.getElementById(`status_${item.id}`);
+        const card = document.getElementById(`card_${item.id}`);
+        
+        let allItemChecked = true;
+        let anyItemChecked = false;
+
+        item.subchecks.forEach(chkId => {
+          const chk = document.getElementById(chkId);
+          if (chk && chk.checked) {
+            checkedSubchecks++;
+            anyItemChecked = true;
+          } else {
+            allItemChecked = false;
+          }
+        });
+
+        if (allItemChecked) {
+          accItems++;
+          if (statusBadge) {
+            statusBadge.textContent = '✅ ACC Siap Cetak';
+            statusBadge.className = 'item-status-badge text-[11px] px-2.5 py-0.5 rounded-full font-semibold bg-[#EDF8F1] text-[#1B7943] border border-[#C6ECD3]';
+          }
+          if (card) {
+            card.classList.remove('border-amber-300');
+            card.classList.add('border-[#C6ECD3]');
+          }
+        } else if (anyItemChecked) {
+          if (statusBadge) {
+            statusBadge.textContent = '⚠️ Revisi Sebagian';
+            statusBadge.className = 'item-status-badge text-[11px] px-2.5 py-0.5 rounded-full font-semibold bg-[#FDF5E2] text-[#9A7300] border border-[#FBE09B]';
+          }
+          if (card) {
+            card.classList.add('border-amber-300');
+            card.classList.remove('border-[#C6ECD3]');
+          }
+        } else {
+          if (statusBadge) {
+            statusBadge.textContent = 'Belum ACC';
+            statusBadge.className = 'item-status-badge text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FBEBEB] text-[#EB5757]';
+          }
+          if (card) {
+            card.classList.remove('border-[#C6ECD3]', 'border-amber-300');
+          }
+        }
+      });
+
+      accItemCountEl.textContent = accItems;
+      subcheckCountEl.textContent = checkedSubchecks;
+
+      // Progress percentage based on 9 items
+      const percentage = Math.round((accItems / 9) * 100);
+      progressPercentEl.textContent = percentage;
+      progressBar.style.width = `${percentage}%`;
+
+      // Global Verdict
+      if (accItems === 0) {
+        verdictBadgeIcon.textContent = '⏳';
+        verdictBadgeText.textContent = 'Menunggu Pengerjaan Revisi';
+        verdictBadgeText.className = 'text-base font-bold text-[#787774]';
+        progressBar.className = 'bg-[#C4C4C2] h-full transition-all duration-300 ease-out';
+        verdictDescription.textContent = 'Semua 9 materi masih dalam antrean perbaikan desain & mockup.';
+      } else if (accItems < 5) {
+        verdictBadgeIcon.textContent = '🟡';
+        verdictBadgeText.textContent = 'Proses Pengerjaan Revisi';
+        verdictBadgeText.className = 'text-base font-bold text-[#DFAB01]';
+        progressBar.className = 'bg-[#DFAB01] h-full transition-all duration-300 ease-out';
+        verdictDescription.textContent = `${accItems} dari 9 materi sudah ACC. Terus kawal sisa item sebelum naik cetak.`;
+      } else if (accItems < 9) {
+        verdictBadgeIcon.textContent = '🟠';
+        verdictBadgeText.textContent = 'Hampir Selesai (Final Check)';
+        verdictBadgeText.className = 'text-base font-bold text-[#D97706]';
+        progressBar.className = 'bg-[#D97706] h-full transition-all duration-300 ease-out';
+        verdictDescription.textContent = `Tinggal ${9 - accItems} materi lagi yang memerlukan revisi sebelum seluruh file dilepas.`;
+      } else {
+        verdictBadgeIcon.textContent = '🟢';
+        verdictBadgeText.textContent = '100% ALL ACC — SIAP NAIK CETAK!';
+        verdictBadgeText.className = 'text-base font-bold text-[#27AE60]';
+        progressBar.className = 'bg-[#27AE60] h-full transition-all duration-300 ease-out';
+        verdictDescription.textContent = 'Seluruh 9 materi promosi & merchandise sudah tervalidasi dan siap dilepas ke percetakan.';
+      }
+
+      saveState();
+    }
+
+    function generateWhatsAppMessage() {
+      const title = batchTitle.value.trim() || 'Batch Cetak Urgent PMB UMRI';
+      const drive = metaDriveLink.value.trim() || '[Belum dicantumkan link Drive]';
+      const pic = metaPIC.value.trim() ? `@${metaPIC.value.trim()}` : 'Tim Desain & Percetakan';
+      const deadline = metaDeadline.value.trim() || 'ASAP';
+      const canvaNote = metaCanvaNote.value.trim() || '-';
+      const accCount = accItemCountEl.textContent;
+      const pct = progressPercentEl.textContent;
+      const verdict = verdictBadgeText.textContent;
+
+      let msg = `📢 *DISPATCH OPERASIONAL CETAK & MERCHANDISE — PMB UMRI*\n`;
+      msg += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+      msg += `📌 *Batch:* ${title}\n`;
+      msg += `👤 *PIC / Vendor:* ${pic}\n`;
+      msg += `⏰ *Target Deadline:* ${deadline}\n`;
+      msg += `📁 *Folder Master Drive:* ${drive}\n`;
+      msg += `📝 *Notepad Canva Link:* ${canvaNote}\n\n`;
+
+      msg += `⚖️ *STATUS KELAYAKAN NAIK CETAK:*\n`;
+      msg += `📊 *${verdict}* (${accCount}/9 Item ACC — ${pct}% Siap)\n\n`;
+
+      msg += `📋 *STATUS KONTROL 9 MATERI PROMOSI:*\n`;
+
+      ITEMS_DEF.forEach((item, index) => {
+        let allChecked = true;
+        let checkedCount = 0;
+        item.subchecks.forEach(chkId => {
+          const chk = document.getElementById(chkId);
+          if (chk && chk.checked) checkedCount++;
+          else allChecked = false;
+        });
+
+        const icon = allChecked ? '✅' : (checkedCount > 0 ? '⚠️' : '❌');
+        const statusLabel = allChecked ? 'ACC SIAP CETAK' : (checkedCount > 0 ? 'REVISI SEBAGIAN' : 'BELUM ACC');
+        const note = (document.getElementById(`note_${item.id}`)?.value || '').trim();
+
+        msg += `${index + 1}. ${icon} *${item.name}* [${statusLabel}]\n`;
+        if (note) {
+          msg += `   └─ 💬 Catatan: "${note}"\n`;
+        }
+      });
+
+      msg += `\n📦 *SYARAT PENGIRIMAN FILE (SOP):*\n`;
+      msg += `• Master file (AI/PSD/PDF Hi-Res): ${sopMaster.checked ? '✅ LENGKAP' : '❌ BELUM LENGKAP'}\n`;
+      msg += `• Link Notepad Canva (Edit+View): ${sopCanva.checked ? '✅ LENGKAP' : '❌ BELUM ADA'}\n`;
+      msg += `• Mockup 3D Barang Fisik: ${sopMockup.checked ? '✅ LENGKAP' : '❌ BELUM LENGKAP'}\n`;
+
+      const genNote = generalDispatchNote.value.trim();
+      if (genNote) {
+        msg += `\n💡 *Catatan Komando Tambahan:*\n"${genNote}"\n`;
+      }
+
+      msg += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+      msg += `⚡ *Guardrail Penting:* Materi atau elemen yang tidak disebutkan dalam revisi *DILARANG DIUBAH* agar tidak merusak layout baku. Harap segera konfirmasi dan update master file di Drive. Terima kasih!`;
+
+      return msg;
+    }
+
+    function showToast(msg) {
+      toastMessage.textContent = msg;
+      toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+
+    function openLightbox(src, title) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxTitle').textContent = title || 'Foto Referensi';
+      document.getElementById('imageLightbox').classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      document.getElementById('imageLightbox').classList.add('hidden');
+    }
+
+    function attachListeners() {
+      // Inputs
+      [batchTitle, metaDriveLink, metaPIC, metaCanvaNote, metaDeadline, generalDispatchNote].forEach(el => {
+        el.addEventListener('input', saveState);
+      });
+
+      // SOP Checkboxes
+      [sopMaster, sopCanva, sopMockup].forEach(el => {
+        el.addEventListener('change', updateCalculations);
+      });
+
+      // Item Subchecks
+      allSubchecks.forEach(chk => {
+        chk.addEventListener('change', updateCalculations);
+      });
+
+      // Notes inputs
+      ITEMS_DEF.forEach(item => {
+        const noteEl = document.getElementById(`note_${item.id}`);
+        if (noteEl) {
+          noteEl.addEventListener('input', saveState);
+        }
+      });
+
+      // Filter tabs
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          filterTabs.forEach(t => {
+            t.classList.remove('font-semibold', 'text-[#0F4C81]', 'border-b-2', 'border-[#0F4C81]');
+            t.classList.add('text-[#787774]');
+          });
+          tab.classList.add('font-semibold', 'text-[#0F4C81]', 'border-b-2', 'border-[#0F4C81]');
+          tab.classList.remove('text-[#787774]');
+
+          const filter = tab.dataset.filter;
+          const cards = document.querySelectorAll('.item-card');
+          cards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Copy WA
+      btnCopyWhatsApp.addEventListener('click', async () => {
+        const msg = generateWhatsAppMessage();
+        try {
+          await navigator.clipboard.writeText(msg);
+          showToast('✅ Instruksi Dispatch WhatsApp berhasil disalin!');
+        } catch (err) {
+          const ta = document.createElement('textarea');
+          ta.value = msg;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast('✅ Instruksi Dispatch WhatsApp berhasil disalin!');
+        }
+      });
+
+      // Reset Modal
+      btnResetSession.addEventListener('click', () => {
+        resetModal.classList.remove('hidden');
+      });
+
+      btnCancelReset.addEventListener('click', () => {
+        resetModal.classList.add('hidden');
+      });
+
+      btnConfirmReset.addEventListener('click', () => {
+        localStorage.removeItem(STORAGE_KEY);
+        allSubchecks.forEach(chk => chk.checked = false);
+        sopMaster.checked = false;
+        sopCanva.checked = false;
+        sopMockup.checked = false;
+        metaDriveLink.value = '';
+        metaPIC.value = '';
+        metaDeadline.value = '';
+        generalDispatchNote.value = '';
+        ITEMS_DEF.forEach(item => {
+          const noteEl = document.getElementById(`note_${item.id}`);
+          if (noteEl) noteEl.value = '';
+        });
+        resetModal.classList.add('hidden');
+        updateCalculations();
+        showToast('🔄 Sesi Batch berhasil dibersihkan!');
+      });
+
+      // ESC to close modal
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeLightbox();
+          resetModal.classList.add('hidden');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

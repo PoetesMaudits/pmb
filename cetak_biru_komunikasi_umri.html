@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CETAK BIRU KOMUNIKASI MEDIA SOSIAL UMRI — Master Blueprint T.A. 2027/2028</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+    :root {
+      --bg-base: #090A0D;
+      --bg-panel: #111318;
+      --bg-elevated: #171A22;
+      --border-line: #232733;
+      --border-strong: #343A4A;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --emerald-umri: #10B981;
+      --emerald-deep: #064E3B;
+      --gold-umri: #F59E0B;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    .font-mono-tech {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Architectural Grid Lines - Zero Blobs */
+    .arch-grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .arch-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .arch-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .nav-pill-active {
+      background-color: #F3F4F6 !important;
+      color: #090A0D !important;
+      border-color: #F3F4F6 !important;
+    }
+
+    .tab-btn-active {
+      background-color: #10B981 !important;
+      color: #052E16 !important;
+      border-color: #10B981 !important;
+      font-weight: 700;
+    }
+
+    .tab-btn-gold-active {
+      background-color: #F59E0B !important;
+      color: #1F1200 !important;
+      border-color: #F59E0B !important;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="arch-grid-bg selection:bg-emerald-500 selection:text-black">
+
+  <!-- STICKY ARCHITECTURAL NAVIGATION (ARTCRAFT STYLE) -->
+  <header class="sticky top-0 z-50 bg-[#090A0D]/95 backdrop-blur-md border-b border-[#232733]">
+    <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 bg-[#064E3B] border border-emerald-500/40 flex items-center justify-center font-mono-tech font-bold text-emerald-300 text-lg">
+          U
+        </div>
+        <div>
+          <div class="font-mono-tech text-sm text-emerald-400 tracking-wider uppercase font-semibold">
+            UMRI COMMUNICATION ARCHITECTURE // T.A. 2027/2028
+          </div>
+          <div class="text-lg font-bold tracking-tight text-white">
+            Cetak Biru Ekosistem Media Sosial
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter Quick Jump -->
+      <nav class="hidden xl:flex items-center gap-1.5">
+        <a href="#bab-01" class="px-3.5 py-2 text-sm font-medium text-zinc-300 hover:text-white hover:bg-[#171A22] border border-transparent hover:border-[#232733] transition">01. Dual-Kanal</a>
+        <a href="#bab-02" class="px-3.5 py-2 text-sm font-medium text-zinc-300 hover:text-white hover:bg-[#171A22] border border-transparent hover:border-[#232733] transition">02. Formula 70/20/10</a>
+        <a href="#bab-03" class="px-3.5 py-2 text-sm font-medium text-zinc-300 hover:text-white hover:bg-[#171A22] border border-transparent hover:border-[#232733] transition">03. Persona & Bahasa</a>
+        <a href="#bab-04" class="px-3.5 py-2 text-sm font-medium text-zinc-300 hover:text-white hover:bg-[#171A22] border border-transparent hover:border-[#232733] transition">04. Data Operasional</a>
+        <a href="#bab-05" class="px-3.5 py-2 text-sm font-medium text-zinc-300 hover:text-white hover:bg-[#171A22] border border-transparent hover:border-[#232733] transition">05. Brand Safety</a>
+        <a href="#bab-06" class="px-3.5 py-2 text-sm font-medium text-zinc-300 hover:text-white hover:bg-[#171A22] border border-transparent hover:border-[#232733] transition">06. Alur Produksi</a>
+        <a href="#bab-07" class="px-3.5 py-2 text-sm font-medium text-zinc-300 hover:text-white hover:bg-[#171A22] border border-transparent hover:border-[#232733] transition">07. Anatomi Konten</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openPresentationMode()" class="px-4 py-2.5 bg-white text-black font-bold text-sm hover:bg-zinc-200 transition cursor-pointer">
+          Mode Presentasi Bab
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRESENTATION FOCUS BAR (HIDDEN BY DEFAULT, ACTIVATED IN STEP-BY-STEP MODE) -->
+  <div id="presentation-bar" class="hidden bg-[#111318] border-b border-emerald-500/40 py-3 px-6 sticky top-20 z-40">
+    <div class="max-w-[1400px] mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="font-mono-tech text-sm px-2.5 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">
+          MODE PRESENTASI INTERAKTIF AKTIF
+        </span>
+        <span id="pres-chapter-label" class="text-base font-bold text-white">Bab 01 dari 07</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="stepChapter(-1)" class="px-4 py-2 bg-[#171A22] hover:bg-zinc-800 text-white border border-[#343A4A] text-sm font-semibold">
+          ← Bab Sebelumnya
+        </button>
+        <button onclick="stepChapter(1)" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm">
+          Bab Berikutnya →
+        </button>
+        <button onclick="exitPresentationMode()" class="px-4 py-2 bg-transparent hover:bg-zinc-800 text-zinc-300 border border-[#232733] text-sm font-medium ml-2">
+          Tampilkan Semua Bab
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO ARCHITECTURE SECTION -->
+  <section id="hero-section" class="border-b border-[#232733] py-20 px-6">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+        <div class="lg:col-span-8 space-y-6">
+          <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#111318] border border-[#232733]">
+            <span class="w-2.5 h-2.5 bg-emerald-400"></span>
+            <span class="font-mono-tech text-sm text-zinc-300 uppercase tracking-wider">
+              DOKUMEN INDUK STRATEGI KOMUNIKASI • UNIVERSITAS MUHAMMADIYAH RIAU
+            </span>
+          </div>
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
+            Dua Kanal. Satu Marwah.<br />
+            <span class="text-emerald-400">Mesin Akuisisi &amp; Reputasi Terpadu.</span>
+          </h1>
+          <p class="text-xl text-zinc-300 max-w-3xl leading-relaxed">
+            Cetak biru interaktif pengelolaan ekosistem media sosial Universitas Muhammadiyah Riau Tahun Akademik 2027/2028. Memisahkan secara tegas fungsi <strong class="text-white">otoritas institusional (@kampus_umri)</strong> dan <strong class="text-emerald-400">konversi mahasiswa baru (@pmb.umri)</strong> tanpa pernah mereduksi adab Persyarikatan Muhammadiyah.
+          </p>
+        </div>
+
+        <!-- Architectural Key Pillars Summary Box -->
+        <div class="lg:col-span-4 grid grid-cols-2 border border-[#232733] bg-[#111318]">
+          <div class="p-6 border-b border-r border-[#232733]">
+            <div class="font-mono-tech text-sm text-zinc-400">ARSITEKTUR KANAL</div>
+            <div class="text-3xl font-extrabold text-white mt-2">2 Kanal</div>
+            <div class="text-sm text-zinc-300 mt-1">Induk vs Satelit Akuisisi</div>
+          </div>
+          <div class="p-6 border-b border-[#232733]">
+            <div class="font-mono-tech text-sm text-zinc-400">FORMULA KONTEN</div>
+            <div class="text-3xl font-extrabold text-emerald-400 mt-2">70/20/10</div>
+            <div class="text-sm text-zinc-300 mt-1">Strategi Kuda Troya</div>
+          </div>
+          <div class="p-6 border-r border-[#232733]">
+            <div class="font-mono-tech text-sm text-zinc-400">KATALOG AKSES</div>
+            <div class="text-3xl font-extrabold text-amber-400 mt-2">13 + 9</div>
+            <div class="text-sm text-zinc-300 mt-1">Jalur Masuk &amp; Beasiswa</div>
+          </div>
+          <div class="p-6">
+            <div class="font-mono-tech text-sm text-zinc-400">PAGAR ETIKA</div>
+            <div class="text-3xl font-extrabold text-white mt-2">100%</div>
+            <div class="text-sm text-zinc-300 mt-1">Kepatuhan Persyarikatan</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Three Core Campaign Taglines Strip -->
+      <div class="mt-14 grid grid-cols-1 md:grid-cols-3 border border-[#232733] bg-[#111318]">
+        <div class="p-6 border-b md:border-b-0 md:border-r border-[#232733] flex items-center justify-between">
+          <div>
+            <div class="font-mono-tech text-sm text-emerald-400">TAGLINE UTAMA 01</div>
+            <div class="text-lg font-bold text-white mt-1">“Ruang Tepat untuk Tumbuh Hebat”</div>
+          </div>
+          <span class="font-mono-tech text-2xl text-zinc-600">01</span>
+        </div>
+        <div class="p-6 border-b md:border-b-0 md:border-r border-[#232733] flex items-center justify-between">
+          <div>
+            <div class="font-mono-tech text-sm text-amber-400">TAGLINE UTAMA 02</div>
+            <div class="text-lg font-bold text-white mt-1">“Jadilah Sang Pencerah Muda, Bertumbuh Bersama UMRI”</div>
+          </div>
+          <span class="font-mono-tech text-2xl text-zinc-600">02</span>
+        </div>
+        <div class="p-6 flex items-center justify-between">
+          <div>
+            <div class="font-mono-tech text-sm text-emerald-400">TAGLINE UTAMA 03</div>
+            <div class="text-lg font-bold text-white mt-1">“Dari Sini, Arah Masa Depanmu Dimulai”</div>
+          </div>
+          <span class="font-mono-tech text-2xl text-zinc-600">03</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAB 01: ARSITEKTUR DUAL-KANAL & SIMULATOR TRANSLASI PESAN             -->
+  <!-- ===================================================================== -->
+  <section id="bab-01" class="chapter-section border-b border-[#232733] py-20 px-6">
+    <div class="max-w-[1400px] mx-auto space-y-12">
+      <!-- Section Header -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-[#232733] pb-8">
+        <div>
+          <div class="font-mono-tech text-emerald-400 text-base font-bold uppercase tracking-widest">
+            BAB 01 // DUAL-CHANNEL ARCHITECTURE
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            Pemisahan Mandat: @kampus_umri vs @pmb.umri
+          </h2>
+        </div>
+        <p class="text-lg text-zinc-300 max-w-xl">
+          Kesalahan terbesar komunikasi kampus adalah mencampuradukkan rilis seremonial rektorat dengan promosi mahasiswa baru di satu kanal. UMRI memisahkan keduanya secara arsitektural.
+        </p>
+      </div>
+
+      <!-- Interactive Comparison Blueprint -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- KANAL INDUK: @kampus_umri -->
+        <div class="arch-card p-8 border-t-4 border-t-amber-500 flex flex-col justify-between space-y-8">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-mono-tech text-sm px-3 py-1 bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold">
+                KANAL INDUK // INSTITUSI &amp; MARWAH AKADEMIK
+              </span>
+              <span class="font-mono-tech text-xl font-bold text-amber-400">@kampus_umri</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+              Etalase Martabat Akademik &amp; Otoritas Kelembagaan
+            </h3>
+            <p class="text-base text-zinc-300">
+              Berfungsi menjaga wibawa rektorat, pencapaian riset dosen, kepatuhan BAN-PT &amp; Kemdiktisaintek, relasi media massa, serta marwah Persyarikatan Muhammadiyah.
+            </p>
+          </div>
+
+          <div class="space-y-4 pt-4 border-t border-[#232733]">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-[#171A22] p-4 border border-[#232733]">
+                <div class="font-mono-tech text-sm text-amber-400 font-bold">TARGET AUDIENS</div>
+                <p class="text-base text-white mt-1 font-medium">Sivitas akademika, alumni, pimpinan Persyarikatan, mitra industri, regulator, &amp; media massa.</p>
+              </div>
+              <div class="bg-[#171A22] p-4 border border-[#232733]">
+                <div class="font-mono-tech text-sm text-amber-400 font-bold">KARAKTER BAHASA</div>
+                <p class="text-base text-white mt-1 font-medium">Berwibawa, elegan, formal-inspiratif, terukur, dan representatif secara kelembagaan.</p>
+              </div>
+            </div>
+            <div class="bg-[#171A22] p-5 border border-[#232733]">
+              <div class="font-mono-tech text-sm text-amber-400 font-bold mb-2">FOKUS KONTEN UTAMA</div>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-base text-zinc-200">
+                <li>• Publikasi karya ilmiah &amp; hilirisasi riset</li>
+                <li>• Rilis resmi Nota Kesepahaman (MoU)</li>
+                <li>• Prestasi institusi, dosen, &amp; pimpinan</li>
+                <li>• Milad, wisuda, &amp; seremonial hari besar</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- KANAL SATELIT: @pmb.umri -->
+        <div class="arch-card p-8 border-t-4 border-t-emerald-500 flex flex-col justify-between space-y-8">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-mono-tech text-sm px-3 py-1 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">
+                KANAL SATELIT // MESIN KONVERSI &amp; KREATIF MAHASISWA
+              </span>
+              <span class="font-mono-tech text-xl font-bold text-emerald-400">@pmb.umri</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+              Mesin Akuisisi Maba, Edukasi Jalur Masuk &amp; Student Life
+            </h3>
+            <p class="text-base text-zinc-300">
+              Berfungsi memenangkan perhatian dan keputusan pendaftaran Gen-Z, Gen-Alpha, dan orang tua melalui konten yang segar, solutif, dan dekat dengan keseharian mahasiswa.
+            </p>
+          </div>
+
+          <div class="space-y-4 pt-4 border-t border-[#232733]">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-[#171A22] p-4 border border-[#232733]">
+                <div class="font-mono-tech text-sm text-emerald-400 font-bold">TARGET AUDIENS</div>
+                <p class="text-base text-white mt-1 font-medium">Siswa SMA/SMK/MA se-Riau, Kepri, Sumatera, pekerja muda (Reguler B/RPL), &amp; orang tua.</p>
+              </div>
+              <div class="bg-[#171A22] p-4 border border-[#232733]">
+                <div class="font-mono-tech text-sm text-emerald-400 font-bold">KARAKTER BAHASA</div>
+                <p class="text-base text-white mt-1 font-medium">“Kakak Tingkat Idaman” — hangat, luwes, komunikatif, santai-cerdas, dengan sentuhan Melayu Riau.</p>
+              </div>
+            </div>
+            <div class="bg-[#171A22] p-5 border border-[#232733]">
+              <div class="font-mono-tech text-sm text-emerald-400 font-bold mb-2">FOKUS KONTEN UTAMA</div>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-base text-zinc-200">
+                <li>• Ambience kampus &amp; bedah fasilitas nyata</li>
+                <li>• Edukasi 13 jalur masuk &amp; 9 beasiswa</li>
+                <li>• Rekayasa balik tren viral yang santun</li>
+                <li>• Prestasi mahasiswa sebagai social proof</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE TRANSLATOR: BAGAIMANA 1 TOPIK DIEKSEKUSI BERBEDA DI 2 KANAL -->
+      <div class="arch-card p-8">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-[#232733]">
+          <div>
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold uppercase">
+              SIMULATOR INTERAKTIF // DUAL-CHANNEL CONTENT TRANSLATOR
+            </div>
+            <h3 class="text-2xl font-bold text-white mt-1">
+              Satu Fakta Kampus, Dua Eksekusi Berbeda
+            </h3>
+            <p class="text-base text-zinc-400">
+              Pilih topik di bawah ini untuk melihat bagaimana tim kreatif membedakan sudut pandang antara <strong class="text-amber-400">@kampus_umri</strong> dan <strong class="text-emerald-400">@pmb.umri</strong>:
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2" id="topic-translator-tabs">
+            <button onclick="selectTranslatorTopic(0)" class="trans-tab tab-btn-active px-4 py-2.5 border border-[#343A4A] bg-[#171A22] text-sm font-semibold transition cursor-pointer">
+              1. Fasilitas Air Siap Minum
+            </button>
+            <button onclick="selectTranslatorTopic(1)" class="trans-tab px-4 py-2.5 border border-[#343A4A] bg-[#171A22] text-zinc-200 text-sm font-semibold transition cursor-pointer">
+              2. Laboratorium Klaster Kesehatan
+            </button>
+            <button onclick="selectTranslatorTopic(2)" class="trans-tab px-4 py-2.5 border border-[#343A4A] bg-[#171A22] text-zinc-200 text-sm font-semibold transition cursor-pointer">
+              3. Kemitraan Beasiswa Perbankan
+            </button>
+            <button onclick="selectTranslatorTopic(3)" class="trans-tab px-4 py-2.5 border border-[#343A4A] bg-[#171A22] text-zinc-200 text-sm font-semibold transition cursor-pointer">
+              4. Prestasi Mahasiswa Nasional
+            </button>
+          </div>
+        </div>
+
+        <div id="translator-display" class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-6">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAB 02: FORMULA "KUDA TROYA" 70:20:10 & ARSITEKTUR FUNNEL             -->
+  <!-- ===================================================================== -->
+  <section id="bab-02" class="chapter-section border-b border-[#232733] py-20 px-6">
+    <div class="max-w-[1400px] mx-auto space-y-12">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-[#232733] pb-8">
+        <div>
+          <div class="font-mono-tech text-emerald-400 text-base font-bold uppercase tracking-widest">
+            BAB 02 // SUBTLE MARKETING &amp; FUNNEL ENGINE
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            Formula Kuda Troya (70 : 20 : 10) &amp; Matriks Funnel
+          </h2>
+        </div>
+        <p class="text-lg text-zinc-300 max-w-xl">
+          Generasi Z dan Alpha menolak iklan hard-selling yang kaku seperti brosur berjalan. Setiap konten organik di <strong class="text-emerald-400">@pmb.umri</strong> wajib menyusupkan pesan promosi melalui anatomi Kuda Troya.
+        </p>
+      </div>
+
+      <!-- Interactive 70:20:10 Proportion Bar -->
+      <div class="arch-card p-8 space-y-8">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <div class="font-mono-tech text-sm text-zinc-400 uppercase">KLIK SEGMEN RASIO UNTUK MEMBEDAH ANATOMI PESAN</div>
+            <h3 class="text-2xl font-bold text-white mt-1">Anatomi Komposisi Satu Konten @pmb.umri</h3>
+          </div>
+          <div class="font-mono-tech text-base text-emerald-400 font-bold">
+            70% KULTURAL + 20% BUKTI IMPLISIT + 10% SOFT CTA = 100% KONVERSI ORGANIK
+          </div>
+        </div>
+
+        <!-- Giant Interactive Ratio Visualizer -->
+        <div class="grid grid-cols-1 lg:grid-cols-10 border border-[#343A4A]">
+          <button onclick="selectTrojanSegment(0)" id="trojan-btn-0" class="lg:col-span-7 p-6 text-left bg-emerald-950/70 hover:bg-emerald-900/60 border-b lg:border-b-0 lg:border-r border-[#343A4A] transition cursor-pointer group">
+            <div class="flex items-center justify-between">
+              <span class="font-mono-tech text-4xl sm:text-5xl font-extrabold text-emerald-400">70%</span>
+              <span class="font-mono-tech text-sm px-2.5 py-1 bg-emerald-500 text-black font-bold">PEMBUKA &amp; MAGNET ATENSI</span>
+            </div>
+            <div class="text-xl font-bold text-white mt-3">Nilai Kultural, Hiburan &amp; Relatabilitas Mahasiswa</div>
+            <p class="text-base text-zinc-300 mt-1">Kehidupan anak kampus, dilema milih jurusan, hemat uang kos, budaya Melayu Riau, dan tren yang telah disaring secara santun.</p>
+          </button>
+
+          <button onclick="selectTrojanSegment(1)" id="trojan-btn-1" class="lg:col-span-2 p-6 text-left bg-[#171A22] hover:bg-zinc-800 border-b lg:border-b-0 lg:border-r border-[#343A4A] transition cursor-pointer">
+            <div class="font-mono-tech text-4xl sm:text-5xl font-extrabold text-amber-400">20%</div>
+            <div class="text-lg font-bold text-white mt-3">Bukti Fasilitas Implisit</div>
+            <p class="text-sm text-zinc-300 mt-1">Latar lab modern, keran air siap minum halal, atau suasana kelas ber-AC.</p>
+          </button>
+
+          <button onclick="selectTrojanSegment(2)" id="trojan-btn-2" class="lg:col-span-1 p-6 text-left bg-[#111318] hover:bg-zinc-800 transition cursor-pointer">
+            <div class="font-mono-tech text-4xl sm:text-5xl font-extrabold text-white">10%</div>
+            <div class="text-base font-bold text-white mt-3">Soft CTA</div>
+            <p class="text-sm text-zinc-400 mt-1">Arahkan ke bio link / hotline PMB.</p>
+          </button>
+        </div>
+
+        <!-- Trojan Detail Output Box -->
+        <div id="trojan-detail-box" class="bg-[#171A22] border border-[#343A4A] p-6">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- FUNNEL ARCHITECTURE: TOFU (40%) / MOFU (35%) / BOFU (25%) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="arch-card p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between border-b border-[#232733] pb-4">
+              <span class="font-mono-tech text-sm text-emerald-400 font-bold">TOP OF FUNNEL (TOFU)</span>
+              <span class="font-mono-tech text-2xl font-extrabold text-white">40% Bobot</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white mt-5">Vibes, Jangkauan Luas &amp; Relatabilitas</h3>
+            <p class="text-base text-zinc-300 mt-2">
+              Mengaitkan kehidupan siswa SMA tingkat akhir dan mahasiswa baru dengan suasana hangat kampus UMRI di jantung kota Pekanbaru.
+            </p>
+            <div class="mt-6 space-y-3">
+              <div class="font-mono-tech text-sm text-zinc-400 uppercase font-bold">PROGRAM SERIAL IP:</div>
+              <div class="p-3.5 bg-[#171A22] border border-[#232733]">
+                <span class="font-bold text-emerald-400">#BiarGakKaget</span> — Perbedaan budaya belajar SMA vs dunia perkuliahan.
+              </div>
+              <div class="p-3.5 bg-[#171A22] border border-[#232733]">
+                <span class="font-bold text-emerald-400">#KatingRelate</span> — Drama tugas, tips adaptasi perantau, &amp; outfit kuliah beradab.
+              </div>
+              <div class="p-3.5 bg-[#171A22] border border-[#232733]">
+                <span class="font-bold text-emerald-400">#SpotPekanbaru</span> — Rute strategis Jl. Tuanku Tambusai, kos, &amp; kuliner mahasiswa.
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#232733] font-mono-tech text-sm text-zinc-400">
+            KPI UTAMA: Views, Reach Non-Followers, Shares &amp; Saves
+          </div>
+        </div>
+
+        <div class="arch-card p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between border-b border-[#232733] pb-4">
+              <span class="font-mono-tech text-sm text-amber-400 font-bold">MIDDLE OF FUNNEL (MOFU)</span>
+              <span class="font-mono-tech text-2xl font-extrabold text-white">35% Bobot</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white mt-5">Keunggulan Prodi, Fasilitas &amp; Beasiswa</h3>
+            <p class="text-base text-zinc-300 mt-2">
+              Menjawab keraguan calon mahasiswa dan orang tua: <em>“Kenapa harus UMRI?”</em> dan <em>“Bagaimana prospek karir serta dukungan biayanya?”</em>
+            </p>
+            <div class="mt-6 space-y-3">
+              <div class="font-mono-tech text-sm text-zinc-400 uppercase font-bold">PROGRAM SERIAL IP:</div>
+              <div class="p-3.5 bg-[#171A22] border border-[#232733]">
+                <span class="font-bold text-amber-400">#SpillJurusanUMRI</span> — Bedah laboratorium, kurikulum, &amp; prospek kerja per prodi.
+              </div>
+              <div class="p-3.5 bg-[#171A22] border border-[#232733]">
+                <span class="font-bold text-amber-400">#KisahPenerimaBeasiswa</span> — Testimoni mahasiswa penerima 9 skema beasiswa UMRI.
+              </div>
+              <div class="p-3.5 bg-[#171A22] border border-[#232733]">
+                <span class="font-bold text-amber-400">#DosenAsikUMRI</span> — Profil dosen muda inspiratif &amp; lingkungan akademik suportif.
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#232733] font-mono-tech text-sm text-zinc-400">
+            KPI UTAMA: Carousel Saves, Profile Visits, Komentar Tanya Prodi
+          </div>
+        </div>
+
+        <div class="arch-card p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between border-b border-[#232733] pb-4">
+              <span class="font-mono-tech text-sm text-white font-bold">BOTTOM OF FUNNEL (BOFU)</span>
+              <span class="font-mono-tech text-2xl font-extrabold text-emerald-400">25% Bobot</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white mt-5">Aksi Pendaftaran &amp; Asistensi Seleksi</h3>
+            <p class="text-base text-zinc-300 mt-2">
+              Menghilangkan hambatan teknis pendaftaran dan memandu calon mahasiswa mengunci kuota di portal <code class="text-emerald-400">daftar.umri.ac.id</code>.
+            </p>
+            <div class="mt-6 space-y-3">
+              <div class="font-mono-tech text-sm text-zinc-400 uppercase font-bold">PROGRAM SERIAL IP:</div>
+              <div class="p-3.5 bg-[#171A22] border border-[#232733]">
+                <span class="font-bold text-white">#GampangDaftarnya</span> — Panduan layar 3 menit registrasi akun di daftar.umri.ac.id.
+              </div>
+              <div class="p-3.5 bg-[#171A22] border border-[#232733]">
+                <span class="font-bold text-white">#TanyaAdmisi</span> — Bedah syarat CBT Klaster Kesehatan, TPA Reguler, &amp; portofolio BIMAWA.
+              </div>
+              <div class="p-3.5 bg-[#171A22] border border-[#232733]">
+                <span class="font-bold text-white">#CountdownGelombang</span> — Pengingat batas akhir Gelombang 1, 2, dan 3.
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#232733] font-mono-tech text-sm text-zinc-400">
+            KPI UTAMA: Link Clicks ke daftar.umri.ac.id, Konsultasi WA &amp; Ruang PMB
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAB 03: PETA PSIKOGRAFIS AUDIENS & GAYA BAHASA "KATING IDAMAN"         -->
+  <!-- ===================================================================== -->
+  <section id="bab-03" class="chapter-section border-b border-[#232733] py-20 px-6">
+    <div class="max-w-[1400px] mx-auto space-y-12">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-[#232733] pb-8">
+        <div>
+          <div class="font-mono-tech text-emerald-400 text-base font-bold uppercase tracking-widest">
+            BAB 03 // AUDIENCE PERSONAS &amp; CULTURAL LINGUISTICS
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            Peta Psikografis Sumatera &amp; Suara “Kating Idaman”
+          </h2>
+        </div>
+        <p class="text-lg text-zinc-300 max-w-xl">
+          Calon mahasiswa di Pekanbaru, kabupaten Riau daratan, pesisir Kepri, hingga pekerja muda memiliki kekhawatiran yang berbeda. Pilih segmen persona untuk membedah pesan kuncinya.
+        </p>
+      </div>
+
+      <!-- Interactive Persona Explorer -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-4 space-y-2" id="persona-selector-list">
+          <button onclick="selectPersona(0)" class="persona-btn tab-btn-active w-full p-5 text-left border border-[#343A4A] bg-[#111318] transition cursor-pointer flex items-center justify-between">
+            <div>
+              <div class="font-mono-tech text-sm opacity-80">PERSONA A // RIAU DARATAN</div>
+              <div class="text-lg font-bold mt-0.5">Anak Kabupaten Se-Riau</div>
+            </div>
+            <span class="font-mono-tech text-lg">→</span>
+          </button>
+          <button onclick="selectPersona(1)" class="persona-btn w-full p-5 text-left border border-[#232733] bg-[#111318] text-white hover:border-[#343A4A] transition cursor-pointer flex items-center justify-between">
+            <div>
+              <div class="font-mono-tech text-sm text-zinc-400">PERSONA B // URBAN PEKANBARU</div>
+              <div class="text-lg font-bold mt-0.5">Siswa Kota Pekanbaru</div>
+            </div>
+            <span class="font-mono-tech text-lg">→</span>
+          </button>
+          <button onclick="selectPersona(2)" class="persona-btn w-full p-5 text-left border border-[#232733] bg-[#111318] text-white hover:border-[#343A4A] transition cursor-pointer flex items-center justify-between">
+            <div>
+              <div class="font-mono-tech text-sm text-zinc-400">PERSONA C // PESISIR &amp; KEPRI</div>
+              <div class="text-lg font-bold mt-0.5">Perantau Kepri &amp; Pesisir</div>
+            </div>
+            <span class="font-mono-tech text-lg">→</span>
+          </button>
+          <button onclick="selectPersona(3)" class="persona-btn w-full p-5 text-left border border-[#232733] bg-[#111318] text-white hover:border-[#343A4A] transition cursor-pointer flex items-center justify-between">
+            <div>
+              <div class="font-mono-tech text-sm text-zinc-400">PERSONA D // PEJUANG KARIR</div>
+              <div class="text-lg font-bold mt-0.5">Pekerja Muda &amp; Gap Year</div>
+            </div>
+            <span class="font-mono-tech text-lg">→</span>
+          </button>
+          <button onclick="selectPersona(4)" class="persona-btn w-full p-5 text-left border border-[#232733] bg-[#111318] text-white hover:border-[#343A4A] transition cursor-pointer flex items-center justify-between">
+            <div>
+              <div class="font-mono-tech text-sm text-zinc-400">STAKEHOLDER KUNCI // ORANG TUA</div>
+              <div class="text-lg font-bold mt-0.5">Ayah, Bunda &amp; Guru BK</div>
+            </div>
+            <span class="font-mono-tech text-lg">→</span>
+          </button>
+        </div>
+
+        <div id="persona-detail-panel" class="lg:col-span-8 arch-card p-8">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Kamus Kultural Melayu Riau & Slang Filter -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="arch-card p-7">
+          <div class="font-mono-tech text-sm text-emerald-400 font-bold uppercase">IDENTITAS SUARA @pmb.umri</div>
+          <h3 class="text-2xl font-bold text-white mt-2">Karakter “Kating Idaman”</h3>
+          <p class="text-base text-zinc-300 mt-3">
+            Bayangkan kreator <strong class="text-white">@pmb.umri</strong> sebagai Kakak Tingkat semester 5–6 yang IPK-nya bagus, aktif organisasi, asik diajak ngopi di Panam atau Gobah, tidak menggurui, dan cepat tanggap memberi solusi saat adik kelas bingung soal jurusan atau beasiswa.
+          </p>
+        </div>
+
+        <div class="arch-card p-7">
+          <div class="font-mono-tech text-sm text-amber-400 font-bold uppercase">BUMBU LOKAL MELAYU RIAU</div>
+          <h3 class="text-2xl font-bold text-white mt-2">Kosa Kata Tempatan yang Luwes</h3>
+          <div class="mt-4 space-y-2.5 text-base">
+            <div class="flex justify-between border-b border-[#232733] pb-2">
+              <strong class="text-white">Awak / Kome</strong>
+              <span class="text-zinc-300">Kita / Kalian / Teman-teman</span>
+            </div>
+            <div class="flex justify-between border-b border-[#232733] pb-2">
+              <strong class="text-white">“Cemane tu?”</strong>
+              <span class="text-zinc-300">“Gimana tuh caranya?”</span>
+            </div>
+            <div class="flex justify-between border-b border-[#232733] pb-2">
+              <strong class="text-white">“Sip betol / Gagah!”</strong>
+              <span class="text-zinc-300">Mantap / Keren sekali</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="text-white">“Tak payah risau...”</strong>
+              <span class="text-zinc-300">Tidak perlu khawatir</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-card p-7">
+          <div class="font-mono-tech text-sm text-emerald-400 font-bold uppercase">FILTER SLANG GENERASI Z</div>
+          <h3 class="text-2xl font-bold text-white mt-2">Batas Bahasa Gaul Kampus</h3>
+          <div class="mt-4 space-y-4">
+            <div class="p-3.5 bg-emerald-950/40 border border-emerald-500/30">
+              <div class="font-mono-tech text-sm text-emerald-400 font-bold">✓ DIREKOMENDASIKAN (DOSIS PAS):</div>
+              <p class="text-base text-white mt-1">POV, Spill, Real, Valid, Vibes, Plot twist, Green flag, Menyala.</p>
+            </div>
+            <div class="p-3.5 bg-red-950/40 border border-red-500/30">
+              <div class="font-mono-tech text-sm text-red-400 font-bold">✕ DILARANG KERAS (RED LINE):</div>
+              <p class="text-base text-white mt-1">Umpatan kasar/plesetan kotor, istilah sensual, atau merendahkan martabat orang lain.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAB 04: BASIS DATA FAKTUAL OPERASIONAL PMB T.A. 2027/2028             -->
+  <!-- ===================================================================== -->
+  <section id="bab-04" class="chapter-section border-b border-[#232733] py-20 px-6">
+    <div class="max-w-[1400px] mx-auto space-y-12">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-[#232733] pb-8">
+        <div>
+          <div class="font-mono-tech text-amber-400 text-base font-bold uppercase tracking-widest">
+            BAB 04 // SINGLE SOURCE OF TRUTH (T.A. 2027/2028)
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            Basis Data Faktual Operasional PMB UMRI
+          </h2>
+        </div>
+        <p class="text-lg text-zinc-300 max-w-xl">
+          Seluruh naskah video, karosel, dan jawaban admin wajib merujuk 100% pada parameter faktual ini tanpa improvisasi atau asumsi.
+        </p>
+      </div>
+
+      <!-- Portal & Layanan Fisik Strip -->
+      <div class="grid grid-cols-1 md:grid-cols-3 border border-[#343A4A] bg-[#111318]">
+        <div class="p-7 border-b md:border-b-0 md:border-r border-[#232733]">
+          <div class="font-mono-tech text-sm text-emerald-400 font-bold">PORTAL REGISTRASI RESMI</div>
+          <div class="text-2xl font-extrabold text-white mt-2">https://daftar.umri.ac.id</div>
+          <p class="text-base text-zinc-400 mt-1">Pendaftaran akun &amp; pemberkasan online 24 jam.</p>
+        </div>
+        <div class="p-7 border-b md:border-b-0 md:border-r border-[#232733]">
+          <div class="font-mono-tech text-sm text-amber-400 font-bold">PUSAT LAYANAN FISIK</div>
+          <div class="text-xl font-extrabold text-white mt-2">Ruang PMB Gedung Rektorat Lt. 1</div>
+          <p class="text-base text-zinc-300 mt-1">Jl. Tuanku Tambusai, Pekanbaru</p>
+        </div>
+        <div class="p-7">
+          <div class="font-mono-tech text-sm text-emerald-400 font-bold">JAM OPERASIONAL ADMIMISI</div>
+          <div class="text-2xl font-extrabold text-white mt-2">Senin – Sabtu</div>
+          <p class="text-base text-zinc-300 mt-1">Pukul 08.00 – 16.00 WIB</p>
+        </div>
+      </div>
+
+      <!-- Timeline 3 Gelombang PMB & 3 Skema Perkuliahan -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- 3 Gelombang PMB -->
+        <div class="arch-card p-8 space-y-6">
+          <div class="font-mono-tech text-sm text-emerald-400 font-bold uppercase">KALENDER GELOMBANG PENDAFTARAN T.A. 2027/2028</div>
+          <h3 class="text-2xl font-bold text-white">Tiga Gelombang Akuisisi</h3>
+          <div class="space-y-4">
+            <div class="p-5 bg-emerald-950/40 border-l-4 border-l-emerald-400 border border-[#232733]">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <span class="font-mono-tech text-base font-bold text-emerald-300">GELOMBANG 1</span>
+                <span class="font-mono-tech text-base font-bold text-white">28 Oktober 2026 s.d. 06 Februari 2027</span>
+              </div>
+              <p class="text-base text-zinc-300 mt-2">Momentum Early-Bird, pengamanan kuota prodi favorit, &amp; edukasi awal jalur beasiswa/prestasi.</p>
+            </div>
+            <div class="p-5 bg-[#171A22] border-l-4 border-l-amber-400 border border-[#232733]">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <span class="font-mono-tech text-base font-bold text-amber-300">GELOMBANG 2</span>
+                <span class="font-mono-tech text-base font-bold text-white">08 Februari 2027 s.d. 17 Juli 2027</span>
+              </div>
+              <p class="text-base text-zinc-300 mt-2">Momentum puncak kelulusan SMA/SMK/MA, pengumuman seleksi nasional, &amp; gelombang utama Klaster Kesehatan.</p>
+            </div>
+            <div class="p-5 bg-[#171A22] border-l-4 border-l-zinc-400 border border-[#232733]">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <span class="font-mono-tech text-base font-bold text-zinc-300">GELOMBANG 3</span>
+                <span class="font-mono-tech text-base font-bold text-white">19 Juli 2027 s.d. 11 September 2027</span>
+              </div>
+              <p class="text-base text-zinc-300 mt-2">Momentum penutupan kuota akhir, konversi pekerja muda (Reguler B), dan akselerasi Program RPL.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Skema Perkuliahan -->
+        <div class="arch-card p-8 space-y-6">
+          <div class="font-mono-tech text-sm text-amber-400 font-bold uppercase">ARSITEKTUR WAKTU &amp; KONVERSI SKS</div>
+          <h3 class="text-2xl font-bold text-white">Tiga Skema Perkuliahan Resmi</h3>
+          <div class="space-y-4">
+            <div class="p-5 bg-[#171A22] border border-[#232733]">
+              <div class="flex items-center justify-between">
+                <span class="text-xl font-bold text-white">Reguler A (Kelas Pagi / Siang)</span>
+                <span class="font-mono-tech text-sm px-3 py-1 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">07.00 – 17.00 WIB</span>
+              </div>
+              <p class="text-base text-zinc-300 mt-2">Skema utama bagi lulusan baru SMA/SMK/MA dengan ritme kehidupan akademik dan organisasi penuh di kampus.</p>
+            </div>
+            <div class="p-5 bg-[#171A22] border border-[#232733]">
+              <div class="flex items-center justify-between">
+                <span class="text-xl font-bold text-white">Reguler B (Kelas Sore / Pekerja)</span>
+                <span class="font-mono-tech text-sm px-3 py-1 bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold">16.00 – 22.00 WIB</span>
+              </div>
+              <p class="text-base text-zinc-300 mt-2">Dirancang khusus untuk karyawan dan profesional muda (kuota penyelenggaraan minimal 15 orang per kelas).</p>
+            </div>
+            <div class="p-5 bg-[#171A22] border border-[#232733]">
+              <div class="flex items-center justify-between">
+                <span class="text-xl font-bold text-white">Program RPL</span>
+                <span class="font-mono-tech text-sm px-3 py-1 bg-zinc-800 text-zinc-200 border border-zinc-600 font-bold">KONVERSI SKS</span>
+              </div>
+              <p class="text-base text-zinc-300 mt-2">Rekognisi Pembelajaran Lampau: pengakuan pengalaman kerja atau sertifikasi pelatihan relevan menjadi SKS akademik.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE SELECTION FLOWCHART (ALUR SELEKSI 3 JALUR) -->
+      <div class="arch-card p-8 space-y-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#232733] pb-6">
+          <div>
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold uppercase">DIAGRAM INTERAKTIF // ALUR SELEKSI MASUK UMRI</div>
+            <h3 class="text-2xl font-bold text-white mt-1">Peta Alur Seleksi Berdasarkan Klaster Pendaftar</h3>
+          </div>
+          <div class="flex flex-wrap gap-2" id="selection-flow-tabs">
+            <button onclick="selectFlowTab(0)" class="flow-tab tab-btn-active px-4 py-2.5 border border-[#343A4A] bg-[#171A22] text-sm font-semibold cursor-pointer">
+              A. Reguler S1 &amp; S2
+            </button>
+            <button onclick="selectFlowTab(1)" class="flow-tab px-4 py-2.5 border border-[#343A4A] bg-[#171A22] text-zinc-200 text-sm font-semibold cursor-pointer">
+              B. Klaster Kesehatan (FK, Farmasi, Keperawatan, Kebidanan)
+            </button>
+            <button onclick="selectFlowTab(2)" class="flow-tab px-4 py-2.5 border border-[#343A4A] bg-[#171A22] text-zinc-200 text-sm font-semibold cursor-pointer">
+              C. Jalur Beasiswa &amp; Internasional
+            </button>
+          </div>
+        </div>
+
+        <div id="selection-flow-display" class="pt-2">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Katalog 13 Jalur Masuk & 9 Beasiswa -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="arch-card p-8">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono-tech text-sm text-emerald-400 font-bold uppercase">KATALOG RESMI // 13 JALUR MASUK</span>
+            <span class="font-mono-tech text-xl font-bold text-white">13 Jalur</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-base">
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">01. Jalur Reguler (D3, S1, S2)</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">02. Program RPL</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">03. Jalur Muhammadiyah</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">04. Alumni Sekolah Muhammadiyah</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">05. Jalur Sivitas UMRI</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">06. Jalur Prestasi</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">07. Jalur Gen Smart</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">08. Pegawai / AUM / Kader Alumni PTMA</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">09. Jalur Alumni UMRI</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">10. Jalur Beasiswa Tahfidz</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium">11. Jalur Beasiswa Kader</div>
+            <div class="p-3 bg-[#171A22] border border-[#232733] text-white font-medium sm:col-span-2">12 &amp; 13. Jalur Beasiswa Internasional &amp; Kemitraan Khusus</div>
+          </div>
+        </div>
+
+        <div class="arch-card p-8">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono-tech text-sm text-amber-400 font-bold uppercase">KATALOG RESMI // 9 SKEMA BEASISWA</span>
+            <span class="font-mono-tech text-xl font-bold text-amber-400">9 Beasiswa</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-base">
+            <div class="p-3.5 bg-[#171A22] border border-[#232733] text-white font-medium">01. Beasiswa KIP Kuliah</div>
+            <div class="p-3.5 bg-[#171A22] border border-[#232733] text-white font-medium">02. Beasiswa Tahfidz Quran</div>
+            <div class="p-3.5 bg-[#171A22] border border-[#232733] text-white font-medium">03. Beasiswa Kader Muhammadiyah</div>
+            <div class="p-3.5 bg-[#171A22] border border-[#232733] text-white font-medium">04. Beasiswa Sang Surya</div>
+            <div class="p-3.5 bg-[#171A22] border border-[#232733] text-white font-medium">05. Beasiswa Bank Indonesia (BI)</div>
+            <div class="p-3.5 bg-[#171A22] border border-[#232733] text-white font-medium">06. Beasiswa Bank Syariah Indonesia (BSI)</div>
+            <div class="p-3.5 bg-[#171A22] border border-[#232733] text-white font-medium">07. Beasiswa Bank Muamalat</div>
+            <div class="p-3.5 bg-[#171A22] border border-[#232733] text-white font-medium">08. Beasiswa Mega Syariah</div>
+            <div class="p-3.5 bg-[#171A22] border border-[#232733] text-white font-medium sm:col-span-2">09. Beasiswa KL Lazismu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAB 05: RAMBU PERSYARIKATAN, SPESIFIKASI VISUAL & RED LINES           -->
+  <!-- ===================================================================== -->
+  <section id="bab-05" class="chapter-section border-b border-[#232733] py-20 px-6">
+    <div class="max-w-[1400px] mx-auto space-y-12">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-[#232733] pb-8">
+        <div>
+          <div class="font-mono-tech text-emerald-400 text-base font-bold uppercase tracking-widest">
+            BAB 05 // BRAND SAFETY &amp; INSTITUTIONAL GUARDRAILS
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            Kepatuhan Atribut Visual &amp; Zona Larangan Mutlak
+          </h2>
+        </div>
+        <p class="text-lg text-zinc-300 max-w-xl">
+          Kreativitas di <strong class="text-emerald-400">@pmb.umri</strong> boleh segar dan adaptif, namun pagar etika Persyarikatan Muhammadiyah dan akurasi klaim publik tidak boleh ditawar.
+        </p>
+      </div>
+
+      <!-- Visual Attributes Specification Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="arch-card p-8 border-t-4 border-t-[#064E3B]">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono-tech text-sm text-emerald-400 font-bold">SPESIFIKASI ATRIBUT 01</span>
+            <span class="w-6 h-6 bg-[#064E3B] border border-emerald-400"></span>
+          </div>
+          <h3 class="text-2xl font-bold text-white">Jas Almamater UMRI</h3>
+          <p class="text-base text-zinc-300 mt-3">
+            Wajib tampil dalam warna <strong class="text-emerald-400">Hijau Zamrud Tua (Deep Emerald-Forest Green)</strong> lengkap dengan bordir lambang matahari bersinar UMRI di saku dada kiri. Dilarang mengubah rona warna jas menjadi hijau neon atau biru saat proses color grading maupun AI prompt generation.
+          </p>
+        </div>
+
+        <div class="arch-card p-8 border-t-4 border-t-amber-500">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono-tech text-sm text-amber-400 font-bold">SPESIFIKASI ATRIBUT 02</span>
+            <span class="font-mono-tech text-sm px-2.5 py-0.5 bg-amber-500/20 text-amber-300 font-bold">WAJIB PATUH</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white">Busana Duta Putri &amp; Talent</h3>
+          <p class="text-base text-zinc-300 mt-3">
+            Talent mahasiswi / Duta Putri UMRI <strong class="text-amber-400">wajib berhijab rapi menutup dada dan memakai rok panjang</strong>. Tidak diperkenankan menampilkan Duta Putri memakai celana panjang atau pakaian ketat dalam materi publikasi resmi.
+          </p>
+        </div>
+
+        <div class="arch-card p-8 border-t-4 border-t-white">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono-tech text-sm text-zinc-300 font-bold">SPESIFIKASI ATRIBUT 03</span>
+            <span class="font-mono-tech text-sm px-2.5 py-0.5 bg-zinc-800 text-white font-bold">HEADER / OUTRO</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white">Logo Pendamping Resmi</h3>
+          <p class="text-base text-zinc-300 mt-3">
+            Setiap aset grafis resmi dan outro video wajib menyematkan logo berwarna <strong class="text-white">Kementerian Pendidikan Tinggi, Sains, dan Teknologi (Diktisaintek Berdampak)</strong> serta badge akreditasi resmi <strong class="text-white">BAN-PT (Baik Sekali)</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Red Lines & Claim Audit Table -->
+      <div class="arch-card p-8 space-y-6">
+        <div class="font-mono-tech text-sm text-red-400 font-bold uppercase">MATRIKS KEPATUHAN EDITORIAL // RED LINES VS SAFE EXECUTION</div>
+        <h3 class="text-2xl font-bold text-white">Standar Klaim Publik &amp; Penanganan Informasi Baru</h3>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="bg-[#171A22] border border-[#232733] p-6 space-y-4">
+            <div class="font-mono-tech text-sm text-amber-400 font-bold">KASUS 01 // KLAIM FASILITAS AIR MINUM</div>
+            <div class="p-4 bg-red-950/40 border border-red-500/30">
+              <div class="font-mono-tech text-sm text-red-400 font-bold">✕ DILARANG (OVERCLAIM):</div>
+              <p class="text-base text-white mt-1">“Keran air siap minum pertama di Pulau Sumatera.”</p>
+            </div>
+            <div class="p-4 bg-emerald-950/40 border border-emerald-500/30">
+              <div class="font-mono-tech text-sm text-emerald-400 font-bold">✓ KLAIM AMAN TERVERIFIKASI:</div>
+              <p class="text-base text-white mt-1">“Pelopor Fasilitas Air Siap Minum Teruji &amp; Bersertifikat Halal di Riau.”</p>
+            </div>
+          </div>
+
+          <div class="bg-[#171A22] border border-[#232733] p-6 space-y-4">
+            <div class="font-mono-tech text-sm text-amber-400 font-bold">KASUS 02 // AUDIO &amp; HUMOR TREN TIKTOK</div>
+            <div class="p-4 bg-red-950/40 border border-red-500/30">
+              <div class="font-mono-tech text-sm text-red-400 font-bold">✕ DILARANG KERAS:</div>
+              <p class="text-base text-white mt-1">Audio remix berlirik sensual/vulgar, gerakan erotis, atau prank yang merendahkan fasilitas/institusi.</p>
+            </div>
+            <div class="p-4 bg-emerald-950/40 border border-emerald-500/30">
+              <div class="font-mono-tech text-sm text-emerald-400 font-bold">✓ EKSEKUSI BERKEMAJUAN:</div>
+              <p class="text-base text-white mt-1">Humor observasional mahasiswa (tugas, kos, memilih jurusan) dengan audio instrumental/upbeat bersih.</p>
+            </div>
+          </div>
+
+          <div class="bg-[#171A22] border border-[#232733] p-6 space-y-4">
+            <div class="font-mono-tech text-sm text-amber-400 font-bold">KASUS 03 // DATA BIAYA &amp; PRODI BARU</div>
+            <div class="p-4 bg-red-950/40 border border-red-500/30">
+              <div class="font-mono-tech text-sm text-red-400 font-bold">✕ DILARANG (HALUSINASI DATA):</div>
+              <p class="text-base text-white mt-1">Menebak nominal SPP/UKT atau syarat khusus prodi baru yang belum rilis di brosur resmi.</p>
+            </div>
+            <div class="p-4 bg-emerald-950/40 border border-emerald-500/30">
+              <div class="font-mono-tech text-sm text-emerald-400 font-bold">✓ PROTOKOL WAJIB:</div>
+              <p class="text-base text-white mt-1">Cantumkan penanda <code class="text-amber-300 font-bold">[VERIFIKASI_TIM_PMB]</code> pada naskah sebelum naik cetak/publikasi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAB 06: ALUR PRODUKSI END-TO-END (INTERACTIVE PRODUCTION PIPELINE)    -->
+  <!-- ===================================================================== -->
+  <section id="bab-06" class="chapter-section border-b border-[#232733] py-20 px-6">
+    <div class="max-w-[1400px] mx-auto space-y-12">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-[#232733] pb-8">
+        <div>
+          <div class="font-mono-tech text-emerald-400 text-base font-bold uppercase tracking-widest">
+            BAB 06 // END-TO-END PRODUCTION WORKFLOW
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            Alur Produksi Konten &amp; Community Management
+          </h2>
+        </div>
+        <p class="text-lg text-zinc-300 max-w-xl">
+          Setiap konten bergerak melewati 6 gerbang kendali mutu—mulai dari penangkapan ide di fakultas/prodi hingga protokol konversi DM ke portal registrasi.
+        </p>
+      </div>
+
+      <!-- Interactive 6-Stage Pipeline Diagram -->
+      <div class="space-y-6">
+        <div class="font-mono-tech text-sm text-zinc-400 uppercase">KLIK TAHAP ALUR PRODUKSI (01 – 06) UNTUK MELIHAT SOP &amp; DELIVERABLE</div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 border border-[#343A4A] bg-[#111318]" id="pipeline-steps-grid">
+          <button onclick="selectPipelineStep(0)" class="pipe-btn tab-btn-active p-6 text-left border-b lg:border-b-0 lg:border-r border-[#343A4A] transition cursor-pointer">
+            <div class="font-mono-tech text-sm opacity-80">TAHAP 01</div>
+            <div class="text-lg font-extrabold mt-1">Intake &amp; Momentum</div>
+          </button>
+          <button onclick="selectPipelineStep(1)" class="pipe-btn p-6 text-left border-b lg:border-b-0 lg:border-r border-[#343A4A] text-white hover:bg-[#171A22] transition cursor-pointer">
+            <div class="font-mono-tech text-sm text-zinc-400">TAHAP 02</div>
+            <div class="text-lg font-extrabold mt-1">Channel &amp; Funnel Routing</div>
+          </button>
+          <button onclick="selectPipelineStep(2)" class="pipe-btn p-6 text-left border-b lg:border-b-0 lg:border-r border-[#343A4A] text-white hover:bg-[#171A22] transition cursor-pointer">
+            <div class="font-mono-tech text-sm text-zinc-400">TAHAP 03</div>
+            <div class="text-lg font-extrabold mt-1">Two-Column Scripting</div>
+          </button>
+          <button onclick="selectPipelineStep(3)" class="pipe-btn p-6 text-left border-b lg:border-b-0 lg:border-r border-[#343A4A] text-white hover:bg-[#171A22] transition cursor-pointer">
+            <div class="font-mono-tech text-sm text-zinc-400">TAHAP 04</div>
+            <div class="text-lg font-extrabold mt-1">Audit Rambu Persyarikatan</div>
+          </button>
+          <button onclick="selectPipelineStep(4)" class="pipe-btn p-6 text-left border-b sm:border-b-0 lg:border-r border-[#343A4A] text-white hover:bg-[#171A22] transition cursor-pointer">
+            <div class="font-mono-tech text-sm text-zinc-400">TAHAP 05</div>
+            <div class="text-lg font-extrabold mt-1">Produksi &amp; Visualisasi</div>
+          </button>
+          <button onclick="selectPipelineStep(5)" class="pipe-btn p-6 text-left text-white hover:bg-[#171A22] transition cursor-pointer">
+            <div class="font-mono-tech text-sm text-zinc-400">TAHAP 06</div>
+            <div class="text-lg font-extrabold mt-1">Distribusi &amp; Konversi DM</div>
+          </button>
+        </div>
+
+        <!-- Pipeline Stage Detailed View -->
+        <div id="pipeline-detail-box" class="arch-card p-8">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAB 07: CETAK BIRU ANATOMI KONTEN (REELS 9:16 & KAROSEL 3:4)          -->
+  <!-- ===================================================================== -->
+  <section id="bab-07" class="chapter-section py-20 px-6">
+    <div class="max-w-[1400px] mx-auto space-y-12">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-[#232733] pb-8">
+        <div>
+          <div class="font-mono-tech text-emerald-400 text-base font-bold uppercase tracking-widest">
+            BAB 07 // CONTENT FORMAT ANATOMY &amp; OUTPUT STANDARD
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            Anatomi Baku Video Vertikal (9:16) &amp; Karosel (3:4)
+          </h2>
+        </div>
+        <p class="text-lg text-zinc-300 max-w-xl">
+          Standar struktur naskah yang wajib dipatuhi seluruh tim produksi agar retensi tontonan tinggi dan pesan konversi tersampaikan utuh.
+        </p>
+      </div>
+
+      <!-- Format Switcher -->
+      <div class="arch-card p-8 space-y-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#232733] pb-6">
+          <div>
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold uppercase">INTERACTIVE ANATOMY DISSECTOR</div>
+            <h3 class="text-2xl font-bold text-white mt-1">Pilih Format Aset untuk Melihat Struktur Detik / Slide</h3>
+          </div>
+          <div class="flex gap-3">
+            <button onclick="selectAnatomyFormat('VIDEO')" id="anat-btn-video" class="tab-btn-active px-5 py-2.5 border border-[#343A4A] bg-[#171A22] text-base font-semibold cursor-pointer">
+              🎬 Anatomi Video Vertikal 9:16 (60 Detik)
+            </button>
+            <button onclick="selectAnatomyFormat('CAROUSEL')" id="anat-btn-carousel" class="px-5 py-2.5 border border-[#343A4A] bg-[#171A22] text-zinc-200 text-base font-semibold cursor-pointer">
+              🖼️ Anatomi Karosel Edukasi 3:4 (7 Slide)
+            </button>
+          </div>
+        </div>
+
+        <div id="anatomy-display-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Standard Output Module Spec Footer -->
+      <div class="arch-card p-8 border-l-4 border-l-emerald-500">
+        <div class="font-mono-tech text-sm text-emerald-400 font-bold uppercase">STANDAR OUTPUT DRAF KONTEN (5 KOMPONEN WAJIB)</div>
+        <h3 class="text-2xl font-bold text-white mt-1">Setiap Brief &amp; Naskah yang Diterbitkan Wajib Memuat:</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-6">
+          <div class="p-4 bg-[#171A22] border border-[#232733]">
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold">01. KANAL &amp; FORMAT</div>
+            <p class="text-base text-white mt-1">@kampus_umri atau @pmb.umri | Video 9:16 / Karosel 3:4 / Single Image</p>
+          </div>
+          <div class="p-4 bg-[#171A22] border border-[#232733]">
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold">02. TUJUAN PESAN</div>
+            <p class="text-base text-white mt-1">KPI &amp; posisi Funnel (Awareness TOFU / Consideration MOFU / Konversi BOFU)</p>
+          </div>
+          <div class="p-4 bg-[#171A22] border border-[#232733]">
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold">03. VISUAL &amp; AUDIO</div>
+            <p class="text-base text-white mt-1">Panduan framing, pencahayaan, atribut jas/busana, &amp; musik latar aman</p>
+          </div>
+          <div class="p-4 bg-[#171A22] border border-[#232733]">
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold">04. TWO-COLUMN SCRIPT</div>
+            <p class="text-base text-white mt-1">Tabel uraian detik demi detik (video) atau slide demi slide (karosel)</p>
+          </div>
+          <div class="p-4 bg-[#171A22] border border-[#232733]">
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold">05. CAPTION &amp; CTA</div>
+            <p class="text-base text-white mt-1">Copywriting siap unggah lengkap dengan CTA daftar.umri.ac.id &amp; hashtag</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURAL FOOTER -->
+  <footer class="border-t border-[#232733] bg-[#090A0D] py-12 px-6">
+    <div class="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div>
+        <div class="font-mono-tech text-sm text-emerald-400 font-bold">UNIVERSITAS MUHAMMADIYAH RIAU // T.A. 2027/2028</div>
+        <div class="text-lg font-bold text-white mt-1">Cetak Biru Arsitektur Komunikasi Media Sosial (@kampus_umri &amp; @pmb.umri)</div>
+        <p class="text-base text-zinc-400 mt-1">Ruang PMB Gedung Rektorat Lantai 1, Jl. Tuanku Tambusai, Pekanbaru • https://daftar.umri.ac.id</p>
+      </div>
+      <div class="font-mono-tech text-sm text-zinc-400 border border-[#232733] px-4 py-2 bg-[#111318]">
+        DIKTISAINTEK BERDAMPAK • BAN-PT BAIK SEKALI
+      </div>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE SCRIPT LOGIC -->
+  <script>
+    // 1. DATA FOR BAB 01: DUAL-CHANNEL CONTENT TRANSLATOR
+    const TRANSLATOR_TOPICS = [
+      {
+        topic: "Fasilitas Keran Air Siap Minum Kampus UMRI",
+        kampus: {
+          headline: "Komitmen Kampus Hijau & Layanan Prima: UMRI Hadirkan Stasiun Air Siap Minum Bersertifikat Halal",
+          format: "Karosel 3:4 / Rilis Kelembagaan",
+          tone: "Formal, berwibawa, menekankan standar mutu laboratorium, higienitas, keberlanjutan lingkungan (SDGs), dan sertifikasi Halal resmi di Provinsi Riau.",
+          sampleCopy: "Universitas Muhammadiyah Riau (UMRI) terus memperkuat komitmen pengurangan limbah plastik sekali pakai serta peningkatan layanan sivitas akademika sebagai Pelopor Fasilitas Air Siap Minum Teruji & Bersertifikat Halal di Riau."
+        },
+        pmb: {
+          headline: "POV: Tanggal Tua Habis Praktikum, Refill Air Minum Gratis Sepuasnya di Kampus!",
+          format: "Video Reels / TikTok 9:16 (Formula Kuda Troya 70/20/10)",
+          tone: "Santai, relatable dengan penghematan uang jajan anak kos Pekanbaru, hangat khas Kakak Tingkat.",
+          sampleCopy: "Tanggal tua di Pekanbaru tapi tetap segar seharian di kampus? Cemane tu? Cukup bawa tumbler dari kos! UMRI hadir sebagai Pelopor Fasilitas Air Siap Minum Teruji & Bersertifikat Halal di Riau. Yuk daftar Gelombang 1 di daftar.umri.ac.id!"
+        }
+      },
+      {
+        topic: "Fasilitas Laboratorium & Seleksi Klaster Kesehatan",
+        kampus: {
+          headline: "Standarisasi Mutu Pendidikan Kesehatan: Penguatan Laboratorium Terpadu & Klinik Pratama UMRI",
+          format: "Single Image / Liputan Dekanat & Rektorat",
+          tone: "Akademik, menonjolkan kepatuhan standar nasional pendidikan kedokteran dan kesehatan serta kontribusi bagi layanan kesehatan masyarakat Riau.",
+          sampleCopy: "Melalui dukungan fasilitas laboratorium modern serta layanan Klinik Pratama UMRI, Klaster Kesehatan Universitas Muhammadiyah Riau berkomitmen mencetak tenaga medis dan kesehatan yang unggul serta berakhlak mulia."
+        },
+        pmb: {
+          headline: "Incar Kedokteran, Farmasi, Keperawatan, atau Kebidanan UMRI? Ini 3 Tahap Seleksi Wajibnya!",
+          format: "Karosel Edukasi 3:4 & Video Spill Lab 9:16",
+          tone: "Solutif, informatif, memandu langkah pendaftaran agar calon maba siap sejak Gelombang 1.",
+          sampleCopy: "Buat kome yang mengincar Klaster Kesehatan UMRI, pastikan siap menghadapi 3 tahap seleksinya: 1) CBT, 2) Wawancara, dan 3) Tes Kesehatan di Klinik Pratama UMRI. Amankan kursimu di Gelombang 1 lewat daftar.umri.ac.id!"
+        }
+      },
+      {
+        topic: "Kemitraan Beasiswa Perbankan & Persyarikatan",
+        kampus: {
+          headline: "Sinergi UMRI Bersama Mitra Perbankan Nasional Perluas Akses Beasiswa Pendidikan Tinggi",
+          format: "Single Image / Rilis MoU & Seremonial Penyerahan",
+          tone: "Institusional, mengapresiasi mitra strategis (BI, BSI, Bank Muamalat, Mega Syariah, Lazismu) dan akuntabilitas pengelolaan beasiswa.",
+          sampleCopy: "Universitas Muhammadiyah Riau bersama jajaran mitra perbankan nasional dan lembaga filantropi terus memperluas cakupan beasiswa bagi mahasiswa berprestasi sebagai wujud nyata Diktisaintek Berdampak."
+        },
+        pmb: {
+          headline: "Peta Komplit 9 Beasiswa UMRI T.A. 2027/2028: Dari KIP Kuliah, Tahfidz, Sampai Beasiswa BI & BSI!",
+          format: "Karosel 3:4 (Saveable Guide untuk Calon Maba & Orang Tua)",
+          tone: "Menenangkan kekhawatiran biaya kuliah, merinci daftar 9 beasiswa dan alur seleksi portofolio via BIMAWA/KUIK.",
+          sampleCopy: "Tak payah risau soal biaya kuliah! Di UMRI ada 9 skema beasiswa resmi: KIP Kuliah, Tahfidz Quran, Kader Muhammadiyah, Sang Surya, BI, BSI, Bank Muamalat, Mega Syariah, hingga KL Lazismu. Save postingan ini & kirim ke grup WA keluarga ya!"
+        }
+      },
+      {
+        topic: "Prestasi Mahasiswa di Kompetisi Nasional / Internasional",
+        kampus: {
+          headline: "Civitas Akademika UMRI Ukir Prestasi Gemilang pada Ajang Kompetisi Tingkat Nasional",
+          format: "Single Image Ucapan Resmi Rektorat & Dekanat",
+          tone: "Apresiatif, elegan, membanggakan reputasi institusi dan mutu pembinaan kemahasiswaan.",
+          sampleCopy: "Rektor beserta seluruh sivitas akademika Universitas Muhammadiyah Riau mengucapkan selamat dan sukses atas capaian membanggakan mahasiswa UMRI pada tingkat nasional."
+        },
+        pmb: {
+          headline: "Kuliah di Pekanbaru Tapi Prestasinya Tembus Nasional! Sini Kating Spill Rahasianya...",
+          format: "Video Wawancara Singkat / Reels 9:16",
+          tone: "Inspiratif, mematahkan keraguan siswa SMA soal kualitas kampus swasta, mendorong audiens ikut Jalur Prestasi.",
+          sampleCopy: "Siapa bilang kuliah di kampus swasta nggak bisa bersaing di level nasional? Buktinya kakak tingkat kita ini berhasil bawa pulang medali! Punya sertifikat juara waktu SMA/SMK? Yuk daftar lewat Jalur Prestasi UMRI di daftar.umri.ac.id!"
+        }
+      }
+    ];
+
+    function selectTranslatorTopic(index) {
+      const buttons = document.querySelectorAll("#topic-translator-tabs .trans-tab");
+      buttons.forEach((btn, idx) => {
+        if (idx === index) {
+          btn.classList.add("tab-btn-active");
+        } else {
+          btn.classList.remove("tab-btn-active");
+        }
+      });
+
+      const item = TRANSLATOR_TOPICS[index];
+      document.getElementById("translator-display").innerHTML = `
+        <div class="p-6 bg-[#171A22] border border-amber-500/40 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-mono-tech text-sm text-amber-400 font-bold">EKSEKUSI KANAL INDUK // @kampus_umri</span>
+            <span class="font-mono-tech text-sm px-2.5 py-0.5 bg-amber-500/20 text-amber-300">${item.kampus.format}</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">${item.kampus.headline}</h4>
+          <p class="text-base text-zinc-300"><strong class="text-white">Pendekatan Editorial:</strong> ${item.kampus.tone}</p>
+          <div class="p-4 bg-[#111318] border border-[#232733] text-base text-zinc-200 italic">
+            “${item.kampus.sampleCopy}”
+          </div>
+        </div>
+
+        <div class="p-6 bg-[#171A22] border border-emerald-500/40 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-mono-tech text-sm text-emerald-400 font-bold">EKSEKUSI KANAL SATELIT // @pmb.umri</span>
+            <span class="font-mono-tech text-sm px-2.5 py-0.5 bg-emerald-500/20 text-emerald-300">${item.pmb.format}</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">${item.pmb.headline}</h4>
+          <p class="text-base text-zinc-300"><strong class="text-white">Pendekatan Editorial:</strong> ${item.pmb.tone}</p>
+          <div class="p-4 bg-[#111318] border border-[#232733] text-base text-zinc-200 italic">
+            “${item.pmb.sampleCopy}”
+          </div>
+        </div>
+      `;
+    }
+
+    // 2. DATA FOR BAB 02: TROJAN HORSE 70:20:10
+    const TROJAN_SEGMENTS = [
+      {
+        ratio: "70% NILAI KULTURAL, HIBURAN & RELATABILITAS MAHASISWA",
+        title: "Menangkan Perhatian di 3 Detik Pertama Tanpa Terlihat Seperti Iklan",
+        desc: "Mayoritas durasi konten didedikasikan untuk membangun ikatan emosional dengan audiens. Gunakan situasi nyata yang dialami siswa kelas 12 SMA/SMK, anak rantau kabupaten, atau mahasiswa semester awal di Pekanbaru.",
+        examples: [
+          "Drama memilih jurusan antara keinginan sendiri vs saran orang tua",
+          "Tips mengatur uang bulanan anak kos di sekitar Jl. Tuanku Tambusai",
+          "Komedi situasi ringan perbedaan waktu SMA vs saat sudah jadi mahasiswa baru",
+          "Interaksi hangat dengan sapaan khas Melayu Riau yang sopan dan akrab"
+        ]
+      },
+      {
+        ratio: "20% BUKTI KEUNGGULAN & FASILITAS KAMPUS SECARA IMPLISIT",
+        title: "Tunjukkan Kualitas Kampus Lewat Visual Nyata (Show, Don't Just Tell)",
+        desc: "Setelah audiens terhibur atau merasa relate di 70% awal, sisipkan keunggulan infrastruktur dan akademik UMRI secara elegan sebagai bagian alami dari cerita.",
+        examples: [
+          "Menampilkan stasiun Pelopor Fasilitas Air Siap Minum Teruji & Bersertifikat Halal di Riau saat adegan istirahat kuliah",
+          "Menggunakan latar laboratorium modern Klaster Kesehatan atau ruang kelas Reguler A/B yang sejuk",
+          "Menampilkan mahasiswa mengenakan Jas Almamater hijau zamrud tua dengan bangga",
+          "Menyelipkan fakta 9 katalog beasiswa dan 13 jalur masuk sebagai solusi nyata"
+        ]
+      },
+      {
+        ratio: "10% SOFT CALL-TO-ACTION (CTA) PENDAFTARAN PMB",
+        title: "Tutup dengan Ajakan Halus namun Jelas ke Portal Resmi",
+        desc: "Jangan memaksa dengan nada hard-selling yang agresif. Tutup konten seperti Kakak Tingkat yang mengajak adik kelasnya bergabung sebelum kuota gelombang habis.",
+        examples: [
+          "“Mau kuliah di Ruang Tepat untuk Tumbuh Hebat? Gelombang 1 sudah buka, cek link di bio @pmb.umri ya!”",
+          "“Save dulu postingan ini biar gampang diskusi sama Ayah & Bunda di rumah, lalu daftar di daftar.umri.ac.id.”",
+          "“Masih bingung pilih Reguler A, Reguler B, atau RPL? Mampir langsung ke Ruang PMB Gedung Rektorat Lt. 1 Jl. Tuanku Tambusai!”"
+        ]
+      }
+    ];
+
+    function selectTrojanSegment(index) {
+      const item = TROJAN_SEGMENTS[index];
+      document.getElementById("trojan-detail-box").innerHTML = `
+        <div class="space-y-4">
+          <div class="font-mono-tech text-sm text-emerald-400 font-bold">${item.ratio}</div>
+          <h4 class="text-2xl font-bold text-white">${item.title}</h4>
+          <p class="text-base text-zinc-300 max-w-4xl">${item.desc}</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+            ${item.examples.map(ex => `
+              <div class="p-4 bg-[#111318] border border-[#232733] text-base text-white flex items-start gap-3">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span>${ex}</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    // 3. DATA FOR BAB 03: AUDIENCE PERSONAS
+    const PERSONAS = [
+      {
+        code: "PERSONA A // RIAU DARATAN",
+        name: "Si Anak Daerah Kabupaten Se-Riau (Kampar, Siak, Pelalawan, Rohul, Rohil, Kuansing, Inhu, Inhil)",
+        profile: "Ingin kuliah di ibu kota provinsi (Pekanbaru) untuk mencari kemandirian dan jejaring luas, namun tetap mudah pulang kampung.",
+        painPoints: [
+          "Khawatir biaya hidup, biaya kos, dan adaptasi pergaulan di Kota Pekanbaru.",
+          "Takut proses pendaftaran kampus swasta rumit dan banyak biaya tersembunyi."
+        ],
+        winningMessage: "UMRI berada di lokasi super strategis (Jl. Tuanku Tambusai), dikelilingi kos terjangkau, lingkungan pertemanan sedaerah yang ramah, fasilitas air siap minum gratis di kampus, serta tersedia 9 skema beasiswa.",
+        recommendedFormat: "Vlog #SpotPekanbaru, #KatingRelate Anak Kos, & Karosel Rincian Beasiswa."
+      },
+      {
+        code: "PERSONA B // URBAN PEKANBARU",
+        name: "Si Anak Kota Pekanbaru (SMA/SMK/MA Perkotaan)",
+        profile: "Kritis, aktif di media sosial, membandingkan gengsi serta fasilitas antara PTN dan PTS di Riau.",
+        painPoints: [
+          "Khawatir kampus swasta kurang bergengsi atau fasilitas praktikumnya tertinggal.",
+          "Ingin kepastian bahwa kampus punya ekosistem kreatif, modern, dan dosen yang asik."
+        ],
+        winningMessage: "UMRI bukan pilihan cadangan, melainkan Kampus Technopreneurship Berkemajuan dengan akreditasi BAN-PT Baik Sekali, laboratorium modern (termasuk Klaster Kesehatan), dan jejaring industri nasional.",
+        recommendedFormat: "Reels #SpillJurusanUMRI, Cinematics Ambience Kampus, & Social Proof Prestasi Mahasiswa."
+      },
+      {
+        code: "PERSONA C // PESISIR & KEPRI",
+        name: "Si Calon Perantau Kepri & Pesisir (Batam, Tg. Pinang, Karimun, Bengkalis, Meranti)",
+        profile: "Memiliki kedekatan budaya Melayu yang kuat dan mencari suasana pendidikan tinggi yang kondusif di daratan Sumatera.",
+        painPoints: [
+          "Kendala jarak jika harus bolak-balik mengurus berkas pendaftaran secara fisik ke Pekanbaru.",
+          "Membutuhkan jaminan kualitas akreditasi dan pengakuan ijazah di dunia industri."
+        ],
+        winningMessage: "Pendaftaran 100% online melalui https://daftar.umri.ac.id tanpa harus bolak-balik sebelum kuliah dimulai. Budaya Melayu Riau yang hangat di UMRI membuat perantau pesisir langsung merasa di rumah sendiri.",
+        recommendedFormat: "Video Tutorial #GampangDaftarnya & Testimoni Mahasiswa Asal Kepri/Pesisir."
+      },
+      {
+        code: "PERSONA D // PEJUANG KARIR & GAP YEAR",
+        name: "Karyawan Muda, Instansi & Pejuang Kelas Sore",
+        profile: "Sudah bekerja atau sempat menunda kuliah, membutuhkan fleksibilitas jadwal kuliah dan pengakuan atas pengalaman kerja.",
+        painPoints: [
+          "Takut jam kuliah bentrok dengan jam kantor/shift kerja.",
+          "Sayang jika pengalaman kerja bertahun-tahun tidak dihitung dalam perkuliahan."
+        ],
+        winningMessage: "UMRI menyediakan Kelas Reguler B (Sore/Pekerja pukul 16.00 – 22.00 WIB, min. 15 orang) serta Program RPL (Rekognisi Pembelajaran Lampau) untuk mengonversi pengalaman kerja/pelatihan menjadi SKS!",
+        recommendedFormat: "Reels POV Pulang Kerja Lanjut Kuliah & Karosel Edukasi Program RPL."
+      },
+      {
+        code: "STAKEHOLDER KUNCI // ORANG TUA & GURU BK",
+        name: "Ayah, Bunda (Generasi Milenial/X) & Guru BK Sekolah",
+        profile: "Pemegang keputusan finansial dan penentu restu akhir pemilihan kampus bagi putra-putrinya.",
+        painPoints: [
+          "Khawatir pergaulan bebas di perantauan dan keamanan lingkungan kampus.",
+          "Membutuhkan kepastian legalitas akreditasi, transparansi biaya, dan peluang beasiswa."
+        ],
+        winningMessage: "Lingkungan kampus Islami berkemajuan di bawah naungan Persyarikatan Muhammadiyah yang menjaga adab, terakreditasi BAN-PT Baik Sekali, serta didukung 13 jalur masuk dan 9 program beasiswa resmi.",
+        recommendedFormat: "Karosel Infografis Ramah WhatsApp Keluarga & Profil Keunggulan Institusi."
+      }
+    ];
+
+    function selectPersona(index) {
+      const btns = document.querySelectorAll("#persona-selector-list .persona-btn");
+      btns.forEach((b, idx) => {
+        if (idx === index) {
+          b.classList.add("tab-btn-active");
+        } else {
+          b.classList.remove("tab-btn-active");
+        }
+      });
+
+      const p = PERSONAS[index];
+      document.getElementById("persona-detail-panel").innerHTML = `
+        <div class="space-y-6">
+          <div class="border-b border-[#232733] pb-4">
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold">${p.code}</div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">${p.name}</h3>
+            <p class="text-base text-zinc-300 mt-2">${p.profile}</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-5 bg-[#171A22] border border-[#232733]">
+              <div class="font-mono-tech text-sm text-amber-400 font-bold uppercase mb-2">KEKHAWATIRAN UTAMA (PAIN POINTS)</div>
+              <ul class="space-y-2 text-base text-zinc-200">
+                ${p.painPoints.map(pt => `<li>• ${pt}</li>`).join("")}
+              </ul>
+            </div>
+
+            <div class="p-5 bg-emerald-950/30 border border-emerald-500/30">
+              <div class="font-mono-tech text-sm text-emerald-400 font-bold uppercase mb-2">PESAN KUNCI PENAKLUK (WINNING ANGLE)</div>
+              <p class="text-base text-white leading-relaxed">${p.winningMessage}</p>
+            </div>
+          </div>
+
+          <div class="p-4 bg-[#171A22] border border-[#232733] flex flex-wrap items-center justify-between gap-2">
+            <span class="font-mono-tech text-sm text-zinc-400">REKOMENDASI FORMAT KONTEN:</span>
+            <span class="text-base font-bold text-emerald-400">${p.recommendedFormat}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // 4. DATA FOR BAB 04: SELECTION FLOWCHART
+    const SELECTION_FLOWS = [
+      {
+        title: "Alur Seleksi Jalur Reguler (S1 & S2)",
+        desc: "Berlaku bagi pendaftar program studi non-kesehatan pada jenjang Sarjana (S1) dan Pascasarjana (S2).",
+        steps: [
+          { no: "01", name: "Registrasi Portal", detail: "Calon mahasiswa membuat akun di https://daftar.umri.ac.id atau datang ke Ruang PMB Gedung Rektorat Lt. 1." },
+          { no: "02", name: "Pilih Prodi & Skema", detail: "Memilih program studi serta skema perkuliahan (Reguler A Pagi/Siang atau Reguler B Sore/Pekerja)." },
+          { no: "03", name: "Tes Potensi Akademik (TPA)", detail: "Mengikuti seleksi Tes Potensi Akademik (TPA) sesuai jadwal gelombang berjalan." },
+          { no: "04", name: "Pengumuman & Registrasi Ulang", detail: "Penetapan kelulusan dan pengamanan kursi mahasiswa baru T.A. 2027/2028." }
+        ]
+      },
+      {
+        title: "Alur Seleksi Khusus Klaster Kesehatan (Kedokteran, Farmasi, Keperawatan, Kebidanan)",
+        desc: "Klaster Kesehatan menerapkan 3 tahapan uji berlapis untuk menjamin kesiapan akademik dan medis calon mahasiswa.",
+        steps: [
+          { no: "01", name: "Pendaftaran & Berkas", detail: "Registrasi online di https://daftar.umri.ac.id pada Gelombang PMB yang aktif." },
+          { no: "02", name: "Tahap 1: CBT", detail: "Mengikuti ujian tertulis berbasis komputer (Computer Based Test / CBT)." },
+          { no: "03", name: "Tahap 2: Wawancara", detail: "Mengikuti asesmen wawancara mendalam terkait motivasi dan kesiapan studi." },
+          { no: "04", name: "Tahap 3: Tes Kesehatan", detail: "Pemeriksaan kesehatan wajib yang dilaksanakan langsung di Klinik Pratama UMRI." }
+        ]
+      },
+      {
+        title: "Alur Seleksi Jalur Beasiswa & Internasional",
+        desc: "Berlaku untuk jalur beasiswa unggulan (KIP-K, Tahfidz, Kader, Sang Surya, Mitra Perbankan) dan mahasiswa internasional.",
+        steps: [
+          { no: "01", name: "Registrasi & Unggah Portofolio", detail: "Pendaftaran awal melalui https://daftar.umri.ac.id dengan melampirkan sertifikat/dokumen pendukung." },
+          { no: "02", name: "Verifikasi BIMAWA / KUIK", detail: "Seleksi portofolio dikawal oleh Biro Kemahasiswaan (BIMAWA) atau Kantor Urusan Internasional & Kerjasama (KUIK)." },
+          { no: "03", name: "Validasi Skema Beasiswa", detail: "Pencocokan kualifikasi pendaftar dengan 9 katalog beasiswa resmi UMRI." },
+          { no: "04", name: "Penetapan Penerima", detail: "Pengumuman kelulusan jalur beasiswa/internasional dan daftar ulang." }
+        ]
+      }
+    ];
+
+    function selectFlowTab(index) {
+      const tabs = document.querySelectorAll("#selection-flow-tabs .flow-tab");
+      tabs.forEach((t, idx) => {
+        if (idx === index) {
+          t.classList.add("tab-btn-active");
+        } else {
+          t.classList.remove("tab-btn-active");
+        }
+      });
+
+      const flow = SELECTION_FLOWS[index];
+      document.getElementById("selection-flow-display").innerHTML = `
+        <div class="space-y-6">
+          <div>
+            <h4 class="text-xl font-bold text-white">${flow.title}</h4>
+            <p class="text-base text-zinc-300 mt-1">${flow.desc}</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            ${flow.steps.map(st => `
+              <div class="p-6 bg-[#171A22] border border-[#343A4A] relative flex flex-col justify-between">
+                <div>
+                  <div class="font-mono-tech text-2xl font-extrabold text-emerald-400">STEP ${st.no}</div>
+                  <div class="text-lg font-bold text-white mt-2">${st.name}</div>
+                  <p class="text-base text-zinc-300 mt-2">${st.detail}</p>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    // 5. DATA FOR BAB 06: PRODUCTION PIPELINE STEPS
+    const PIPELINE_STEPS = [
+      {
+        stage: "TAHAP 01 // INTAKE & RISET MOMENTUM",
+        owner: "Brand Communications Manager & Showrunner",
+        title: "Penangkapan Usulan Prodi, Dekanat, Rektorat & Kalender Akademik",
+        desc: "Setiap ide konten berawal dari dua sumber: (1) Kebutuhan taktis unit internal (fakultas, prodi, LPPM, BIMAWA, KUIK, Admisi PMB) atau (2) Momentum kalender siswa SMA/SMK (masa ujian, pengumuman SNBP/SNBT, awal gelombang PMB).",
+        checklist: [
+          "Memastikan ketersediaan data faktual di brosur resmi T.A. 2027/2028",
+          "Jika menyangkut biaya/syarat prodi baru yang belum rilis, tandai wajib dengan tag [VERIFIKASI_TIM_PMB]",
+          "Menentukan urgensi kampanye terhadap jadwal Gelombang 1, 2, atau 3"
+        ],
+        deliverable: "Dokumen Creative Intake & Penetapan Topik Prioritas"
+      },
+      {
+        stage: "TAHAP 02 // CHANNEL & FUNNEL ROUTING",
+        owner: "Chief Content Strategist",
+        title: "Pemilahan Kanal (@kampus_umri vs @pmb.umri) & Penetapan KPI",
+        desc: "Menentukan apakah topik tersebut merupakan ranah marwah institusional (@kampus_umri) atau ranah konversi mahasiswa baru (@pmb.umri), atau perlu diturunkan ke kedua kanal dengan sudut pandang berbeda.",
+        checklist: [
+          "Penetapan kanal utama & format aset (Video 9:16, Karosel 3:4, atau Single Image)",
+          "Penetapan posisi Funnel: TOFU (Awareness), MOFU (Consideration), atau BOFU (Konversi PMB)",
+          "Penerapan komposisi Kuda Troya 70% Kultural : 20% Fasilitas : 10% Soft CTA khusus untuk @pmb.umri"
+        ],
+        deliverable: "Routing Brief & Penugasan Format Aset"
+      },
+      {
+        stage: "TAHAP 03 // TWO-COLUMN SCRIPTING & COPYWRITING",
+        owner: "Content Writer & Creative Scriptwriter",
+        title: "Penyusunan Naskah Dua Kolom (Visual vs Audio) & Draft Caption",
+        desc: "Menulis skrip terstruktur detik demi detik (untuk video pendek) atau slide demi slide (untuk karosel) beserta arahan visual dan audio yang rinci.",
+        checklist: [
+          "Hook wajib mengunci perhatian dalam 3 detik pertama (atau di cover Slide 1)",
+          "Menyisipkan sentuhan bahasa 'Kating Idaman' dan dialek Melayu Riau secara natural untuk @pmb.umri",
+          "Menyusun caption terstruktur (Hook baris 1–2, Isi ringkas, CTA ke daftar.umri.ac.id, dan hashtag resmi)"
+        ],
+        deliverable: "Modul Draf Konten Baku (Siap Review)"
+      },
+      {
+        stage: "TAHAP 04 // GATEKEEPING RAMBU PERSYARIKATAN",
+        owner: "Brand Communications Manager (Quality Control)",
+        title: "Audit Kepatuhan Visual, Etika Muhammadiyah & Klaim Faktual",
+        desc: "Gerbang verifikasi wajib sebelum proses syuting atau desain grafis dimulai untuk memastikan tidak ada pelanggaran Red Lines.",
+        checklist: [
+          "Jas Almamater wajib Hijau Zamrud Tua dengan bordir lambang matahari bersinar di dada kiri",
+          "Duta Putri wajib berhijab rapi dan mengenakan rok panjang (bukan celana panjang)",
+          "Bebas dari audio vulgar/sensual dan bebas dari overclaim (gunakan klaim aman terverifikasi)"
+        ],
+        deliverable: "Approval Produksi (Signed-Off Script & Brief)"
+      },
+      {
+        stage: "TAHAP 05 // PRODUKSI, SYUTING & DESAIN GRAFIS",
+        owner: "Videographer, Video Editor & Graphic Designer",
+        title: "Eksekusi Visual Berstandar Tinggi & Penyematan Atribut Resmi",
+        desc: "Pengambilan gambar di lingkungan kampus UMRI (Jl. Tuanku Tambusai) atau perancangan karosel 3:4 dengan tipografi bersih dan kontras tinggi.",
+        checklist: [
+          "Penyematan logo resmi Kementerian Pendidikan Tinggi, Sains, dan Teknologi (Diktisaintek Berdampak)",
+          "Penyematan badge akreditasi resmi BAN-PT (Baik Sekali)",
+          "Pengecekan keterbacaan subtitle video 9:16 di area aman layar smartphone (safe zone)"
+        ],
+        deliverable: "Master File Siap Unggah (MP4 9:16 / PNG Carousel 3:4)"
+      },
+      {
+        stage: "TAHAP 06 // DISTRIBUSI & COMMUNITY MANAGEMENT",
+        owner: "Social Media Admin & Helpdesk Admisi PMB",
+        title: "Publikasi Terjadwal, Respon Cepat Interaksi & Eskalasi Pendaftar",
+        desc: "Mengunggah konten pada jam trafik optimal serta mengawal pertanyaan di kolom komentar dan DM hingga berujung pada pendaftaran akun.",
+        checklist: [
+          "Menjawab komentar/DM dengan sapaan hangat ('Halo Kak/Awak!') dan informasi solutif (bukan jawaban satu kata)",
+          "Mengarahkan pendaftar online ke portal https://daftar.umri.ac.id",
+          "Mengarahkan konsultasi tatap muka ke Ruang PMB Gedung Rektorat Lt. 1 (Senin–Sabtu, 08.00–16.00 WIB)"
+        ],
+        deliverable: "Konversi Pendaftar Aktif & Laporan Performa Konten"
+      }
+    ];
+
+    function selectPipelineStep(index) {
+      const btns = document.querySelectorAll("#pipeline-steps-grid .pipe-btn");
+      btns.forEach((b, idx) => {
+        if (idx === index) {
+          b.classList.add("tab-btn-active");
+        } else {
+          b.classList.remove("tab-btn-active");
+        }
+      });
+
+      const st = PIPELINE_STEPS[index];
+      document.getElementById("pipeline-detail-box").innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center gap-3 flex-wrap">
+              <span class="font-mono-tech text-sm px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">${st.stage}</span>
+              <span class="font-mono-tech text-sm text-zinc-400">PIC: ${st.owner}</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">${st.title}</h3>
+            <p class="text-base text-zinc-300 leading-relaxed">${st.desc}</p>
+            <div class="p-4 bg-[#171A22] border border-[#343A4A] inline-block">
+              <span class="font-mono-tech text-sm text-amber-400 font-bold">OUTPUT / DELIVERABLE: </span>
+              <span class="text-base font-bold text-white">${st.deliverable}</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-[#171A22] border border-[#232733] p-6 space-y-3">
+            <div class="font-mono-tech text-sm text-emerald-400 font-bold uppercase">CHECKLIST KENDALI MUTU (SOP):</div>
+            <ul class="space-y-3 text-base text-white">
+              ${st.checklist.map(item => `
+                <li class="flex items-start gap-3">
+                  <span class="text-emerald-400 font-bold">✓</span>
+                  <span>${item}</span>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+
+    // 6. DATA FOR BAB 07: CONTENT FORMAT ANATOMY
+    function selectAnatomyFormat(fmt) {
+      const btnVid = document.getElementById("anat-btn-video");
+      const btnCar = document.getElementById("anat-btn-carousel");
+      const container = document.getElementById("anatomy-display-container");
+
+      if (fmt === "VIDEO") {
+        btnVid.classList.add("tab-btn-active");
+        btnCar.classList.remove("tab-btn-active");
+        container.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="p-6 bg-[#171A22] border-t-4 border-t-emerald-400 border border-[#232733] space-y-3">
+              <div class="font-mono-tech text-2xl font-extrabold text-emerald-400">00 – 03 Detik</div>
+              <div class="text-xl font-bold text-white">1. Hook Visual &amp; Audio</div>
+              <p class="text-base text-zinc-300">Pemicu rasa penasaran instan untuk menghentikan jempol audiens yang sedang scrolling.</p>
+              <div class="p-3 bg-[#111318] border border-[#232733] text-sm text-zinc-200">
+                <strong>Contoh:</strong> “Anak kos Pekanbaru pasti paham rasanya tanggal tua habis praktikum...”
+              </div>
+            </div>
+
+            <div class="p-6 bg-[#171A22] border-t-4 border-t-emerald-400 border border-[#232733] space-y-3">
+              <div class="font-mono-tech text-2xl font-extrabold text-emerald-400">04 – 15 Detik</div>
+              <div class="text-xl font-bold text-white">2. Relatable Situation</div>
+              <p class="text-base text-zinc-300">Membangun empati melalui situasi nyata kehidupan siswa SMA atau mahasiswa (70% Kuda Troya).</p>
+              <div class="p-3 bg-[#111318] border border-[#232733] text-sm text-zinc-200">
+                <strong>Contoh:</strong> Adegan talent membawa tumbler bersama Duta Putri (berhijab rapi &amp; rok panjang).
+              </div>
+            </div>
+
+            <div class="p-6 bg-[#171A22] border-t-4 border-t-amber-400 border border-[#232733] space-y-3">
+              <div class="font-mono-tech text-2xl font-extrabold text-amber-400">16 – 45 Detik</div>
+              <div class="text-xl font-bold text-white">3. Solusi / Spill UMRI</div>
+              <p class="text-base text-zinc-300">Menghadirkan keunggulan fasilitas, prodi, atau beasiswa UMRI secara konkret dan jujur (20% Bukti).</p>
+              <div class="p-3 bg-[#111318] border border-[#232733] text-sm text-zinc-200">
+                <strong>Contoh:</strong> Spill stasiun Pelopor Fasilitas Air Siap Minum Teruji &amp; Bersertifikat Halal di Riau.
+              </div>
+            </div>
+
+            <div class="p-6 bg-[#171A22] border-t-4 border-t-white border border-[#232733] space-y-3">
+              <div class="font-mono-tech text-2xl font-extrabold text-white">46 – 60 Detik</div>
+              <div class="text-xl font-bold text-white">4. Soft CTA &amp; Outro</div>
+              <p class="text-base text-zinc-300">Ajakan bertindak menuju portal registrasi + logo Diktisaintek Berdampak &amp; BAN-PT Baik Sekali (10% CTA).</p>
+              <div class="p-3 bg-[#111318] border border-[#232733] text-sm text-zinc-200">
+                <strong>Contoh:</strong> “Gelombang 1 sudah buka, langsung daftar di daftar.umri.ac.id ya!”
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        btnCar.classList.add("tab-btn-active");
+        btnVid.classList.remove("tab-btn-active");
+        container.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="p-6 bg-[#171A22] border-t-4 border-t-emerald-400 border border-[#232733] space-y-3">
+              <div class="font-mono-tech text-xl font-extrabold text-emerald-400">SLIDE 01 (COVER)</div>
+              <div class="text-xl font-bold text-white">Thumb-Stopping Headline</div>
+              <p class="text-base text-zinc-300">Visual tajam berwibawa + judul pemicu rasa ingin tahu (maksimal 6–8 kata, ukuran font besar).</p>
+            </div>
+
+            <div class="p-6 bg-[#171A22] border-t-4 border-t-emerald-400 border border-[#232733] space-y-3">
+              <div class="font-mono-tech text-xl font-extrabold text-emerald-400">SLIDE 02 (CONTEXT)</div>
+              <div class="text-xl font-bold text-white">Pengantar Masalah / Fakta</div>
+              <p class="text-base text-zinc-300">Menyentuh keraguan audiens (misal: bingung pilih jalur masuk atau khawatir biaya kuliah).</p>
+            </div>
+
+            <div class="p-6 bg-[#171A22] border-t-4 border-t-amber-400 border border-[#232733] space-y-3">
+              <div class="font-mono-tech text-xl font-extrabold text-amber-400">SLIDE 03 – 05 (VALUE)</div>
+              <div class="text-xl font-bold text-white">Inti Materi (1 Ide / Slide)</div>
+              <p class="text-base text-zinc-300">Poin materi terstruktur rapi (misal: rincian 9 beasiswa, tahapan CBT Kesehatan, atau skema Reguler B &amp; RPL).</p>
+            </div>
+
+            <div class="p-6 bg-[#171A22] border-t-4 border-t-white border border-[#232733] space-y-3">
+              <div class="font-mono-tech text-xl font-extrabold text-white">SLIDE 06 – 07 (ACTION)</div>
+              <div class="text-xl font-bold text-white">Ringkasan &amp; Call-to-Action</div>
+              <p class="text-base text-zinc-300">Ajakan menyimpan postingan (Save), membagikan ke grup WA keluarga, &amp; mendaftar di daftar.umri.ac.id.</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // 7. PRESENTATION MODE (STEP-BY-STEP CHAPTER EXPLORER)
+    let presentationActive = false;
+    let currentChapterIdx = 0;
+    const CHAPTER_IDS = ["bab-01", "bab-02", "bab-03", "bab-04", "bab-05", "bab-06", "bab-07"];
+    const CHAPTER_TITLES = [
+      "Bab 01/07 — Arsitektur Dual-Kanal (@kampus_umri vs @pmb.umri)",
+      "Bab 02/07 — Formula Kuda Troya 70:20:10 & Arsitektur Funnel",
+      "Bab 03/07 — Peta Psikografis Sumatera & Suara Kating Idaman",
+      "Bab 04/07 — Basis Data Faktual Operasional PMB T.A. 2027/2028",
+      "Bab 05/07 — Kepatuhan Atribut Visual & Rambu Persyarikatan",
+      "Bab 06/07 — Alur Produksi End-to-End (6 Tahap)",
+      "Bab 07/07 — Cetak Biru Anatomi Konten & Standar Output"
+    ];
+
+    function openPresentationMode() {
+      presentationActive = true;
+      currentChapterIdx = 0;
+      document.getElementById("presentation-bar").classList.remove("hidden");
+      document.getElementById("hero-section").classList.add("hidden");
+      updatePresentationView();
+    }
+
+    function exitPresentationMode() {
+      presentationActive = false;
+      document.getElementById("presentation-bar").classList.add("hidden");
+      document.getElementById("hero-section").classList.remove("hidden");
+      document.querySelectorAll(".chapter-section").forEach(sec => sec.classList.remove("hidden"));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function stepChapter(delta) {
+      currentChapterIdx = (currentChapterIdx + delta + CHAPTER_IDS.length) % CHAPTER_IDS.length;
+      updatePresentationView();
+    }
+
+    function updatePresentationView() {
+      document.getElementById("pres-chapter-label").textContent = CHAPTER_TITLES[currentChapterIdx];
+      CHAPTER_IDS.forEach((id, idx) => {
+        const el = document.getElementById(id);
+        if (idx === currentChapterIdx) {
+          el.classList.remove("hidden");
+        } else {
+          el.classList.add("hidden");
+        }
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Initialize all interactive panels on load
+    window.addEventListener("DOMContentLoaded", () => {
+      selectTranslatorTopic(0);
+      selectTrojanSegment(0);
+      selectPersona(0);
+      selectFlowTab(0);
+      selectPipelineStep(0);
+      selectAnatomyFormat("VIDEO");
+    });
+  </script>
+</body>
+</html>

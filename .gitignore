@@ -1,0 +1,12 @@
+# Node / Build artifacts
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Heavy files
+*.pdf
+!Rev.Penawaran*.pdf
+
+# Temporary files
+*.tmp
+*.log
